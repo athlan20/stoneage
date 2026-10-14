@@ -1,0 +1,78 @@
+# STAGE-98：发布 npm 包。把发布包拆成按平台的子包（云效源码里的 client/npm/build.mjs），主包只放启动器。
+# 由 release.yml 在 host 建好 GitHub Release 之后调用（源码仓库 dist-workspace.toml 的 publish-jobs），不要单独运行。
+# 需要：仓库密钥 NPM_TOKEN（对 stoneage-cli 有发布权限的 npm 访问令牌）、CODEUP_TOKEN，仓库变量 CODEUP_URL。
+name: Publish npm
+
+on:
+  workflow_call:
+    inputs:
+      plan:
+        required: true
+        type: string
+
+env:
+  CODEUP_URL: ${{ vars.CODEUP_URL }}
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-22.04
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      PLAN: ${{ inputs.plan }}
+    steps:
+      - name: 检查 NPM_TOKEN（没设置就跳过 npm 发布）
+        id: npm-ready
+        shell: bash
+        env:
+          NPM_TOKEN_VALUE: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NPM_TOKEN_VALUE" ]; then
+            echo "::notice::仓库密钥 NPM_TOKEN 没有设置，跳过 npm 发布（GitHub Release 不受影响）"
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: 拉取云效源码（与 tag 同名）
+        if: steps.npm-ready.outputs.ready == 'true'
+        shell: bash
+        env:
+          TAG: ${{ github.ref_name }}
+          CODEUP_TOKEN: ${{ secrets.CODEUP_TOKEN }}
+          CODEUP_USERNAME: ${{ vars.CODEUP_USERNAME || 'oauth2' }}
+        run: |
+          set -euo pipefail
+          : "${CODEUP_URL:?未设置仓库变量 CODEUP_URL}"
+          : "${CODEUP_TOKEN:?未设置仓库密钥 CODEUP_TOKEN（见 release/github/README.md）}"
+          auth="$(printf '%s:%s' "$CODEUP_USERNAME" "$CODEUP_TOKEN" | base64 | tr -d '\n')"
+          export GIT_CONFIG_COUNT=1
+          export GIT_CONFIG_KEY_0="http.${CODEUP_URL}.extraheader"
+          export GIT_CONFIG_VALUE_0="Authorization: Basic ${auth}"
+          git init --quiet .
+          git fetch --quiet --depth 1 "$CODEUP_URL" "refs/tags/${TAG}:refs/tags/${TAG}"
+          git checkout --quiet "refs/tags/${TAG}"
+      - uses: actions/setup-node@v4
+        if: steps.npm-ready.outputs.ready == 'true'
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - name: 下载 GitHub Release 上的发布包
+        if: steps.npm-ready.outputs.ready == 'true'
+        run: |
+          tag="$(echo "$PLAN" | jq -r '.announcement_tag')"
+          version="$(echo "$PLAN" | jq -r '.releases[] | select(.app_name == "stoneage-client") | .app_version')"
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+          echo "ARCHIVES=$RUNNER_TEMP/archives" >> "$GITHUB_ENV"
+          gh release download "$tag" --dir "$RUNNER_TEMP/archives" \
+            --pattern 'stoneage-client-*.tar.xz' --pattern 'stoneage-client-*.zip'
+      - name: 生成平台子包和主包
+        if: steps.npm-ready.outputs.ready == 'true'
+        run: node client/npm/build.mjs --version "$VERSION" --archives "$ARCHIVES" --out "$RUNNER_TEMP/npm"
+      - name: 先发平台子包，最后发主包
+        if: steps.npm-ready.outputs.ready == 'true'
+        run: |
+          for dir in "$RUNNER_TEMP"/npm/stoneage-cli-*/; do
+            (cd "$dir" && npm publish)
+          done
+          (cd "$RUNNER_TEMP/npm/stoneage-cli" && npm publish)
