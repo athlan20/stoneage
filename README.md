@@ -11,6 +11,7 @@
 
 ```sh
 curl --proto '=https' --tlsv1.2 -LsSf https://github.com/athlan20/stoneage/releases/latest/download/stoneage-client-installer.sh | sh
+brew install athlan20/tap/stoneage
 npm i -g stoneage-cli
 ```
 
@@ -27,5 +28,6 @@ Windows 用 PowerShell 运行 `irm https://github.com/athlan20/stoneage/releases
 | `CODEUP_URL` | 变量 | 云效源码仓库的 HTTPS 地址 |
 | `CODEUP_TOKEN` | 密钥 | 云效 Codeup 的访问令牌，只需要读源码仓库 |
 | `CODEUP_USERNAME` | 变量（可选） | 令牌对应的用户名，默认 `oauth2` |
-| `STONEAGE_ONLINE_SERVER` | 变量 | 线上服务端地址（`host:port`），编译发布版时写进客户端 |
+| `STONEAGE_ONLINE_SERVER` | 变量 | 线上服务端地址，如 `wss://game.example.com/ws`，编译发布版时写进客户端 |
 | `NPM_TOKEN` | 密钥（可选） | npm 访问令牌，对 `stoneage-cli` 有发布权限。不设置就跳过 npm 发布 |
+| `HOMEBREW_TAP_TOKEN` | 密钥 | 推送 Homebrew 配方到 `athlan20/homebrew-tap`，需要对该仓库有写权限。没有它 Homebrew 任务失败，Release 已建但 announce 被跳过 |
