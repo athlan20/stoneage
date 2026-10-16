@@ -1,6 +1,8 @@
 # STAGE-98：发布 npm 包。把发布包拆成按平台的子包（云效源码里的 client/npm/build.mjs），主包只放启动器。
 # 由 release.yml 在 host 建好 GitHub Release 之后调用（源码仓库 dist-workspace.toml 的 publish-jobs），不要单独运行。
-# 需要：仓库密钥 NPM_TOKEN（对 stoneage-cli 有发布权限的 npm 访问令牌）、CODEUP_TOKEN，仓库变量 CODEUP_URL。
+# 用 npm 的 Trusted Publishing（OIDC）发布，不需要 npm 令牌：stoneage-cli 和四个平台子包在 npmjs.com 上都要配置
+# 可信发布者（GitHub Actions，仓库 athlan20/stoneage，Workflow filename 填外层的 release.yml，不是本文件）。
+# 另需要：仓库密钥 CODEUP_TOKEN，仓库变量 CODEUP_URL。
 name: Publish npm
 
 on:
@@ -16,26 +18,16 @@ env:
 jobs:
   publish-npm:
     runs-on: ubuntu-22.04
+    # OIDC 换发布凭据需要 id-token: write；外层 release.yml 的调用处也要给同样的权限。
+    permissions:
+      contents: read
+      id-token: write
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GH_REPO: ${{ github.repository }}
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       PLAN: ${{ inputs.plan }}
     steps:
-      - name: 检查 NPM_TOKEN（没设置就跳过 npm 发布）
-        id: npm-ready
-        shell: bash
-        env:
-          NPM_TOKEN_VALUE: ${{ secrets.NPM_TOKEN }}
-        run: |
-          if [ -z "$NPM_TOKEN_VALUE" ]; then
-            echo "::notice::仓库密钥 NPM_TOKEN 没有设置，跳过 npm 发布（GitHub Release 不受影响）"
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          fi
       - name: 拉取云效源码（与 tag 同名）
-        if: steps.npm-ready.outputs.ready == 'true'
         shell: bash
         env:
           TAG: ${{ github.ref_name }}
@@ -53,12 +45,12 @@ jobs:
           git fetch --quiet --depth 1 "$CODEUP_URL" "refs/tags/${TAG}:refs/tags/${TAG}"
           git checkout --quiet "refs/tags/${TAG}"
       - uses: actions/setup-node@v4
-        if: steps.npm-ready.outputs.ready == 'true'
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
+      - name: 升级 npm（可信发布要 11.5.1 或更新）
+        run: npm install -g npm@^11.5.1 && npm --version
       - name: 下载 GitHub Release 上的发布包
-        if: steps.npm-ready.outputs.ready == 'true'
         run: |
           tag="$(echo "$PLAN" | jq -r '.announcement_tag')"
           version="$(echo "$PLAN" | jq -r '.releases[] | select(.app_name == "stoneage-client") | .app_version')"
@@ -67,12 +59,20 @@ jobs:
           gh release download "$tag" --dir "$RUNNER_TEMP/archives" \
             --pattern 'stoneage-client-*.tar.xz' --pattern 'stoneage-client-*.zip'
       - name: 生成平台子包和主包
-        if: steps.npm-ready.outputs.ready == 'true'
         run: node client/npm/build.mjs --version "$VERSION" --archives "$ARCHIVES" --out "$RUNNER_TEMP/npm"
-      - name: 先发平台子包，最后发主包
-        if: steps.npm-ready.outputs.ready == 'true'
+      - name: 先发平台子包，最后发主包（已发布的版本跳过，失败后可以直接重跑）
         run: |
+          publish() {
+            local name version
+            name="$(jq -r .name package.json)"
+            version="$(jq -r .version package.json)"
+            if npm view "${name}@${version}" version >/dev/null 2>&1; then
+              echo "${name}@${version} 已经在 npm 上，跳过"
+            else
+              npm publish
+            fi
+          }
           for dir in "$RUNNER_TEMP"/npm/stoneage-cli-*/; do
-            (cd "$dir" && npm publish)
+            (cd "$dir" && publish)
           done
-          (cd "$RUNNER_TEMP/npm/stoneage-cli" && npm publish)
+          (cd "$RUNNER_TEMP/npm/stoneage-cli" && publish)
