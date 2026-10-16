@@ -15,7 +15,19 @@ brew install athlan20/tap/stoneage
 npm i -g stoneage-cli
 ```
 
-Windows 用 PowerShell 运行 `irm https://github.com/athlan20/stoneage/releases/latest/download/stoneage-client-installer.ps1 | iex`。
+Windows 用 PowerShell 运行下面这条（带 `-ExecutionPolicy Bypass`：Windows 默认的执行策略是 Restricted，安装脚本的自检会拒绝运行，只对这一次生效，不改系统设置）：
+
+```powershell
+powershell -ExecutionPolicy Bypass -c "irm https://github.com/athlan20/stoneage/releases/latest/download/stoneage-client-installer.ps1 | iex"
+```
+
+默认装到 `%USERPROFILE%\.cargo\bin`，并把它加进用户 PATH。要装到别处（如 `D:\games\stoneage`），先设环境变量再运行同一条命令，程序会在该目录的 `bin\` 下：
+
+```powershell
+$env:STONEAGE_CLIENT_INSTALL_DIR = "D:\games\stoneage"
+```
+
+装好后**新开**一个终端再执行 `stoneage`（已打开的终端不认新的 PATH）。不想改 PATH 就先设 `$env:STONEAGE_CLIENT_NO_MODIFY_PATH = "1"`，之后用完整路径运行。
 
 ## 发布
 
@@ -29,5 +41,4 @@ Windows 用 PowerShell 运行 `irm https://github.com/athlan20/stoneage/releases
 | `CODEUP_TOKEN` | 密钥 | 云效 Codeup 的访问令牌，只需要读源码仓库 |
 | `CODEUP_USERNAME` | 变量（可选） | 令牌对应的用户名，默认 `oauth2` |
 | `STONEAGE_ONLINE_SERVER` | 变量 | 线上服务端地址，如 `wss://game.example.com/ws`，编译发布版时写进客户端 |
-| `NPM_TOKEN` | 密钥（可选） | npm 访问令牌，对 `stoneage-cli` 有发布权限。不设置就跳过 npm 发布 |
 | `HOMEBREW_TAP_TOKEN` | 密钥 | 推送 Homebrew 配方到 `athlan20/homebrew-tap`，需要对该仓库有写权限。没有它 Homebrew 任务失败，Release 已建但 announce 被跳过 |
