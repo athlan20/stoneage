@@ -61,7 +61,8 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: 拉取云效源码（与 tag 同名）
+      # 只在这里拉一次云效源码，打成包传给后面所有任务，免得每个任务各拉一次触发云效限流（429）。
+      - name: 拉取云效源码（与 tag 同名，只拉这一次）
         shell: bash
         env:
           TAG: ${{ github.ref_name }}
@@ -76,8 +77,31 @@ jobs:
           export GIT_CONFIG_KEY_0="http.${CODEUP_URL}.extraheader"
           export GIT_CONFIG_VALUE_0="Authorization: Basic ${auth}"
           git init --quiet .
-          git fetch --quiet --depth 1 "$CODEUP_URL" "refs/tags/${TAG}:refs/tags/${TAG}"
+          # 云效限流时等一等再试，最多 5 次
+          for attempt in 1 2 3 4 5; do
+            if git fetch --quiet --depth 1 "$CODEUP_URL" "refs/tags/${TAG}:refs/tags/${TAG}"; then
+              break
+            fi
+            if [ "$attempt" = 5 ]; then
+              echo "拉取云效源码失败（已试 5 次）" >&2
+              exit 1
+            fi
+            echo "拉取失败，$((attempt * 60)) 秒后重试（第 ${attempt} 次）" >&2
+            sleep $((attempt * 60))
+          done
           git checkout --quiet "refs/tags/${TAG}"
+          tar -czf "${RUNNER_TEMP}/source.tar.gz" .
+          mv "${RUNNER_TEMP}/source.tar.gz" source.tar.gz
+      - name: 上传源码包给后面的任务
+        uses: actions/upload-artifact@v7
+        with:
+          name: codeup-source
+          path: source.tar.gz
+          compression-level: 0
+          retention-days: 1
+      - name: 清掉源码包
+        shell: bash
+        run: rm -f source.tar.gz
       - name: Install dist
         # we specify bash to get pipefail; it guards against the `curl` command
         # failing. otherwise `sh` won't catch that `curl` returned non-0
@@ -134,23 +158,18 @@ jobs:
       - name: enable windows longpaths
         run: |
           git config --global core.longpaths true
-      - name: 拉取云效源码（与 tag 同名）
+      - name: 取 plan 任务拉好的云效源码
+        uses: actions/download-artifact@v8
+        with:
+          name: codeup-source
+          path: codeup-source
+      - name: 解开源码
         shell: bash
-        env:
-          TAG: ${{ github.ref_name }}
-          CODEUP_TOKEN: ${{ secrets.CODEUP_TOKEN }}
-          CODEUP_USERNAME: ${{ vars.CODEUP_USERNAME || 'oauth2' }}
         run: |
           set -euo pipefail
-          : "${CODEUP_URL:?未设置仓库变量 CODEUP_URL}"
-          : "${CODEUP_TOKEN:?未设置仓库密钥 CODEUP_TOKEN（见 release/github/README.md）}"
-          auth="$(printf '%s:%s' "$CODEUP_USERNAME" "$CODEUP_TOKEN" | base64 | tr -d '\n')"
-          export GIT_CONFIG_COUNT=1
-          export GIT_CONFIG_KEY_0="http.${CODEUP_URL}.extraheader"
-          export GIT_CONFIG_VALUE_0="Authorization: Basic ${auth}"
-          git init --quiet .
-          git fetch --quiet --depth 1 "$CODEUP_URL" "refs/tags/${TAG}:refs/tags/${TAG}"
-          git checkout --quiet "refs/tags/${TAG}"
+          # 用相对路径：Windows 上 tar 会把 “D:\…” 里的冒号当成远程主机
+          tar -xzf codeup-source/source.tar.gz
+          rm -rf codeup-source
       - name: Install Rust non-interactively if not already installed
         if: ${{ matrix.container }}
         run: |
@@ -223,23 +242,18 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       BUILD_MANIFEST_NAME: target/distrib/global-dist-manifest.json
     steps:
-      - name: 拉取云效源码（与 tag 同名）
+      - name: 取 plan 任务拉好的云效源码
+        uses: actions/download-artifact@v8
+        with:
+          name: codeup-source
+          path: codeup-source
+      - name: 解开源码
         shell: bash
-        env:
-          TAG: ${{ github.ref_name }}
-          CODEUP_TOKEN: ${{ secrets.CODEUP_TOKEN }}
-          CODEUP_USERNAME: ${{ vars.CODEUP_USERNAME || 'oauth2' }}
         run: |
           set -euo pipefail
-          : "${CODEUP_URL:?未设置仓库变量 CODEUP_URL}"
-          : "${CODEUP_TOKEN:?未设置仓库密钥 CODEUP_TOKEN（见 release/github/README.md）}"
-          auth="$(printf '%s:%s' "$CODEUP_USERNAME" "$CODEUP_TOKEN" | base64 | tr -d '\n')"
-          export GIT_CONFIG_COUNT=1
-          export GIT_CONFIG_KEY_0="http.${CODEUP_URL}.extraheader"
-          export GIT_CONFIG_VALUE_0="Authorization: Basic ${auth}"
-          git init --quiet .
-          git fetch --quiet --depth 1 "$CODEUP_URL" "refs/tags/${TAG}:refs/tags/${TAG}"
-          git checkout --quiet "refs/tags/${TAG}"
+          # 用相对路径：Windows 上 tar 会把 “D:\…” 里的冒号当成远程主机
+          tar -xzf codeup-source/source.tar.gz
+          rm -rf codeup-source
       - name: Install cached dist
         uses: actions/download-artifact@v8
         with:
@@ -286,23 +300,18 @@ jobs:
     outputs:
       val: ${{ steps.host.outputs.manifest }}
     steps:
-      - name: 拉取云效源码（与 tag 同名）
+      - name: 取 plan 任务拉好的云效源码
+        uses: actions/download-artifact@v8
+        with:
+          name: codeup-source
+          path: codeup-source
+      - name: 解开源码
         shell: bash
-        env:
-          TAG: ${{ github.ref_name }}
-          CODEUP_TOKEN: ${{ secrets.CODEUP_TOKEN }}
-          CODEUP_USERNAME: ${{ vars.CODEUP_USERNAME || 'oauth2' }}
         run: |
           set -euo pipefail
-          : "${CODEUP_URL:?未设置仓库变量 CODEUP_URL}"
-          : "${CODEUP_TOKEN:?未设置仓库密钥 CODEUP_TOKEN（见 release/github/README.md）}"
-          auth="$(printf '%s:%s' "$CODEUP_USERNAME" "$CODEUP_TOKEN" | base64 | tr -d '\n')"
-          export GIT_CONFIG_COUNT=1
-          export GIT_CONFIG_KEY_0="http.${CODEUP_URL}.extraheader"
-          export GIT_CONFIG_VALUE_0="Authorization: Basic ${auth}"
-          git init --quiet .
-          git fetch --quiet --depth 1 "$CODEUP_URL" "refs/tags/${TAG}:refs/tags/${TAG}"
-          git checkout --quiet "refs/tags/${TAG}"
+          # 用相对路径：Windows 上 tar 会把 “D:\…” 里的冒号当成远程主机
+          tar -xzf codeup-source/source.tar.gz
+          rm -rf codeup-source
       - name: Install cached dist
         uses: actions/download-artifact@v8
         with:
