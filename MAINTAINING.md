@@ -1,0 +1,24 @@
+# 维护说明
+
+这个仓库只放两样东西：
+
+- **GitHub Release**：各平台的压缩包、一键安装脚本（`stoneage-client-installer.sh` / `.ps1`）和校验和。
+- **发布流程**：`.github/workflows/`。源码不在这里，在云效（Codeup）的 stoneage 仓库里。
+
+玩家向的说明见 [README.md](README.md)。
+
+## 发布
+
+在源码仓库里运行 `scripts/release-github.sh v0.1.0`：它把这里的内容同步过来，并打上同名 tag。tag 推上去以后，GitHub Actions 按这个 tag 从云效拉源码，编译四个平台，创建 Release，再发布 npm 包。流程细节见源码仓库的 `docs/client.md`「发布」。
+
+## 仓库配置
+
+Settings → Secrets and variables → Actions：
+
+| 名称 | 类型 | 用途 |
+|---|---|---|
+| `CODEUP_URL` | 变量 | 云效源码仓库的 HTTPS 地址 |
+| `CODEUP_TOKEN` | 密钥 | 云效 Codeup 的访问令牌，只需要读源码仓库 |
+| `CODEUP_USERNAME` | 变量（可选） | 令牌对应的用户名，默认 `oauth2` |
+| `STONEAGE_ONLINE_SERVER` | 变量 | 线上服务端地址，如 `wss://game.example.com/ws`，编译发布版时写进客户端 |
+| `HOMEBREW_TAP_TOKEN` | 密钥 | 推送 Homebrew 配方到 `athlan20/homebrew-tap`，需要对该仓库有写权限。没有它 Homebrew 任务失败，Release 已建但 announce 被跳过 |

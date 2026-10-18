@@ -36,7 +36,7 @@ jobs:
         run: |
           set -euo pipefail
           : "${CODEUP_URL:?未设置仓库变量 CODEUP_URL}"
-          : "${CODEUP_TOKEN:?未设置仓库密钥 CODEUP_TOKEN（见 release/github/README.md）}"
+          : "${CODEUP_TOKEN:?未设置仓库密钥 CODEUP_TOKEN（见 release/github/MAINTAINING.md）}"
           auth="$(printf '%s:%s' "$CODEUP_USERNAME" "$CODEUP_TOKEN" | base64 | tr -d '\n')"
           export GIT_CONFIG_COUNT=1
           export GIT_CONFIG_KEY_0="http.${CODEUP_URL}.extraheader"
