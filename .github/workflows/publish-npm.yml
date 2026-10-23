@@ -2,7 +2,7 @@
 # 由 release.yml 在 host 建好 GitHub Release 之后调用（源码仓库 dist-workspace.toml 的 publish-jobs），不要单独运行。
 # 用 npm 的 Trusted Publishing（OIDC）发布，不需要 npm 令牌：stoneage-cli 和四个平台子包在 npmjs.com 上都要配置
 # 可信发布者（GitHub Actions，仓库 athlan20/stoneage，Workflow filename 填外层的 release.yml，不是本文件）。
-# 另需要：仓库密钥 CODEUP_TOKEN，仓库变量 CODEUP_URL。
+# 源码取自 release.yml 的 plan 任务上传的 codeup-source 包（CODEUP_TOKEN / CODEUP_URL 只在那里用）。
 name: Publish npm
 
 on:
@@ -11,9 +11,6 @@ on:
       plan:
         required: true
         type: string
-
-env:
-  CODEUP_URL: ${{ vars.CODEUP_URL }}
 
 jobs:
   publish-npm:
@@ -27,23 +24,19 @@ jobs:
       GH_REPO: ${{ github.repository }}
       PLAN: ${{ inputs.plan }}
     steps:
-      - name: 拉取云效源码（与 tag 同名）
+      # 不再自己去云效拉：release.yml 的 plan 任务已经带重试拉过一次并打成 codeup-source 包，
+      # 这里再拉一次容易撞云效限流（v0.2.8 就是这样失败的）。
+      - name: 取 plan 任务拉好的云效源码
+        uses: actions/download-artifact@v8
+        with:
+          name: codeup-source
+          path: codeup-source
+      - name: 解开源码
         shell: bash
-        env:
-          TAG: ${{ github.ref_name }}
-          CODEUP_TOKEN: ${{ secrets.CODEUP_TOKEN }}
-          CODEUP_USERNAME: ${{ vars.CODEUP_USERNAME || 'oauth2' }}
         run: |
           set -euo pipefail
-          : "${CODEUP_URL:?未设置仓库变量 CODEUP_URL}"
-          : "${CODEUP_TOKEN:?未设置仓库密钥 CODEUP_TOKEN（见 release/github/MAINTAINING.md）}"
-          auth="$(printf '%s:%s' "$CODEUP_USERNAME" "$CODEUP_TOKEN" | base64 | tr -d '\n')"
-          export GIT_CONFIG_COUNT=1
-          export GIT_CONFIG_KEY_0="http.${CODEUP_URL}.extraheader"
-          export GIT_CONFIG_VALUE_0="Authorization: Basic ${auth}"
-          git init --quiet .
-          git fetch --quiet --depth 1 "$CODEUP_URL" "refs/tags/${TAG}:refs/tags/${TAG}"
-          git checkout --quiet "refs/tags/${TAG}"
+          tar -xzf codeup-source/source.tar.gz
+          rm -rf codeup-source
       - uses: actions/setup-node@v4
         with:
           node-version: 22
