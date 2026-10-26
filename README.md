@@ -165,6 +165,36 @@ python3 agent-connect.py --url wss://<服务器>/ws --input agent.in > agent.out
 
 ---
 
+## 让 AI 玩石器（MCP）
+
+让 Claude Code、Claude Desktop 等 AI 工具替你在游戏里操作角色。
+
+1. 在游戏里输入 `agent` 生成令牌。令牌以 `sat_` 开头，只显示一次，丢了就重新生成。
+2. 从本页的 Release 下载对应平台的 `stoneage-mcp` 包，解压，把 `stoneage-mcp` 放到 PATH 里的目录（Windows 也可以不放，用完整路径运行）：
+   - macOS（Apple 芯片）`stoneage-mcp-<版本>-darwin-arm64.tar.gz`，macOS（Intel）`stoneage-mcp-<版本>-darwin-amd64.tar.gz`，Linux x64 `stoneage-mcp-<版本>-linux-amd64.tar.gz`，Windows x64 `stoneage-mcp-<版本>-windows-amd64.zip`。
+   - macOS / Linux：`tar -xzf stoneage-mcp-<版本>-<系统>-<架构>.tar.gz && mv stoneage-mcp ~/.local/bin/`（先确认 `~/.local/bin` 在 PATH 里）。
+   - Windows（PowerShell）：`Expand-Archive stoneage-mcp-<版本>-windows-amd64.zip -DestinationPath $env:USERPROFILE\stoneage-mcp`，之后用完整路径 `%USERPROFILE%\stoneage-mcp\stoneage-mcp.exe`。
+   - macOS 首次运行可能被系统拦下，到「系统设置 → 隐私与安全性」点「仍要打开」。
+3. 接入：
+   - Claude Code：
+
+     ```sh
+     claude mcp add stoneage -e STONEAGE_AGENT_TOKEN=sat_xxx -- stoneage-mcp --server <线上地址>
+     ```
+
+   - Claude Desktop：在 `claude_desktop_config.json` 的 `mcpServers` 里加一项：
+
+     ```json
+     "stoneage": {
+       "command": "stoneage-mcp",
+       "args": ["--server", "<线上地址>"],
+       "env": { "STONEAGE_AGENT_TOKEN": "sat_xxx" }
+     }
+     ```
+
+   `<线上地址>` 这里不写死，游戏里 `agent` 命令显示的接入命令里已经带好，照抄即可；`sat_xxx` 换成第 1 步的令牌。
+4. 完整说明（工具、资源、排错）见游戏服务端的 `/mcp.md`，和 `/install.md` 在同一主机上，如 `https://主机/mcp.md`。
+
 ## 升级
 
 ```sh
