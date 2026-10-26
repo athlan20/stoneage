@@ -286,14 +286,81 @@ jobs:
           path: |
             ${{ steps.cargo-dist.outputs.paths }}
             ${{ env.BUILD_MANIFEST_NAME }}
+
+  # STAGE-304：玩家接入 MCP 用的 stoneage-mcp，和客户端包一起放进同一个 Release。
+  # dist 不管 Go，所以这里直接交叉编译四个平台；产物名叫 mcp-release（不以 artifacts- 开头），
+  # 免得被 dist 和 Homebrew 任务的 artifacts-* 下载一起收走。host 单独下载它。
+  build-mcp:
+    needs:
+      - plan
+    runs-on: "ubuntu-22.04"
+    env:
+      TAG: ${{ github.ref_name }}
+    steps:
+      - name: 取 plan 任务拉好的云效源码
+        uses: actions/download-artifact@v8
+        with:
+          name: codeup-source
+          path: codeup-source
+      - name: 解开源码
+        shell: bash
+        run: |
+          set -euo pipefail
+          # 用相对路径：Windows 上 tar 会把 “D:\…” 里的冒号当成远程主机
+          tar -xzf codeup-source/source.tar.gz
+          rm -rf codeup-source
+      - name: 安装 Go（版本取 go.mod 的 go 行）
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+      - name: 交叉编译 stoneage-mcp 并打包
+        shell: bash
+        run: |
+          set -euo pipefail
+          # 包里只放二进制和说明（docs/mcp.md 改名 MCP.md），解开即用；先在临时目录里组装，工作区里只留压缩包
+          stage_root="$RUNNER_TEMP/mcp-stage"
+          rm -rf build/mcp-release "$stage_root"
+          mkdir -p build/mcp-release "$stage_root"
+          for target in darwin/arm64 darwin/amd64 linux/amd64 windows/amd64; do
+            goos="${target%/*}"
+            goarch="${target#*/}"
+            name="stoneage-mcp-${TAG}-${goos}-${goarch}"
+            bin="stoneage-mcp"
+            ext="tar.gz"
+            if [ "$goos" = windows ]; then
+              bin="stoneage-mcp.exe"
+              ext="zip"
+            fi
+            stage="$stage_root/$name"
+            mkdir -p "$stage"
+            CGO_ENABLED=0 GOOS="$goos" GOARCH="$goarch" \
+              go build -trimpath -ldflags "-s -w" -o "$stage/$bin" ./cmd/stoneage-mcp
+            cp docs/mcp.md "$stage/MCP.md"
+            archive="$PWD/build/mcp-release/$name.$ext"
+            if [ "$ext" = zip ]; then
+              (cd "$stage" && zip -q -X "$archive" "$bin" MCP.md)
+            else
+              tar -C "$stage" -czf "$archive" "$bin" MCP.md
+            fi
+          done
+          (cd build/mcp-release && sha256sum ./*.tar.gz ./*.zip | sed 's#\./##' > "stoneage-mcp-${TAG}-SHA256SUMS")
+          ls -l build/mcp-release
+      - name: "Upload MCP packages"
+        uses: actions/upload-artifact@v7
+        with:
+          name: mcp-release
+          path: build/mcp-release/*
+          if-no-files-found: error
+
   # Determines if we should publish/announce
   host:
     needs:
       - plan
       - build-local-artifacts
       - build-global-artifacts
-    # Only run if we're "publishing", and only if plan, local and global didn't fail (skipped is fine)
-    if: ${{ always() && needs.plan.result == 'success' && needs.plan.outputs.publishing == 'true' && (needs.build-global-artifacts.result == 'skipped' || needs.build-global-artifacts.result == 'success') && (needs.build-local-artifacts.result == 'skipped' || needs.build-local-artifacts.result == 'success') }}
+      - build-mcp
+    # Only run if we're "publishing", and only if plan, local, global and mcp didn't fail (skipped is fine)
+    if: ${{ always() && needs.plan.result == 'success' && needs.plan.outputs.publishing == 'true' && (needs.build-global-artifacts.result == 'skipped' || needs.build-global-artifacts.result == 'success') && (needs.build-local-artifacts.result == 'skipped' || needs.build-local-artifacts.result == 'success') && (needs.build-mcp.result == 'skipped' || needs.build-mcp.result == 'success') }}
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     runs-on: "ubuntu-22.04"
@@ -345,6 +412,12 @@ jobs:
           pattern: artifacts-*
           path: artifacts
           merge-multiple: true
+      # STAGE-304：stoneage-mcp 的各平台包和校验和，与上面的客户端包一起上传到同一个 Release
+      - name: "Download MCP packages"
+        uses: actions/download-artifact@v8
+        with:
+          name: mcp-release
+          path: artifacts
       - name: Cleanup
         run: |
           # Remove the granular manifests
