@@ -18,7 +18,7 @@ name: Release
 permissions:
   "contents": "write"
 
-# 源码在云效 Codeup，本仓库只放 Release 和这份发布流程（见 release/github/MAINTAINING.md）。
+# 源码在云效 Codeup，本仓库只放 Release 和这份发布流程（维护说明见源码仓库 docs/client.md「发布」）。
 env:
   GH_REPO: ${{ github.repository }}
   CODEUP_URL: ${{ vars.CODEUP_URL }}
@@ -71,7 +71,7 @@ jobs:
         run: |
           set -euo pipefail
           : "${CODEUP_URL:?未设置仓库变量 CODEUP_URL}"
-          : "${CODEUP_TOKEN:?未设置仓库密钥 CODEUP_TOKEN（见 release/github/MAINTAINING.md）}"
+          : "${CODEUP_TOKEN:?未设置仓库密钥 CODEUP_TOKEN（见源码仓库 docs/client.md「发布」）}"
           auth="$(printf '%s:%s' "$CODEUP_USERNAME" "$CODEUP_TOKEN" | base64 | tr -d '\n')"
           export GIT_CONFIG_COUNT=1
           export GIT_CONFIG_KEY_0="http.${CODEUP_URL}.extraheader"
