@@ -39,9 +39,26 @@ type Options struct {
 	MinClientVersion string
 	// LatestClientVersion 是最新客户端版本 x.y.z（STAGE-100）；空表示 hello 响应里不返回 latest_client。
 	LatestClientVersion string
+	// RateLimitMode 是按连接限速的模式（STAGE-351）：off 不检查，log 超限只记日志，enforce 超限回复 RATE_LIMITED。
+	// 空值或不认识的取 log（不拒绝）。
+	RateLimitMode string
+	// RateLimitRate 是令牌桶每秒补充的令牌数，默认 20；RateLimitBurst 是桶的容量，默认 40。
+	RateLimitRate  float64
+	RateLimitBurst int
 }
 
 func (o *Options) fill() {
+	switch o.RateLimitMode {
+	case rateModeOff, rateModeLog, rateModeEnforce:
+	default:
+		o.RateLimitMode = rateModeLog
+	}
+	if o.RateLimitRate <= 0 {
+		o.RateLimitRate = 20
+	}
+	if o.RateLimitBurst <= 0 {
+		o.RateLimitBurst = 40
+	}
 	if o.ServerName == "" {
 		o.ServerName = "stoneage-server/0.1.0"
 	}

@@ -136,6 +136,7 @@ const (
 	ReasonAgentTokenRevoked    = "AGENT_TOKEN_REVOKED"
 	ReasonKickedByPlayer       = "KICKED_BY_PLAYER"
 	ReasonAccountDisabled      = "ACCOUNT_DISABLED"
+	ReasonRateLimited          = "RATE_LIMITED" // STAGE-351：持续超过按连接限速，断开
 )
 
 // DisconnectMessage 返回断开原因对应的中文说明。
@@ -155,6 +156,8 @@ func DisconnectMessage(reason string) string {
 		return "玩家已让你下线"
 	case ReasonAccountDisabled:
 		return "账号已被禁用，连接已断开"
+	case ReasonRateLimited:
+		return "请求过于频繁，连接已断开"
 	}
 	return "连接已断开"
 }

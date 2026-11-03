@@ -223,3 +223,42 @@ func TestInlayOverlayFileConfig(t *testing.T) {
 		t.Fatalf(".env 里的路径应带出: %q %v", c.InlayOverlayFile, err)
 	}
 }
+
+// STAGE-351：按连接限速的三项配置。模式只能是 off/log/enforce，速率和容量必须是正数；不写取 log、20、40。
+func TestRateLimitConfig(t *testing.T) {
+	for _, env := range []string{EnvRateLimit, EnvRateLimitRate, EnvRateLimitBurst} {
+		t.Setenv(env, "")
+	}
+	c, err := Load(writeEnv(t, ""))
+	if err != nil || c.RateLimitMode != "log" || c.RateLimitRate != 20 || c.RateLimitBurst != 40 {
+		t.Fatalf("不写时应是 log、20、40: %+v %v", c, err)
+	}
+	c, err = Load(writeEnv(t, "STONEAGE_RATE_LIMIT=enforce\nSTONEAGE_RATE_LIMIT_RATE=5.5\nSTONEAGE_RATE_LIMIT_BURST=10\n"))
+	if err != nil || c.RateLimitMode != "enforce" || c.RateLimitRate != 5.5 || c.RateLimitBurst != 10 {
+		t.Fatalf(".env 文件配置: %+v %v", c, err)
+	}
+	t.Setenv(EnvRateLimit, "off")
+	if c, err = Load(writeEnv(t, "STONEAGE_RATE_LIMIT=enforce\n")); err != nil || c.RateLimitMode != "off" {
+		t.Fatalf("环境变量应覆盖 .env: %+v %v", c, err)
+	}
+	for _, bad := range []string{"ENFORCE", "on", "1"} {
+		t.Setenv(EnvRateLimit, bad)
+		if _, err := Load(writeEnv(t, "")); err == nil {
+			t.Errorf("模式 %q 应当报错", bad)
+		}
+	}
+	t.Setenv(EnvRateLimit, "")
+	for _, bad := range []string{"0", "-1", "abc", "NaN", "Inf"} {
+		t.Setenv(EnvRateLimitRate, bad)
+		if _, err := Load(writeEnv(t, "")); err == nil {
+			t.Errorf("速率 %q 应当报错", bad)
+		}
+	}
+	t.Setenv(EnvRateLimitRate, "")
+	for _, bad := range []string{"0", "-3", "2.5", "abc"} {
+		t.Setenv(EnvRateLimitBurst, bad)
+		if _, err := Load(writeEnv(t, "")); err == nil {
+			t.Errorf("容量 %q 应当报错", bad)
+		}
+	}
+}

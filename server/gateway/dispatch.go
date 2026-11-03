@@ -16,6 +16,15 @@ func (s *Session) handleLine(ctx context.Context, line []byte) bool {
 		s.reply(req, nil, perr)
 		return !fatal
 	}
+	// STAGE-351：按连接限速，超限回复 RATE_LIMITED；持续超限断开。
+	if perr, drop := s.checkRate(req, time.Now()); perr != nil {
+		s.reply(req, nil, perr)
+		if drop {
+			s.Disconnect(protocol.ReasonRateLimited, "请求过于频繁")
+			return false
+		}
+		return true
+	}
 	data, err := s.dispatch(ctx, req)
 	s.notifyDone(ctx, req, err)
 	if err != nil {

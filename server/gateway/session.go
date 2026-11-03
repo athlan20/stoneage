@@ -34,6 +34,8 @@ type Session struct {
 	// 这样排队等待的数据库查询和密码计算会立即放弃。
 	ctx    context.Context
 	cancel context.CancelFunc
+	// rate 是按连接限速的状态（STAGE-351），只在读循环所在的 goroutine 里用，不加锁。
+	rate connRate
 
 	mu        sync.RWMutex
 	state     protocol.State
@@ -50,6 +52,7 @@ func newSession(srv *Server, conn net.Conn, id uint64, remote net.Addr) *Session
 	return &Session{
 		ctx: ctx, cancel: cancel,
 		id: id, srv: srv, conn: conn, remote: remote,
+		rate:  newConnRate(srv.opts),
 		log:   srv.log.With("session", id, "remote", remote.String()),
 		out:   make(chan outMsg, outQueueSize),
 		done:  make(chan struct{}),

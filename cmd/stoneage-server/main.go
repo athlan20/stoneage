@@ -140,6 +140,9 @@ func runWithStdin(cfg config.Config, protocolLog string, tempSchema bool, adminL
 		TrustedProxies:      cfg.TrustedProxies,
 		MinClientVersion:    cfg.MinClientVersion,
 		LatestClientVersion: cfg.LatestClientVersion,
+		RateLimitMode:       cfg.RateLimitMode,
+		RateLimitRate:       cfg.RateLimitRate,
+		RateLimitBurst:      cfg.RateLimitBurst,
 	})
 	// 协议文档、agent 手册、参考脚本和石器百科和 WebSocket 共用一个端口（STAGE-118）。
 	webpages.Install(srv, cfg.WikiCDN)

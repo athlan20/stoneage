@@ -6,6 +6,14 @@
 新条目写在最上面，标题格式是 `## 日期 · docs_rev 修订号`，修订号是 `protocol.md` 与 `agent-guide.md` 内容哈希的前 12 位十六进制。
 同一份文档在不同分支合入的组合会有不同的修订号，各有一条。`go test ./server/webpages` 会检查当前修订号有没有登记，没有就失败。
 
+## 2026-11-03 · docs_rev bf5f88dd8a52
+
+- 合并记录：按连接限速（STAGE-351）与文档措辞整理（开源准备）合并后的修订号，无新增内容，具体变更见下面 c9e930c00daa（按连接限速）、874077146f12（措辞整理）两条。
+
+## 2026-11-02 · docs_rev c9e930c00daa
+
+- 按连接限速（STAGE-351）：服务端新增通用请求频率限制，超限回复 RATE_LIMITED 并带 retry_after_seconds，持续超限以断开原因 RATE_LIMITED 断开；agent 遇到 RATE_LIMITED 应按 retry_after_seconds 等待后重试。心跳和握手不计入，见 `protocol.md` 第 4 节。
+
 ## 2026-11-02 · docs_rev 874077146f12
 
 - 文档措辞整理（开源准备）：`protocol.md` 里对原版服务端的出处引用改成通用写法（不再写仓库内路径），“旧服务端”统一为“原版服务端”。没有新增、删除或修改任何消息、字段、错误码和默认值，agent 不需要因此改动。

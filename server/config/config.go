@@ -84,6 +84,10 @@ type Config struct {
 	RideLevelGap int
 	// NpcEventOpen 是任务脚本的放开开关，原样保留，见 EnvNpcEventOpen（STAGE-214）；空字符串是默认。
 	NpcEventOpen string
+	// RateLimitMode / RateLimitRate / RateLimitBurst 是按连接限速，见 ratelimit.go（STAGE-351）。
+	RateLimitMode  string
+	RateLimitRate  float64
+	RateLimitBurst int
 }
 
 // Load 加载 envFile（不存在则忽略），再用真实环境变量覆盖。
@@ -119,6 +123,10 @@ func resolve(file map[string]string, lookup func(string) (string, bool)) (Config
 	if err != nil {
 		return Config{}, err
 	}
+	rlMode, rlRate, rlBurst, err := parseRateLimit(get)
+	if err != nil {
+		return Config{}, err
+	}
 	agentMax, err := strconv.Atoi(get(EnvAgentMaxOnlineMinutes, "0"))
 	if err != nil || agentMax < 0 {
 		return Config{}, fmt.Errorf("%s 必须是不小于 0 的整数（分钟，0 不限制），当前是 %q", EnvAgentMaxOnlineMinutes, get(EnvAgentMaxOnlineMinutes, ""))
@@ -143,6 +151,9 @@ func resolve(file map[string]string, lookup func(string) (string, bool)) (Config
 		NpcEventOpen:          get(EnvNpcEventOpen, ""),
 		ChatFilterFile:        get(EnvChatFilterFile, ""),
 		InlayOverlayFile:      get(EnvInlayOverlayFile, ""),
+		RateLimitMode:         rlMode,
+		RateLimitRate:         rlRate,
+		RateLimitBurst:        rlBurst,
 	}
 	return c, c.Validate()
 }

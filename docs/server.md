@@ -22,6 +22,9 @@ STAGE-140：断线只读、真实重新登录与完整刷新规则见 [reconnect
 | `STONEAGE_LATEST_CLIENT_VERSION` | 空（不返回） | 最新客户端版本 `x.y.z`（STAGE-100）。配置后 `hello` 响应里返回 `latest_client`，客户端据此在消息栏提示升级；协议用例的 `server_config.latest_client_version` 只影响单个用例 |
 | `STONEAGE_AGENT_MAX_ONLINE_MINUTES` | `0`（不限） | agent 连续在线的上限（分钟，STAGE-118）。登录满这么久的 agent 被断开，原因 `AGENT_TOKEN_REVOKED`，控制权转回玩家；每 60 秒检查一次，所以最迟晚一个周期才断开。玩家连接不受限制 |
 | `STONEAGE_AUTOSAVE_SECONDS` | `180` | 在线角色定时存盘的间隔（秒，STAGE-290）。等级、经验、HP/MP、金币、位置原本只在离开世界时写库，强杀或崩溃会回档；开着时每隔这么久存一遍，战斗结束也立即存一次。`0` 关闭。重启服务端要优雅退出，见 `maintain/README.md` 第 10 节 |
+| `STONEAGE_RATE_LIMIT` | `log` | 按连接限速的模式（STAGE-351，协议见 `docs/protocol.md` 第 4 节）：`off` 不检查；`log` 超限只记 Warn 日志（同一连接每秒最多一条），照常分发；`enforce` 超限回复 `RATE_LIMITED`（带 `retry_after_seconds`），10 秒内被拒绝满 200 次则断开。心跳和握手不计入。写了别的值，服务端启动失败 |
+| `STONEAGE_RATE_LIMIT_RATE` | `20` | 按连接限速的令牌桶每秒补充的令牌数（正数，STAGE-351）。写了非正数或不是数字，服务端启动失败 |
+| `STONEAGE_RATE_LIMIT_BURST` | `40` | 按连接限速的令牌桶容量（正整数，STAGE-351）：一条连接一次最多连发这么多个计入的请求。写了非正整数，服务端启动失败 |
 | `STONEAGE_WIKI_CDN` | 空（不加载外部图片） | 石器百科图片和地图的来源（STAGE-118，`/wiki/` 挂在 WebSocket 端口上时用）。和 `cmd/stoneage-wiki` 的 `-cdn` 一样 |
 | `STONEAGE_NPC_EVENT_OPEN` | 空（只看代码白名单） | **仅供测试**，生产环境不设（STAGE-214）。任务脚本的放开开关：`all`（不分大小写）在白名单之外再放开每个块的 `Unsupported` 都为空的脚本，含不支持块的仍不放开；逗号分隔的脚本文件名（如 `king/event69_1,jaruga/event/ruri05`）则只放开这几个，含不支持块的也放开。名字在数据里找不到的，启动时打警告，服务端照常启动。只影响“脚本是否放开”，对话、接取、完成和不支持块的拒绝都不变 |
 
