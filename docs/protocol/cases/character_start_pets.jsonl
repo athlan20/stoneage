@@ -1,0 +1,45 @@
+{"meta": {"desc": "出生送宠物（STAGE-62）：每个出生地新建角色进游戏后，宠物页 0 号栏是出生地宠物、1 号栏是配套虎、2 号栏是配套雷龙，都是 1 级、rest；外形 3/颜色 2 对应虎 194 金格萨贝鲁、雷龙 253 布拉奇多斯", "stage": "STAGE-62"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 100, "type": "create_character", "data": {"slot": 0, "name": "勇者甲", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 100, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者甲", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 101, "type": "create_character", "data": {"slot": 1, "name": "勇者乙", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 101, "type": "create_character", "ok": true, "data": {"character": {"slot": 1, "name": "勇者乙", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 200, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 200, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者甲", "location": {"floor": 1006, "map_name": "*=村长家"}}, "status": {"level": 1, "hp": 44, "max_hp": 44}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 210, "type": "pets", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 210, "type": "pets", "ok": true, "data": {"max_slots": 20, "pets": [{"slot": 0, "species_id": 2, "species": "乌力乌力", "name": "乌力乌力", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 0, "water": 40, "fire": 60, "wind": 0}}, {"slot": 1, "species_id": 194, "species": "金格萨贝鲁", "name": "金格萨贝鲁", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 30, "water": 0, "fire": 0, "wind": 70}}, {"slot": 2, "species_id": 253, "species": "布拉奇多斯", "name": "布拉奇多斯", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 0, "water": 20, "fire": 80, "wind": 0}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 220, "type": "leave_world", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 220, "type": "leave_world", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 201, "type": "enter_world", "data": {"slot": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 201, "type": "enter_world", "ok": true, "data": {"character": {"slot": 1, "name": "勇者乙", "location": {"floor": 2006, "map_name": "*=村长家"}}, "status": {"level": 1, "hp": 44, "max_hp": 44}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 211, "type": "pets", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 211, "type": "pets", "ok": true, "data": {"max_slots": 20, "pets": [{"slot": 0, "species_id": 112, "species": "凯比", "name": "凯比", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 20, "water": 0, "fire": 0, "wind": 80}}, {"slot": 1, "species_id": 194, "species": "金格萨贝鲁", "name": "金格萨贝鲁", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 30, "water": 0, "fire": 0, "wind": 70}}, {"slot": 2, "species_id": 253, "species": "布拉奇多斯", "name": "布拉奇多斯", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 0, "water": 20, "fire": 80, "wind": 0}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 221, "type": "leave_world", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 221, "type": "leave_world", "ok": true, "data": {}}}
+{"conn": "player2", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player2", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player2", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "player2", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "bob"}}}
+{"conn": "player2", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "player2", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "bob"}}}
+{"conn": "player2", "dir": "c2s", "msg": {"id": 100, "type": "create_character", "data": {"slot": 0, "name": "勇者丙", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 2}}}
+{"conn": "player2", "dir": "s2c", "msg": {"id": 100, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者丙", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}}}}}
+{"conn": "player2", "dir": "c2s", "msg": {"id": 101, "type": "create_character", "data": {"slot": 1, "name": "勇者丁", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 3}}}
+{"conn": "player2", "dir": "s2c", "msg": {"id": 101, "type": "create_character", "ok": true, "data": {"character": {"slot": 1, "name": "勇者丁", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}}}}}
+{"conn": "player2", "dir": "c2s", "msg": {"id": 200, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player2", "dir": "s2c", "msg": {"id": 200, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者丙", "location": {"floor": 3006, "map_name": "*=村长家"}}, "status": {"level": 1, "hp": 44, "max_hp": 44}}}}
+{"conn": "player2", "dir": "c2s", "msg": {"id": 210, "type": "pets", "data": {}}}
+{"conn": "player2", "dir": "s2c", "msg": {"id": 210, "type": "pets", "ok": true, "data": {"max_slots": 20, "pets": [{"slot": 0, "species_id": 102, "species": "克克尔", "name": "克克尔", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 0, "water": 70, "fire": 30, "wind": 0}}, {"slot": 1, "species_id": 194, "species": "金格萨贝鲁", "name": "金格萨贝鲁", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 30, "water": 0, "fire": 0, "wind": 70}}, {"slot": 2, "species_id": 253, "species": "布拉奇多斯", "name": "布拉奇多斯", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 0, "water": 20, "fire": 80, "wind": 0}}]}}}
+{"conn": "player2", "dir": "c2s", "msg": {"id": 220, "type": "leave_world", "data": {}}}
+{"conn": "player2", "dir": "s2c", "msg": {"id": 220, "type": "leave_world", "ok": true, "data": {}}}
+{"conn": "player2", "dir": "c2s", "msg": {"id": 201, "type": "enter_world", "data": {"slot": 1}}}
+{"conn": "player2", "dir": "s2c", "msg": {"id": 201, "type": "enter_world", "ok": true, "data": {"character": {"slot": 1, "name": "勇者丁", "location": {"floor": 4006, "map_name": "*=村长家"}}, "status": {"level": 1, "hp": 44, "max_hp": 44}}}}
+{"conn": "player2", "dir": "c2s", "msg": {"id": 211, "type": "pets", "data": {}}}
+{"conn": "player2", "dir": "s2c", "msg": {"id": 211, "type": "pets", "ok": true, "data": {"max_slots": 20, "pets": [{"slot": 0, "species_id": 34, "species": "威伯", "name": "威伯", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 60, "water": 0, "fire": 0, "wind": 40}}, {"slot": 1, "species_id": 194, "species": "金格萨贝鲁", "name": "金格萨贝鲁", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 30, "water": 0, "fire": 0, "wind": 70}}, {"slot": 2, "species_id": 253, "species": "布拉奇多斯", "name": "布拉奇多斯", "level": 1, "exp": 0, "next_exp": 2, "state": "rest", "elements": {"earth": 0, "water": 20, "fire": 80, "wind": 0}}]}}}
+{"conn": "player2", "dir": "c2s", "msg": {"id": 221, "type": "leave_world", "data": {}}}
+{"conn": "player2", "dir": "s2c", "msg": {"id": 221, "type": "leave_world", "ok": true, "data": {}}}

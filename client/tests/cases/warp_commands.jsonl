@@ -1,0 +1,35 @@
+{"meta": {"desc": "客户端的 warp 命令：名字/编号换成地点编号发给服务端，成功后位置随 position_changed 更新（地点表由模拟服务端自动应答）", "stage": "STAGE-22"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}, "position": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000"}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "warp", "data": {"place": 3}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":3000,"map_name":"加加村","x":74,"y":54,"direction":4}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "warp", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "warp", "data": {"place": 1}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":1000,"map_name":"萨姆吉尔村","x":50,"y":116,"direction":4}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "warp", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "warp", "data": {"place": 4}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":4000,"map_name":"卡鲁它那村","x":100,"y":96,"direction":4}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "warp", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "warp", "data": {"floor": 1006}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":1006,"map_name":"萨姆吉尔的村长家","x":10,"y":20,"direction":4}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "warp", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "warp", "data": {"floor": 1006}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":1006,"map_name":"萨姆吉尔的村长家","x":10,"y":20,"direction":4}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "warp", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "warp", "data": {"floor": 40}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":40,"map_name":"奇努伊关卡","x":1,"y":9,"direction":4}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "warp", "ok": true, "data": {}}}

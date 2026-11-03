@@ -1,0 +1,3 @@
+{"meta": {"desc": "服务端未开放注册：hello 响应里 register_enabled 为 false，客户端把“注册”按钮置灰", "stage": "STAGE-3", "server_config": {"register_enabled": false}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": false}}}

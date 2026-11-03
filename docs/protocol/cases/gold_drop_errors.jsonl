@@ -1,0 +1,40 @@
+{"meta": {"desc": "丢弃石币的参数错误（STAGE-328）：amount 为 0、负数、小数、字符串、超过持有，或缺 amount；confirm 缺少、为 no 或 YES，都回 BAD_REQUEST，金币一直是 9999950", "stage": "STAGE-328"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}}}
+{"conn": "setup", "dir": "admin", "do": "set_gold", "character": "勇者小明", "gold": 9999950}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "inventory", "ok": true, "data": {"gold": 9999950, "slots": []}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "gold_drop", "data": {"amount": 0, "confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "gold_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "gold_drop", "data": {"amount": -5, "confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "gold_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "gold_drop", "data": {"amount": 1.5, "confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "gold_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "gold_drop", "data": {"amount": "100", "confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "gold_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "gold_drop", "data": {"amount": 9999951, "confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "gold_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "gold_drop", "data": {"confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "gold_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "gold_drop", "data": {"amount": 1000}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "gold_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "gold_drop", "data": {"amount": 1000, "confirm": "no"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 13, "type": "gold_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "gold_drop", "data": {"amount": 1000, "confirm": "YES"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 14, "type": "gold_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 15, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 15, "type": "inventory", "ok": true, "data": {"gold": 9999950, "slots": []}}}

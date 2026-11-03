@@ -1,0 +1,24 @@
+# macOS junk
+.DS_Store
+._*
+
+build/
+runtime/
+target/
+
+# 原版素材和数据表由使用者自备，不进仓库：
+#   assets/original/        原版 2.5 美术素材（地图、精灵、位图等）
+#   original-data/          原版 2.5 数据表（gmsv/data 等），仅供 tools/ 下的生成脚本和少量对照测试使用
+/assets/
+/original-data/
+
+__pycache__/
+*.pyc
+
+# 服务端本地配置（含数据库密码），模板是 .env.example
+.env
+
+# 个人本地配置与编辑器、工具目录
+.zcodeignore
+AGENTS.local.md
+.aiwork/

@@ -1,0 +1,49 @@
+{"meta": {"desc": "和 NPC 对话（STAGE-69）：村长家 talk 厨师弹窗，编号不存在和别处的 NPC、传送员类 NPC 报错不弹窗（商店、护士、存档点走各自的窗口，见 5.38–5.40）；没有选项的窗口 choose 回 NPC_BAD_CHOICE；npc_close 关闭并幂等；告示牌显示原文（\\n 转成换行）", "stage": "STAGE-69"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}, "position": {"floor": 1006, "map_name": "*=村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000"}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "talk", "data": {"npc": 99999}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "talk", "ok": false, "error": {"code": "NPC_NOT_FOUND", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "talk", "data": {"npc": 198}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "talk", "ok": false, "error": {"code": "NPC_NOT_HERE", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "talk", "data": {"npc": 225}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 225, "name": "村长家的厨师", "type": "对话", "text": "*", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "npc_choose", "ok": false, "error": {"code": "NPC_BAD_CHOICE", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "npc_close", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CLOSED"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "npc_close", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "npc_close", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "npc_close", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "warp", "data": {"place": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "position_changed", "data": {"floor": 1000, "map_name": "萨姆吉尔村", "x": 50, "y": 116, "direction": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "warp", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "talk", "data": {"npc": 196}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 196, "name": "村庄青年", "type": "对话", "text": "这里就是萨姆吉尔村。", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "npc_close", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CLOSED"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 13, "type": "npc_close", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "talk", "data": {"npc": 194}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 194, "name": "竞技场前的看板", "type": "告示牌", "text": "＝＝＝＝＝＝萨姆吉尔的竞技场＝＝＝＝＝＝\n公平公开战斗的场所\n会场会有战斗前10名的排名\n前10名免费入场\n另外，第７７及７７７名也免费。", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 14, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 15, "type": "talk", "data": {"npc": 1076}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1076, "name": "酒保", "type": "报时", "text": "*", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 15, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 16, "type": "npc_close", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CLOSED"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 16, "type": "npc_close", "ok": true, "data": {}}}

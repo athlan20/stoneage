@@ -1,0 +1,20 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>STAGE-167 正式终端角色动画验收</title>
+<style>
+body{background:#17191d;color:#ddd;font:15px system-ui;margin:20px}
+header{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+button,select{background:#292d35;color:#eee;padding:7px;border:1px solid #555;border-radius:4px}
+.viewport{overflow:auto;margin-top:16px;contain:content}
+canvas{display:block;background:#0c0c0c;border:1px solid #444;max-width:100%;height:auto}
+input{width:280px}p{color:#aaa}
+</style>
+<header><b>STAGE-167 · 正式终端角色动画</b>
+<select id="scene" aria-label="验收场景"></select>
+<button id="play">播放</button><button id="again">重播</button>
+<label><input id="seek" aria-label="帧进度" type="range" min="0" value="0"></label>
+<span id="time"></span></header>
+<p>正式 Rust 客户端逐帧输出。默认暂停；点击播放观看一遍，拖动进度逐帧检查。切到其他页面会自动暂停。</p>
+<div class="viewport"><canvas id="screen" role="img" aria-label="正式终端战斗画面"></canvas></div>
+<script id="frames" type="application/json">__FRAMES__</script>
+<script>__PLAYER__</script>

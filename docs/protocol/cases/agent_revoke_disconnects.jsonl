@@ -1,0 +1,23 @@
+{"meta": {"desc": "玩家吊销令牌：正在使用它的 agent 立刻收到 AGENT_TOKEN_REVOKED 并被断开，不能再用这个令牌登录", "stage": "STAGE-6"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "create_agent_token", "data": {"label": "我的 Claude", "expires_in_days": 30}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "create_agent_token", "ok": true, "data": {"token_id": "*>tid=t_7Hq2Xa9k", "token": "*>tok=sat_Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZmdoaWo", "label": "我的 Claude", "expires_at": "*=2026-11-08T12:00:00Z"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "agent"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 2, "type": "agent_login", "data": {"token": "$tok"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 2, "type": "agent_login", "ok": true, "data": {"account": "alice", "token_id": "$tid"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_status", "data": {"online": true, "token_id": "$tid"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "revoke_agent_token", "data": {"token_id": "$tid"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_status", "data": {"online": false, "token_id": null}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "revoke_agent_token", "ok": true, "data": {}}}
+{"conn": "agent", "dir": "s2c", "msg": {"type": "disconnect", "data": {"reason": "AGENT_TOKEN_REVOKED", "message": "*=令牌已被吊销或已过期，连接已断开"}}, "delay_ms": 3000}
+{"conn": "agent", "dir": "s2c", "closed": true}
+{"conn": "agent2", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "agent"}}}
+{"conn": "agent2", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "agent2", "dir": "c2s", "msg": {"id": 2, "type": "agent_login", "data": {"token": "$tok"}}}
+{"conn": "agent2", "dir": "s2c", "msg": {"id": 2, "type": "agent_login", "ok": false, "error": {"code": "INVALID_TOKEN", "message": "*=错误说明"}}}

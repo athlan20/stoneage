@@ -1,0 +1,31 @@
+{"meta": {"desc": "令牌不对、已吊销都不能登录；agent 不能用密码登录，玩家连接不能用令牌登录；登录后不能再登录", "stage": "STAGE-6"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "create_agent_token", "data": {"label": "我的 Claude", "expires_in_days": 30}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "create_agent_token", "ok": true, "data": {"token_id": "*>tid=t_7Hq2Xa9k", "token": "*>tok=sat_Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZmdoaWo", "label": "我的 Claude", "expires_at": "*=2026-11-08T12:00:00Z"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "revoke_agent_token", "data": {"token_id": "$tid"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "revoke_agent_token", "ok": true, "data": {}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "agent"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 2, "type": "agent_login", "data": {"token": "sat_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 2, "type": "agent_login", "ok": false, "error": {"code": "INVALID_TOKEN", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 3, "type": "agent_login", "data": {"token": "不是令牌"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 3, "type": "agent_login", "ok": false, "error": {"code": "INVALID_TOKEN", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 4, "type": "agent_login", "data": {"token": "$tok"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 4, "type": "agent_login", "ok": false, "error": {"code": "INVALID_TOKEN", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 5, "type": "agent_login", "data": {}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 5, "type": "agent_login", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 6, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 6, "type": "login", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 7, "type": "register", "data": {"account": "bob_x", "password": "secret1"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 7, "type": "register", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=错误说明"}}}
+{"conn": "other", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "other", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "other", "dir": "c2s", "msg": {"id": 2, "type": "agent_login", "data": {"token": "$tok"}}}
+{"conn": "other", "dir": "s2c", "msg": {"id": 2, "type": "agent_login", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 8, "type": "characters", "data": {}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 8, "type": "characters", "ok": false, "error": {"code": "WRONG_STATE", "message": "*=错误说明"}}}

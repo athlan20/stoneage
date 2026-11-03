@@ -1,0 +1,27 @@
+{"meta": {"desc": "猜谜大师（STAGE-332）：任务 2 完成后，伊那多（810，1225）的等级门：金布伊 Lv76、Lv78 各一只时找伊那多，只说提示（LV77 才能去认定），不发入门证 2753、不接任务 3", "stage": "STAGE-332", "server_config": null, "manual": false}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}}}}
+{"conn": "setup", "dir": "admin", "do": "give_quest", "character": "勇者小明", "quest_no": 2, "state": "done"}
+{"conn": "setup", "dir": "admin", "do": "give_pet", "character": "勇者小明", "pet_id": 12, "level": 76, "loyalty": 100}
+{"conn": "setup", "dir": "admin", "do": "give_pet", "character": "勇者小明", "pet_id": 12, "level": 78, "loyalty": 100}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 810, "x": 27, "y": 16}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明"}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "talk", "data": {"npc": 1225}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"name": "伊那多", "npc": 1225, "options": [], "text": "*", "type": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "talk", "data": {"npc": 1225}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"name": "伊那多", "npc": 1225, "options": [], "text": "*", "type": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "talk", "ok": true, "data": {}}}

@@ -1,0 +1,29 @@
+{"meta": {"desc": "agent 登录后不能建角、删角、管理令牌，也不能用玩家专用的控制请求", "stage": "STAGE-6"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "create_agent_token", "data": {"label": "我的 Claude", "expires_in_days": 30}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "create_agent_token", "ok": true, "data": {"token_id": "*>tid=t_7Hq2Xa9k", "token": "*>tok=sat_Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZmdoaWo", "label": "我的 Claude", "expires_at": "*=2026-11-08T12:00:00Z"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "agent"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 2, "type": "agent_login", "data": {"token": "$tok"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 2, "type": "agent_login", "ok": true, "data": {"account": "alice", "token_id": "$tid"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 3, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 3, "type": "create_character", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 4, "type": "delete_character", "data": {"slot": 0, "name": "勇者小明"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 4, "type": "delete_character", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 5, "type": "create_agent_token", "data": {}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 5, "type": "create_agent_token", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 6, "type": "agent_tokens", "data": {}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 6, "type": "agent_tokens", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 7, "type": "revoke_agent_token", "data": {"token_id": "$tid"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 7, "type": "revoke_agent_token", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 8, "type": "take_control", "data": {}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 8, "type": "take_control", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 9, "type": "release_control", "data": {}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 9, "type": "release_control", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 10, "type": "kick_agent", "data": {}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 10, "type": "kick_agent", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=错误说明"}}}

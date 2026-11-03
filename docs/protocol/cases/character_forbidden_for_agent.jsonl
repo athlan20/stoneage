@@ -1,0 +1,9 @@
+{"meta": {"desc": "agent 连接不能创建或删除角色（回复 WRONG_ROLE），也不能越过登录直接进入世界", "stage": "STAGE-4"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "agent"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "create_character", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=agent 连接不能发送这个请求"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "delete_character", "data": {"slot": 0, "name": "勇者小明"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "delete_character", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=agent 连接不能发送这个请求"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": false, "error": {"code": "WRONG_STATE", "message": "*=当前状态不允许这个请求"}}}

@@ -1,0 +1,59 @@
+{"meta": {"desc": "决斗强者表（STAGE-308，协议 5.75）：勇者小明（alice）被设为 2310 决斗点数，在竞技场（地图 130）对着强者表 NPC 1807。duel_ranking 第 1 页第一名是她、名次 1；page 0 回 BAD_REQUEST；超过最后一页 top 为空；路人乙（bob，100 点）读到自己的名次和点数。强者表 NPC：talk 弹「强者们 / 自己」，选 1 推第 1 页排行（ranking 字段），选 2 推自己所在页；排行页上的 2 号选项不存在回 NPC_BAD_CHOICE；npc_close 关窗；bob 在村里（1000）对强者表 NPC 回 NPC_NOT_HERE", "stage": "STAGE-308"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 130, "x": 40, "y": 14}
+{"conn": "setup", "dir": "admin", "do": "set_duel_point", "character": "勇者小明", "duel_point": 2310}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "bob"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "bob"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "路人乙", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "路人乙", "floor": 1000, "x": 52, "y": 116}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 3, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 6, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 6, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 20, "type": "duel_ranking", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 20, "type": "duel_ranking", "ok": true, "data": {"top": "*", "page": 1, "pages": "*", "me": {"rank": 1, "duel_point": 2310}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 21, "type": "duel_ranking", "data": {"page": 0}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 21, "type": "duel_ranking", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 22, "type": "duel_ranking", "data": {"page": 99}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 22, "type": "duel_ranking", "ok": true, "data": {"top": [], "page": 99, "pages": "*", "me": {"rank": 1, "duel_point": 2310}}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 20, "type": "duel_ranking", "data": {}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 20, "type": "duel_ranking", "ok": true, "data": {"top": "*", "page": 1, "pages": "*", "me": {"rank": "*", "duel_point": 100}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 23, "type": "talk", "data": {"npc": 1807}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1807, "name": "强者表", "type": "强者表", "text": "要看哪一个？", "options": [{"no": 1, "label": "强者们"}, {"no": 2, "label": "自己"}]}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 23, "type": "talk", "ok": true, "data": {}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 24, "type": "npc_choose", "data": {"no": 3}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 24, "type": "npc_choose", "ok": false, "error": {"code": "NPC_BAD_CHOICE", "message": "*"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 25, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1807, "name": "强者表", "type": "强者表", "text": "世界的强者们", "options": "*", "ranking": {"top": "*", "page": 1, "pages": "*", "me": {"rank": 1, "duel_point": 2310}}}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 25, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 26, "type": "npc_choose", "data": {"no": 2}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 26, "type": "npc_choose", "ok": false, "error": {"code": "NPC_BAD_CHOICE", "message": "*"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 27, "type": "npc_close", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CLOSED"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 27, "type": "npc_close", "ok": true, "data": {}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 28, "type": "talk", "data": {"npc": 1807}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1807, "name": "强者表", "type": "强者表", "text": "要看哪一个？", "options": [{"no": 1, "label": "强者们"}, {"no": 2, "label": "自己"}]}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 28, "type": "talk", "ok": true, "data": {}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 29, "type": "npc_choose", "data": {"no": 2}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1807, "name": "强者表", "type": "强者表", "text": "世界的强者们", "options": "*", "ranking": {"top": "*", "page": 1, "pages": "*", "me": {"rank": 1, "duel_point": 2310}}}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 29, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 21, "type": "talk", "data": {"npc": 1807}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 21, "type": "talk", "ok": false, "error": {"code": "NPC_NOT_HERE", "message": "*"}}}

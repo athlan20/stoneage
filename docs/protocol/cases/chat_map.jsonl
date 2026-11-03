@@ -1,0 +1,41 @@
+{"meta": {"desc": "公开聊天·本图（STAGE-278）单账号：未进世界 WRONG_STATE；本图发言推送给自己并去掉首尾空白；空文本、纯空白、71 字符、含制表符、未知频道、party（STAGE-277 前）都 BAD_REQUEST；1 秒内第二条 RATE_LIMITED；同一句 10 秒内重复静默丢弃（响应成功、无推送）；70 字符正好能发", "stage": "STAGE-278"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "chat", "data": {"channel": "map", "text": "有人吗"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "chat", "ok": false, "error": {"code": "WRONG_STATE", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "chat", "data": {"channel": "map", "text": "  有人去加加村吗  "}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 1, "text": "有人去加加村吗", "time_ms": "*=1760000000000"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "chat", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "chat", "data": {"text": ""}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "chat", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "chat", "data": {"text": "   "}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "chat", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "chat", "data": {"text": "一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "chat", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "chat", "data": {"text": "a\tb"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "chat", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "chat", "data": {"channel": "shout", "text": "你好"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "chat", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "chat", "data": {"channel": "party", "text": "组队说话"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 13, "type": "chat", "ok": false, "error": {"code": "NOT_IN_PARTY", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "chat", "data": {"channel": "map", "text": "第二句"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 14, "type": "chat", "ok": false, "error": {"code": "RATE_LIMITED", "message": "*=错误说明", "data": {"retry_after_seconds": "*"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 15, "type": "chat", "data": {"channel": "map", "text": "第二句"}}, "delay_ms": 1100}
+{"conn": "player", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 1, "text": "第二句", "time_ms": "*=1760000000000"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 15, "type": "chat", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 16, "type": "chat", "data": {"channel": "map", "text": "第二句"}}, "delay_ms": 1100}
+{"conn": "player", "dir": "s2c", "msg": {"id": 16, "type": "chat", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 17, "type": "chat", "data": {"channel": "map", "text": "第三句"}}, "delay_ms": 1100}
+{"conn": "player", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 1, "text": "第三句", "time_ms": "*=1760000000000"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 17, "type": "chat", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 18, "type": "chat", "data": {"channel": "map", "text": "二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二"}}, "delay_ms": 1100}
+{"conn": "player", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 1, "text": "二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二", "time_ms": "*=1760000000000"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 18, "type": "chat", "ok": true, "data": {}}}

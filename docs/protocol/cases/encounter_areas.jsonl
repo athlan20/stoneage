@@ -1,0 +1,32 @@
+{"meta":{"desc":"遇敌区域查询：村里为空；按区域开战的参数、地图与区域校验失败不产生副作用","stage":"STAGE-152"}}
+{"conn":"setup","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn":"setup","dir":"c2s","msg":{"id":2,"type":"register","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":2,"type":"register","ok":true,"data":{"account":"alice"}}}
+{"conn":"setup","dir":"c2s","msg":{"id":3,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":3,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn":"setup","dir":"c2s","msg":{"id":4,"type":"create_character","data":{"slot":0,"name":"勇者小明","appearance":{"body":3,"color":2,"eye":1,"mouth":4},"stats":{"vital":8,"strength":4,"toughness":4,"dexterity":4},"elements":{"earth":6,"water":4,"fire":0,"wind":0},"hometown":0}}}
+{"conn":"setup","dir":"s2c","msg":{"id":4,"type":"create_character","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1}}}}
+{"conn":"player","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"player","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn":"player","dir":"c2s","msg":{"id":2,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"player","dir":"s2c","msg":{"id":2,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn":"player","dir":"c2s","msg":{"id":3,"type":"characters","data":{}}}
+{"conn":"player","dir":"s2c","msg":{"id":3,"type":"characters","ok":true,"data":{"max_slots":2}}}
+{"conn":"player","dir":"c2s","msg":{"id":4,"type":"enter_world","data":{"slot":0}}}
+{"conn":"player","dir":"s2c","msg":{"id":4,"type":"enter_world","ok":true,"data":{"position":{"floor":1006,"x":15,"y":22},"encounter":false,"encounter_area_id":null,"encounter_mode":null,"encounter_continues":false}}}
+{"conn":"player","dir":"c2s","msg":{"id":5,"type":"encounter_areas","data":{}}}
+{"conn":"player","dir":"s2c","msg":{"id":5,"type":"encounter_areas","ok":true,"data":{"floor":1006,"areas":[]}}}
+{"conn":"player","dir":"c2s","msg":{"id":6,"type":"encounter_start","data":{"source_floor":1006,"area_id":"100-21-582-399-783-560","mode":"once"}}}
+{"conn":"player","dir":"s2c","msg":{"id":6,"type":"encounter_start","error":{"code":"ENCOUNTER_AREA_NOT_FOUND","message":"*"}}}
+{"conn":"player","dir":"c2s","msg":{"id":7,"type":"encounter_start","data":{"source_floor":200,"area_id":"100-21-582-399-783-560","mode":"once"}}}
+{"conn":"player","dir":"s2c","msg":{"id":7,"type":"encounter_start","error":{"code":"POSITION_CHANGED","message":"*"}}}
+{"conn":"player","dir":"c2s","msg":{"id":8,"type":"encounter_start","data":{"source_floor":1006,"area_id":"100-21-582-399-783-560","mode":"always"}}}
+{"conn":"player","dir":"s2c","msg":{"id":8,"type":"encounter_start","error":{"code":"BAD_REQUEST","message":"*"}}}
+{"conn":"player","dir":"c2s","msg":{"id":9,"type":"encounter_start","data":{"source_floor":1006,"area_id":"","mode":"once"}}}
+{"conn":"player","dir":"s2c","msg":{"id":9,"type":"encounter_start","error":{"code":"BAD_REQUEST","message":"*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "warp", "data": {"place": 5}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"direction": 4, "floor": 100, "map_name": "萨伊那斯", "x": 600, "y": 550}, "type": "position_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 10, "ok": true, "type": "warp"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "encounter_areas", "data": {"offset": 7, "limit": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "encounter_areas", "ok": true, "data": {"floor": 100, "total": 44, "areas": [{"id": "100-28-11-567-155-707", "number": 28, "level1_pets": ["贝恩达斯", "多利凯拉", "乌力", "乌力斯坦"]}]}}}

@@ -1,0 +1,25 @@
+{"meta": {"desc": "1 级宠物开战：从村长家 1006 跨图定位到宠物 11 在萨伊那斯 38 号区域的代表落点（547,115），立刻开第一场战斗（先 position_changed 再 battle_start）；战斗中再点 pet_encounter_start 回 IN_BATTLE。敌人按区域随机抽，随机源按用例名固定，数值与名字用通配", "stage": "STAGE-251"}}
+{"conn":"setup","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn":"setup","dir":"c2s","msg":{"id":2,"type":"register","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":2,"type":"register","ok":true,"data":{"account":"alice"}}}
+{"conn":"setup","dir":"c2s","msg":{"id":3,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":3,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn":"setup","dir":"c2s","msg":{"id":4,"type":"create_character","data":{"slot":0,"name":"勇者小明","appearance":{"body":3,"color":2,"eye":1,"mouth":4},"stats":{"vital":8,"strength":4,"toughness":4,"dexterity":4},"elements":{"earth":6,"water":4,"fire":0,"wind":0},"hometown":0}}}
+{"conn":"setup","dir":"s2c","msg":{"id":4,"type":"create_character","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1}}}}
+{"conn":"player","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"player","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn":"player","dir":"c2s","msg":{"id":2,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"player","dir":"s2c","msg":{"id":2,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn":"player","dir":"c2s","msg":{"id":3,"type":"characters","data":{}}}
+{"conn":"player","dir":"s2c","msg":{"id":3,"type":"characters","ok":true,"data":{"max_slots":2}}}
+{"conn":"player","dir":"c2s","msg":{"id":4,"type":"enter_world","data":{"slot":0}}}
+{"conn":"player","dir":"s2c","msg":{"id":4,"type":"enter_world","ok":true,"data":{"position":{"floor":1006,"x":15,"y":22},"encounter":false,"encounter_area_id":null,"encounter_mode":null,"encounter_continues":false}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 18, "type": "pet_encounter_start", "data": {"pet_id": 11, "area_id": "100-38-547-115-699-241", "mode": "once"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "position_changed", "data": {"floor": 100, "map_name": "萨伊那斯", "x": 547, "y": 115, "direction": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "battle_start", "data": {"battle_id": "*>battle_1=b_1", "kind": "wild", "scene": "萨伊那斯", "you": 0, "allow": {"escape": true, "capture": true}, "units": "*=[{\"no\":0,\"kind\":\"player\",\"name\":\"勇者小明\",\"level\":1,\"hp\":44,\"max_hp\":44,\"hp_pct\":100,\"mp\":100,\"max_mp\":100,\"status\":[],\"ride\":False,\"elements\":{\"earth\":60,\"water\":40,\"fire\":0,\"wind\":0}},{\"no\":15,\"kind\":\"monster\",\"name\":\"布比\",\"level\":1,\"hp_pct\":100,\"status\":[],\"ride\":False,\"elements\":{\"earth\":0,\"water\":0,\"fire\":0,\"wind\":100}}]"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "battle_turn", "data": {"battle_id": "$battle_1", "turn": 1, "deadline_ms": "*=1791701624083", "server_time_ms": "*=1791701594083", "needs": ["player", "pet"], "progress": {"done": 0, "total": 1}}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "encounter_changed", "data": {"encounter": true, "encounter_area_id": "100-38-547-115-699-241", "encounter_area_number": 38, "encounter_mode": "once", "encounter_continues": false}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 18, "type": "pet_encounter_start", "ok": true, "data": {"encounter": true, "encounter_area_id": "100-38-547-115-699-241", "encounter_area_number": 38, "encounter_mode": "once", "encounter_continues": false}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 19, "type": "pet_encounter_start", "data": {"pet_id": 11, "area_id": "100-38-547-115-699-241", "mode": "once"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 19, "type": "pet_encounter_start", "error": {"code": "IN_BATTLE", "message": "*"}}}

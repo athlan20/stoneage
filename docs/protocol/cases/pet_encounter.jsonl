@@ -1,0 +1,28 @@
+{"meta": {"desc": "1 级宠物目录：目录一条（查看）；mode 不认识回 BAD_REQUEST；这只宠物在这个区域没有可遇点回 PET_ENCOUNTER_NOT_FOUND，之后 encounter_areas 显示位置没变；mode=travel 只定位到区域代表落点、不开战（位置从村长家 1006 换到萨伊那斯 547,115）", "stage": "STAGE-251"}}
+{"conn":"setup","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn":"setup","dir":"c2s","msg":{"id":2,"type":"register","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":2,"type":"register","ok":true,"data":{"account":"alice"}}}
+{"conn":"setup","dir":"c2s","msg":{"id":3,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":3,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn":"setup","dir":"c2s","msg":{"id":4,"type":"create_character","data":{"slot":0,"name":"勇者小明","appearance":{"body":3,"color":2,"eye":1,"mouth":4},"stats":{"vital":8,"strength":4,"toughness":4,"dexterity":4},"elements":{"earth":6,"water":4,"fire":0,"wind":0},"hometown":0}}}
+{"conn":"setup","dir":"s2c","msg":{"id":4,"type":"create_character","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1}}}}
+{"conn":"player","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"player","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn":"player","dir":"c2s","msg":{"id":2,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"player","dir":"s2c","msg":{"id":2,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn":"player","dir":"c2s","msg":{"id":3,"type":"characters","data":{}}}
+{"conn":"player","dir":"s2c","msg":{"id":3,"type":"characters","ok":true,"data":{"max_slots":2}}}
+{"conn":"player","dir":"c2s","msg":{"id":4,"type":"enter_world","data":{"slot":0}}}
+{"conn":"player","dir":"s2c","msg":{"id":4,"type":"enter_world","ok":true,"data":{"position":{"floor":1006,"x":15,"y":22},"encounter":false,"encounter_area_id":null,"encounter_mode":null,"encounter_continues":false}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 18, "type": "pet_encounter_catalog", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 18, "type": "pet_encounter_catalog", "ok": true, "data": {"catalog_version": "*", "pets": "*=[{\"pet_id\": 11, \"name\": \"布比\", \"aliases\": [], \"series\": \"\", \"atoms\": {\"earth\": 0, \"water\": 0, \"fire\": 0, \"wind\": 100}, \"size\": 1, \"catch_difficulty\": 0, \"sort_key\": \"*\", \"spot_count\": 1}]", "spots": "*=[{\"pet_id\": 11, \"area_id\": \"100-38-547-115-699-241\", \"number\": 38, \"floor\": 100, \"map_name\": \"萨伊那斯\", \"anchor\": {\"x\": 547, \"y\": 115}, \"rect\": {\"x1\": 547, \"y1\": 115, \"x2\": 699, \"y2\": 241}, \"max_enemies\": 3, \"steps\": 26, \"also_level1\": [\"布伊\", \"火鸡\", \"奇宝\"]}]"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 19, "type": "pet_encounter_start", "data": {"pet_id": 11, "area_id": "100-38-547-115-699-241", "mode": "never"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 19, "type": "pet_encounter_start", "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 20, "type": "pet_encounter_start", "data": {"pet_id": 331, "area_id": "100-38-547-115-699-241", "mode": "once"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 20, "type": "pet_encounter_start", "error": {"code": "PET_ENCOUNTER_NOT_FOUND", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 21, "type": "encounter_areas", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 21, "type": "encounter_areas", "ok": true, "data": {"floor": 1006, "areas": []}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 22, "type": "pet_encounter_start", "data": {"pet_id": 11, "area_id": "100-38-547-115-699-241", "mode": "travel"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "position_changed", "data": {"floor": 100, "map_name": "萨伊那斯", "x": 547, "y": 115, "direction": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 22, "type": "pet_encounter_start", "ok": true, "data": {"encounter": false, "encounter_area_id": null, "encounter_area_number": null, "encounter_mode": null, "encounter_continues": false}}}

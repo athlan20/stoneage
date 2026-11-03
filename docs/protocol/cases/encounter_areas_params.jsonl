@@ -1,0 +1,27 @@
+{"meta": {"desc": "encounter_areas 分页参数（STAGE-258）：offset、limit 非负整数，响应带 total；负数和非整数回复 BAD_REQUEST", "stage": "STAGE-258"}}
+{"conn":"setup","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn":"setup","dir":"c2s","msg":{"id":2,"type":"register","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":2,"type":"register","ok":true,"data":{"account":"alice"}}}
+{"conn":"setup","dir":"c2s","msg":{"id":3,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":3,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn":"setup","dir":"c2s","msg":{"id":4,"type":"create_character","data":{"slot":0,"name":"勇者小明","appearance":{"body":3,"color":2,"eye":1,"mouth":4},"stats":{"vital":8,"strength":4,"toughness":4,"dexterity":4},"elements":{"earth":6,"water":4,"fire":0,"wind":0},"hometown":0}}}
+{"conn":"setup","dir":"s2c","msg":{"id":4,"type":"create_character","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1}}}}
+{"conn":"player","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"player","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn":"player","dir":"c2s","msg":{"id":2,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"player","dir":"s2c","msg":{"id":2,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn":"player","dir":"c2s","msg":{"id":3,"type":"characters","data":{}}}
+{"conn":"player","dir":"s2c","msg":{"id":3,"type":"characters","ok":true,"data":{"max_slots":2}}}
+{"conn":"player","dir":"c2s","msg":{"id":4,"type":"enter_world","data":{"slot":0}}}
+{"conn":"player","dir":"s2c","msg":{"id":4,"type":"enter_world","ok":true,"data":{"position":{"floor":1006,"x":15,"y":22},"encounter":false,"encounter_area_id":null,"encounter_mode":null,"encounter_continues":false}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "encounter_areas", "data": {"offset": 0, "limit": 20}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "encounter_areas", "ok": true, "data": {"floor": 1006, "areas": [], "total": 0}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "encounter_areas", "data": {"offset": -1}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "encounter_areas", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "encounter_areas", "data": {"limit": 1.5}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "encounter_areas", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "encounter_areas", "data": {"limit": "5"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "encounter_areas", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "leave_world", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "leave_world", "ok": true, "data": {}}}

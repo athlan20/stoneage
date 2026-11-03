@@ -1,0 +1,3 @@
+{"meta": {"desc": "客户端版本等于最低版本：允许连接，握手响应带上最低版本和最新版本（客户端据此在消息栏提示升级）", "stage": "STAGE-100", "server_config": {"min_client_version": "0.2.23", "latest_client_version": "0.3.0"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "stoneage-cli/0.2.23", "role": "player", "compress": ["gzip"]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true, "compress": "gzip", "min_client": "0.2.23", "latest_client": "0.3.0"}}}

@@ -1,0 +1,31 @@
+{"meta": {"desc": "社交开关重新登录后保留（STAGE-276）：勇者小明（alice）设 visible=false、invite=false，断开连接（不发 leave_world）后重新登录进入世界，enter_world 与 status 的 social 仍是 false/false；最后改回默认 true/true", "stage": "STAGE-276"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 1000, "x": 50, "y": 116}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 3, "type": "enter_world", "ok": true, "data": {"social": {"visible": true, "invite": true}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 4, "type": "social_settings", "data": {"visible": false, "invite": false}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "social_changed", "data": {"social": {"visible": false, "invite": false}}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 4, "type": "social_settings", "ok": true, "data": {"social": {"visible": false, "invite": false}}}}
+{"conn": "alice", "dir": "close"}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 3, "type": "enter_world", "ok": true, "data": {"social": {"visible": false, "invite": false}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 4, "type": "status", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 4, "type": "status", "ok": true, "data": {"social": {"visible": false, "invite": false}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 5, "type": "social_settings", "data": {"visible": true, "invite": true}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "social_changed", "data": {"social": {"visible": true, "invite": true}}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 5, "type": "social_settings", "ok": true, "data": {"social": {"visible": true, "invite": true}}}}

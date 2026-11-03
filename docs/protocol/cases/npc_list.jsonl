@@ -1,0 +1,23 @@
+{"meta": {"desc": "NPC 目录（STAGE-134）：npc_list 按分类取（reachable/here）、按名字子串搜索、带分页与总数；参数不合法回复 BAD_REQUEST", "stage": "STAGE-134"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 5, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 5, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 6, "type": "npc_list", "data": {"scope": "here"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 6, "type": "npc_list", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 7, "type": "npc_list", "data": {}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 7, "type": "npc_list", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 8, "type": "npc_list", "data": {"name": "不存在的人"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 8, "type": "npc_list", "ok": true, "data": {"npcs": [], "total": 0, "offset": 0, "limit": 50, "scope": "reachable"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 9, "type": "npc_list", "data": {"scope": "附近"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 9, "type": "npc_list", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 10, "type": "npc_list", "data": {"offset": -1}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 10, "type": "npc_list", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 11, "type": "npc_list", "data": {"limit": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 11, "type": "npc_list", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}

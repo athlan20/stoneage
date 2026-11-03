@@ -1,0 +1,3 @@
+{"meta": {"desc": "客户端版本号无法解析（开发版）：不做版本检查，放行，响应仍带上配置的最低版本和最新版本", "stage": "STAGE-100", "server_config": {"min_client_version": "0.2.0", "latest_client_version": "0.3.0"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "dev", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true, "min_client": "0.2.0", "latest_client": "0.3.0"}}}

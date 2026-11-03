@@ -1,0 +1,76 @@
+{"meta": {"desc": "传送：warp 编号直接改变位置并推送 position_changed（先于响应）；地点表里每个编号（1–4）都能传到；编号不存在/缺少/类型不对给出错误且位置不变；离开后位置已保存；floor（地图编号，STAGE-82/161）只能去快捷传送目录里的正式地图，落点由服务端给，place 和 floor 只能给一个；目录外的测试图与占位图（777、501）即使有落点也拒绝；maps 返回 catalog_version、平面表和节点树", "stage": "STAGE-22"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":2,"type":"register","ok":true,"data":{"account":"alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":3,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn":"setup","dir":"s2c","msg":{"id":4,"type":"create_character","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1006,"map_name":"萨姆吉尔的村长家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn":"player","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn":"player","dir":"s2c","msg":{"id":2,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn":"player","dir":"s2c","msg":{"id":3,"type":"characters","ok":true,"data":{"max_slots":2,"characters":[{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1006,"map_name":"*=萨姆吉尔村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn":"player","dir":"s2c","msg":{"id":4,"type":"enter_world","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1006,"map_name":"萨姆吉尔的村长家"}},"position":{"floor":1006,"map_name":"萨姆吉尔的村长家","x":15,"y":22,"direction":"*=4"},"status":{"level":1,"hp":44,"max_hp":44,"mp":100,"max_mp":100,"exp":0,"next_exp":2,"gold":"*=1000000"},"control":{"controller":"player","you":"controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "warp", "data": {"place": 3}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":3000,"map_name":"加加村","x":74,"y":54,"direction":4}}}
+{"conn":"player","dir":"s2c","msg":{"id":5,"type":"warp","ok":true,"data":{}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "status", "data": {}}}
+{"conn":"player","dir":"s2c","msg":{"id":6,"type":"status","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":3000,"map_name":"加加村"}},"position":{"floor":3000,"map_name":"加加村","x":74,"y":54,"direction":"*=4"},"status":{"level":1,"hp":44,"max_hp":44,"mp":100,"max_mp":100,"exp":0,"next_exp":2,"gold":"*=1000000"},"control":{"controller":"player","you":"controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "warp", "data": {"place": 1}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":1000,"map_name":"萨姆吉尔村","x":50,"y":116,"direction":4}}}
+{"conn":"player","dir":"s2c","msg":{"id":7,"type":"warp","ok":true,"data":{}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "warp", "data": {"place": 2}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":2000,"map_name":"玛丽娜丝渔村","x":72,"y":33,"direction":4}}}
+{"conn":"player","dir":"s2c","msg":{"id":8,"type":"warp","ok":true,"data":{}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "warp", "data": {"place": 1}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":1000,"map_name":"萨姆吉尔村","x":50,"y":116,"direction":4}}}
+{"conn":"player","dir":"s2c","msg":{"id":9,"type":"warp","ok":true,"data":{}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "warp", "data": {"place": 99}}}
+{"conn":"player","dir":"s2c","msg":{"id":10,"type":"warp","ok":false,"error":{"code":"PLACE_NOT_FOUND","message":"*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "warp", "data": {"place": 0}}}
+{"conn":"player","dir":"s2c","msg":{"id":11,"type":"warp","ok":false,"error":{"code":"PLACE_NOT_FOUND","message":"*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "warp", "data": {"place": -1}}}
+{"conn":"player","dir":"s2c","msg":{"id":12,"type":"warp","ok":false,"error":{"code":"PLACE_NOT_FOUND","message":"*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "warp", "data": {}}}
+{"conn":"player","dir":"s2c","msg":{"id":13,"type":"warp","ok":false,"error":{"code":"BAD_REQUEST","message":"*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "warp", "data": {"place": "3"}}}
+{"conn":"player","dir":"s2c","msg":{"id":14,"type":"warp","ok":false,"error":{"code":"BAD_REQUEST","message":"*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 15, "type": "warp", "data": {"place": 1.5}}}
+{"conn":"player","dir":"s2c","msg":{"id":15,"type":"warp","ok":false,"error":{"code":"BAD_REQUEST","message":"*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 16, "type": "warp", "data": {"place": null}}}
+{"conn":"player","dir":"s2c","msg":{"id":16,"type":"warp","ok":false,"error":{"code":"BAD_REQUEST","message":"*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 17, "type": "status", "data": {}}}
+{"conn":"player","dir":"s2c","msg":{"id":17,"type":"status","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1000,"map_name":"萨姆吉尔村"}},"position":{"floor":1000,"map_name":"萨姆吉尔村","x":50,"y":116,"direction":"*=4"},"status":{"level":1,"hp":44,"max_hp":44,"mp":100,"max_mp":100,"exp":0,"next_exp":2,"gold":"*=1000000"},"control":{"controller":"player","you":"controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 18, "type": "leave_world", "data": {}}}
+{"conn":"player","dir":"s2c","msg":{"id":18,"type":"leave_world","ok":true,"data":{}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 19, "type": "warp", "data": {"place": 2}}}
+{"conn":"player","dir":"s2c","msg":{"id":19,"type":"warp","ok":false,"error":{"code":"WRONG_STATE","message":"*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 20, "type": "characters", "data": {}}}
+{"conn":"player","dir":"s2c","msg":{"id":20,"type":"characters","ok":true,"data":{"max_slots":2,"characters":[{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1000,"map_name":"萨姆吉尔村"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 21, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 21, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 22, "type": "warp", "data": {"floor": 1006}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "position_changed", "data": {"floor": 1006, "map_name": "萨姆吉尔的村长家", "x": 10, "y": 20, "direction": 4}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 22, "type": "warp", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 23, "type": "status", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 23, "type": "status", "ok": true, "data": {"position": {"floor": 1006, "map_name": "萨姆吉尔的村长家", "x": 10, "y": 20}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 24, "type": "warp", "data": {"floor": 99999}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 24, "type": "warp", "ok": false, "error": {"code": "PLACE_NOT_FOUND", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 25, "type": "warp", "data": {"place": 1, "floor": 1006}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 25, "type": "warp", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 26, "type": "warp", "data": {"floor": "1006"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 26, "type": "warp", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 27, "type": "leave_world", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 27, "type": "leave_world", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 28, "type": "maps", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 28, "type": "maps", "ok": false, "error": {"code": "WRONG_STATE", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 29, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 29, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 30, "type": "maps", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 30, "type": "maps", "ok": false, "error": {"code": "RESPONSE_TOO_LARGE", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 31, "type": "leave_world", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 31, "type": "leave_world", "ok": true, "data": {}}}

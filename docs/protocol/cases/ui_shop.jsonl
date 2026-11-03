@@ -1,0 +1,37 @@
+{"meta":{"desc":"界面与商店（STAGE-70）：talk 商店弹买卖菜单，选买看商品列表、选商品看数量询问、reply 数量成交（窗口随 CHOSEN 关闭）；供客户端场景测试使用，模拟服务端按剧本核对","stage":"STAGE-70"}}
+{"conn":"setup","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn":"setup","dir":"c2s","msg":{"id":2,"type":"register","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":2,"type":"register","ok":true,"data":{"account":"alice"}}}
+{"conn":"setup","dir":"c2s","msg":{"id":3,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"id":3,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn":"setup","dir":"c2s","msg":{"id":4,"type":"create_character","data":{"slot":0,"name":"勇者小明","appearance":{"body":3,"color":2,"eye":1,"mouth":4},"stats":{"vital":8,"strength":4,"toughness":4,"dexterity":4},"elements":{"earth":6,"water":4,"fire":0,"wind":0},"hometown":0}}}
+{"conn":"setup","dir":"s2c","msg":{"id":4,"type":"create_character","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1006,"map_name":"*=村长之家"}}}}}
+{"conn":"player","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"player","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn":"player","dir":"c2s","msg":{"id":2,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"player","dir":"s2c","msg":{"id":2,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn":"player","dir":"c2s","msg":{"id":3,"type":"characters","data":{}}}
+{"conn":"player","dir":"s2c","msg":{"id":3,"type":"characters","ok":true,"data":{"max_slots":2,"characters":[{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1006,"map_name":"*=村长之家"}}]}}}
+{"conn":"player","dir":"c2s","msg":{"id":4,"type":"enter_world","data":{"slot":0}}}
+{"conn":"player","dir":"s2c","msg":{"id":4,"type":"enter_world","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1006,"map_name":"*=村长之家"}},"position":{"floor":1006,"map_name":"*=村长之家","x":15,"y":22,"direction":"*=4"},"status":{"level":1,"hp":44,"max_hp":44,"mp":100,"max_mp":100,"exp":0,"next_exp":2,"gold":"*=1000000"},"control":{"controller":"player","you":"controller"}}}}
+{"conn":"player","dir":"c2s","msg":{"id":5,"type":"warp","data":{"place":1}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":1000,"map_name":"萨姆吉尔村","x":50,"y":116,"direction":4}}}
+{"conn":"player","dir":"s2c","msg":{"id":5,"type":"warp","ok":true,"data":{}}}
+{"conn":"player","dir":"c2s","msg":{"id":9,"type":"npc_open","data":{"npc":198}}}
+{"conn":"player","dir":"s2c","msg":{"type":"npc_window","data":{"npc":198,"name":"特产品贩卖员","type":"商店","text":"欢迎光临","options":[{"no":1,"label":"买"},{"no":2,"label":"卖"}],"window_id":"*>win1=shop-1","stage":"menu"}}}
+{"conn":"player","dir":"s2c","msg":{"id":9,"type":"npc_open","ok":true,"data":{}}}
+{"conn":"player","dir":"c2s","msg":{"id":10,"type":"npc_choose","data":{"no":1,"window_id":"$win1"}}}
+{"conn":"player","dir":"s2c","msg":{"type":"npc_window","data":{"npc":198,"name":"特产品贩卖员","type":"商店","text":"*","options":[{"no":1,"label":"萨姆吉尔产的桃子（25 金币）"},{"no":2,"label":"萨姆吉尔产的苹果（25 金币）"},{"no":3,"label":"萨姆吉尔产的草莓（25 金币）"},{"no":4,"label":"萨姆吉尔产的梨子（25 金币）"},{"no":5,"label":"萨姆吉尔产的葡萄（25 金币）"},{"no":6,"label":"萨姆吉尔产的樱桃（25 金币）"},{"no":7,"label":"萨姆吉尔产的橘子（25 金币）"},{"no":8,"label":"萨姆吉尔产的柿子（25 金币）"}],"window_id":"*>win2=shop-2","stage":"buy_list"}}}
+{"conn":"player","dir":"s2c","msg":{"id":10,"type":"npc_choose","ok":true,"data":{}}}
+{"conn":"player","dir":"c2s","msg":{"id":11,"type":"npc_choose","data":{"no":1,"window_id":"$win2"}}}
+{"conn":"player","dir":"s2c","msg":{"type":"npc_window","data":{"npc":198,"name":"特产品贩卖员","type":"商店","text":"要买多少？\n萨姆吉尔产的桃子：25 金币一个。输入 reply 数量 购买。","options":[],"window_id":"*>win3=shop-3","stage":"buy_quantity","input":{"kind":"integer","min":1,"max":15,"max_chars":10}}}}
+{"conn":"player","dir":"s2c","msg":{"id":11,"type":"npc_choose","ok":true,"data":{}}}
+{"conn":"player","dir":"c2s","msg":{"id":12,"type":"npc_reply","data":{"text":"2","window_id":"$win3"}}}
+{"conn":"player","dir":"s2c","msg":{"type":"npc_window","data":{"npc":198,"name":"特产品贩卖员","type":"商店","window_id":"*>win4=shop-4","stage":"confirm","text":"*=核对交易","options":[],"trade":{"direction":"buy","item_id":"*=2000","slot":-1,"name":"萨姆吉尔产的桃子","unit_price":25,"count":2,"total":50}}}}
+{"conn":"player","dir":"s2c","msg":{"id":12,"type":"npc_reply","ok":true,"data":{}}}
+{"conn":"player","dir":"c2s","msg":{"id":13,"type":"npc_confirm","data":{"window_id":"$win4","confirm":true}}}
+{"conn":"player","dir":"s2c","msg":{"type":"inventory_changed","data":{"gold":999950,"slots":"*"}}}
+{"conn":"player","dir":"s2c","msg":{"type":"status_changed","data":{"status":"*"}}}
+{"conn":"player","dir":"s2c","msg":{"type":"npc_window","data":{"npc":198,"name":"特产品贩卖员","type":"商店","window_id":"*>win5=shop-5","stage":"menu","text":"欢迎光临","options":[{"no":1,"label":"买"},{"no":2,"label":"卖"}]}}}
+{"conn":"player","dir":"s2c","msg":{"id":13,"type":"npc_confirm","ok":true,"data":{}}}

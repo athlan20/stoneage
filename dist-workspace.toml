@@ -1,0 +1,29 @@
+# cargo-dist 配置（STAGE-98：客户端一键安装）。客户端的 Cargo 包在 client/，下面 members 用 cargo:client 指过去。
+# 发布流程见 docs/client.md「发布」：源码和发布都在 GitHub（athlan20/stoneage），流程在 .github/workflows/。
+[workspace]
+members = ["cargo:client"]
+
+[dist]
+cargo-dist-version = "0.32.0"
+ci = "github"
+hosting = "github"
+# 一键安装附带更新器 stoneage-client-update，`stoneage update` 升级靠它（docs/client.md「升级」）。
+install-updater = true
+targets = [
+  "aarch64-apple-darwin",
+  "x86_64-apple-darwin",
+  "x86_64-unknown-linux-gnu",
+  "x86_64-pc-windows-msvc",
+]
+# release.yml 手工维护（见 .github/workflows/release.yml），不让 dist generate 覆盖。
+allow-dirty = ["ci"]
+# npm 包不走 cargo-dist 内置的 npm 安装器（它安装时才从 GitHub 下载二进制），
+# 由 .github/workflows/publish-npm.yml 按平台拆子包发布。
+# Homebrew：配方推到 tap 仓库 athlan20/homebrew-tap，由 release.yml 的 publish-homebrew-formula 任务完成（需要密钥 HOMEBREW_TAP_TOKEN）。formula 名在 client/dist.toml 里设。
+installers = ["shell", "powershell", "homebrew"]
+tap = "athlan20/homebrew-tap"
+publish-jobs = ["./publish-npm", "homebrew"]
+# npm 发布 job 读 GitHub Release 上的产物，并用 id-token 做 npm 的可信发布（OIDC）。
+github-custom-job-permissions = { "publish-npm" = { contents = "read", id-token = "write" } }
+# 整仓源码包会公开到 Release 里（含服务端源码和百科快照），关掉。
+source-tarball = false

@@ -1,0 +1,25 @@
+[package]
+name = "ratatui-demo"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.88.0"
+license = "MIT"
+publish = false
+description = "Ratatui classic demo, copied from ratatui examples/apps/demo"
+
+[features]
+default = ["crossterm"]
+crossterm = ["dep:crossterm", "ratatui/crossterm"]
+termina = ["ratatui/termina"]
+termion = ["dep:termion", "ratatui/termion"]
+termwiz = ["dep:termwiz", "ratatui/termwiz"]
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+crossterm = { version = "0.29", optional = true }
+rand = "0.10"
+ratatui = "0.30.2"
+termwiz = { version = "0.23", optional = true }
+
+[target.'cfg(not(windows))'.dependencies]
+termion = { version = "4", optional = true }

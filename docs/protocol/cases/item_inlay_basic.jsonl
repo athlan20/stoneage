@@ -1,0 +1,30 @@
+{"meta": {"desc": "精工基本流程：轻的斧头（类别码 INSLAY，背包 5 格）镶魅力梨子（5 格材料 RUBY，无数值）和贝洛萨斧头（EMERALD，带精灵 135，MP 6）。材料按顺序镶，叠放的 11 只扣 1 个；数值累加、精灵覆盖、效果文字重写、函数清空（末一个材料没有函数），镶后 inventory 与响应一致", "stage": "STAGE-298", "server_config": {"inlay_overlay": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}, "position": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000"}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "inventory", "ok": true, "data": {"gold": "*=1000000", "slots": []}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 20, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": "*"}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 1600, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": "*"}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 11, "count": 2}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "item_inlay", "data": {"target": 5, "materials": [6, 7]}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "item_inlay", "ok": true, "data": {"applied": 2, "consumed": [6, 7], "item": {"slot": 5, "item_id": 20, "name": "轻的斧头", "effect": "攻+31 防-11 敏-10 HP+0 MP+0 伤+0 吸+0 毒雾的精灵 Lv1", "type": 1, "count": 1, "target_type": "none", "inlay": {"role": "gear", "free": 1, "codes": ["RUBY", "EMERALD", null]}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "inventory", "ok": true, "data": {"gold": "*=1000000", "slots": [{"slot": 5, "item_id": 20, "name": "轻的斧头", "effect": "攻+31 防-11 敏-10 HP+0 MP+0 伤+0 吸+0 毒雾的精灵 Lv1", "type": 1, "count": 1, "target_type": "none", "inlay": {"role": "gear", "free": 1, "codes": ["RUBY", "EMERALD", null]}}, {"slot": 7, "item_id": 11, "name": "贝洛萨Lv1斧头", "effect": "攻 +12 防 -4 敏 -4 毒雾的精灵 Lv1", "type": 1, "count": 1, "target_type": "none", "inlay": {"role": "material"}}]}}}

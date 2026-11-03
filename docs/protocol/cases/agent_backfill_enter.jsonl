@@ -1,0 +1,33 @@
+{"meta": {"desc": "玩家进入世界时补发（STAGE-119）：玩家不在线时 agent 已经登录、报了计划、做了操作；玩家 enter_world 成功时收到当前的 agent_status、agent_plan 和全部 agent_activity（full:true），再拿到以观察方进入的响应", "stage": "STAGE-119"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 5, "type": "create_agent_token", "data": {"label": "助手", "expires_in_days": 30}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 5, "type": "create_agent_token", "ok": true, "data": {"token_id": "*>tid=t_7Hq2Xa9k", "token": "*>tok=sat_Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZmdoaWo", "label": "助手", "expires_at": "*=2026-11-08T12:00:00Z"}}}
+{"conn": "setup", "dir": "close"}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "agent"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 2, "type": "agent_login", "data": {"token": "$tok"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 2, "type": "agent_login", "ok": true, "data": {"account": "alice", "token_id": "$tid"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 3, "type": "agent_plan", "data": {"goal": "带主角去加加村", "steps": [{"text": "走到村长家", "state": "done"}, {"text": "去加加村", "state": "doing"}]}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 3, "type": "agent_plan", "ok": true, "data": {}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"control": {"controller": "agent", "you": "controller"}}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 5, "type": "turn", "data": {"direction": 3}}}
+{"conn": "agent", "dir": "s2c", "msg": {"type": "position_changed", "data": {"floor": 1006, "map_name": "*=村长之家", "x": 15, "y": 22, "direction": 3}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 5, "type": "turn", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明"}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_plan", "data": {"goal": "带主角去加加村", "steps": [{"text": "走到村长家", "state": "done"}, {"text": "去加加村", "state": "doing"}], "updated_at_ms": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_activity", "data": {"full": true, "items": [{"time_ms": "*", "request": "enter_world", "summary": "进入世界 slot=0", "ok": true, "code": null}, {"time_ms": "*", "request": "turn", "summary": "转向 direction=3", "ok": true, "code": null}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"agent": {"online": true, "token_id": "$tid"}, "control": {"controller": "agent", "you": "observer"}}}}

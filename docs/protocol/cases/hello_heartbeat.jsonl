@@ -1,0 +1,5 @@
+{"meta": {"desc": "握手后按 heartbeat_seconds 发心跳；模拟服务端把间隔设为 1 秒，方便观察", "stage": "STAGE-2"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=1", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "ping", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "ping", "ok": true, "data": {"server_time_ms": "*=1760000000000"}}}

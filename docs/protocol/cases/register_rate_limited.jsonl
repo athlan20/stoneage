@@ -1,0 +1,17 @@
+{"meta": {"desc": "同一 IP 注册太频繁（默认每小时 50 次，本用例用 server_config 收紧到 5 次）；retry_after_seconds 单位是秒", "stage": "STAGE-3", "server_config": {"register_max_per_hour": 5}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "rl_user1", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "rl_user1"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "register", "data": {"account": "rl_user2", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "register", "ok": true, "data": {"account": "rl_user2"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "register", "data": {"account": "rl_user3", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "register", "ok": true, "data": {"account": "rl_user3"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 5, "type": "register", "data": {"account": "rl_user4", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 5, "type": "register", "ok": true, "data": {"account": "rl_user4"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 6, "type": "register", "data": {"account": "rl_user5", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 6, "type": "register", "ok": true, "data": {"account": "rl_user5"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "rl_user6", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": false, "error": {"code": "RATE_LIMITED", "message": "*=注册太频繁，请稍后再试", "data": {"retry_after_seconds": "*=1800"}}}}

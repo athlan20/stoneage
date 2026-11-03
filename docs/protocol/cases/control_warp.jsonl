@@ -1,0 +1,49 @@
+{"meta": {"desc": "warp 是操作类：玩家收回控制权后，agent 的 warp 被拒（CONTROLLED_BY_PLAYER），玩家的 warp 成功且 agent 也收到位置更新；交还后玩家的 warp 被拒（CONTROLLED_BY_AGENT），agent 的 warp 成功且玩家也收到", "stage": "STAGE-22"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn":"player","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn":"player","dir":"s2c","msg":{"id":2,"type":"register","ok":true,"data":{"account":"alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn":"player","dir":"s2c","msg":{"id":3,"type":"login","ok":true,"data":{"account":"alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn":"player","dir":"s2c","msg":{"id":4,"type":"create_character","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1006,"map_name":"萨姆吉尔的村长家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "create_agent_token", "data": {"label": "我的 Claude", "expires_in_days": 30}}}
+{"conn":"player","dir":"s2c","msg":{"id":5,"type":"create_agent_token","ok":true,"data":{"token_id":"*>tid=t_7Hq2Xa9k","token":"*>tok=sat_Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZmdoaWo","label":"我的 Claude","expires_at":"*=2026-11-08T12:00:00Z"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "agent"}}}
+{"conn":"agent","dir":"s2c","msg":{"id":1,"type":"hello","ok":true,"data":{"protocol":1,"server":"*=stoneage-mock/0.1.0","heartbeat_seconds":"*=20","idle_timeout_seconds":"*=60","register_enabled":true}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 2, "type": "agent_login", "data": {"token": "$tok"}}}
+{"conn":"agent","dir":"s2c","msg":{"id":2,"type":"agent_login","ok":true,"data":{"account":"alice","token_id":"$tid"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_status", "data": {"online": true, "token_id": "$tid"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "enter_world", "data": {"slot": 0}}}
+{"conn":"player","dir":"s2c","msg":{"id":6,"type":"enter_world","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1006,"map_name":"萨姆吉尔的村长家"}},"position":{"floor":1006,"map_name":"萨姆吉尔的村长家","x":15,"y":22,"direction":"*=4"},"status":{"level":1,"hp":44,"max_hp":44,"mp":100,"max_mp":100,"exp":0,"next_exp":2,"gold":"*=1000000"},"control":{"controller":"player","you":"controller"}}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn":"player","dir":"s2c","msg":{"type":"control_changed","data":{"controller":"agent","you":"observer","reason":"AGENT_ENTERED"}}}
+{"conn":"agent","dir":"s2c","msg":{"type":"control_changed","data":{"controller":"agent","you":"controller","reason":"AGENT_ENTERED"}}}
+{"conn":"agent","dir":"s2c","msg":{"id":3,"type":"enter_world","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1006,"map_name":"萨姆吉尔的村长家"}},"position":{"floor":1006,"map_name":"萨姆吉尔的村长家","x":15,"y":22,"direction":"*=4"},"status":{"level":1,"hp":44,"max_hp":44,"mp":100,"max_mp":100,"exp":0,"next_exp":2,"gold":"*=1000000"},"control":{"controller":"agent","you":"controller"}}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_activity", "data": {"full": false, "items": [{"time_ms": "*", "request": "enter_world", "summary": "进入世界 slot=0", "ok": true, "code": null}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "take_control", "data": {}}}
+{"conn":"player","dir":"s2c","msg":{"type":"control_changed","data":{"controller":"player","you":"controller","reason":"TAKEN_BY_PLAYER"}}}
+{"conn":"player","dir":"s2c","msg":{"id":7,"type":"take_control","ok":true,"data":{}}}
+{"conn":"agent","dir":"s2c","msg":{"type":"control_changed","data":{"controller":"player","you":"observer","reason":"TAKEN_BY_PLAYER"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 4, "type": "warp", "data": {"place": 1}}}
+{"conn":"agent","dir":"s2c","msg":{"id":4,"type":"warp","ok":false,"error":{"code":"CONTROLLED_BY_PLAYER","message":"*=错误说明"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_activity", "data": {"full": false, "items": [{"time_ms": "*", "request": "warp", "summary": "传送 place=1", "ok": false, "code": "CONTROLLED_BY_PLAYER"}]}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 5, "type": "status", "data": {}}}
+{"conn":"agent","dir":"s2c","msg":{"id":5,"type":"status","ok":true,"data":{"character":{"slot":0,"name":"勇者小明","level":1,"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"location":{"floor":1006,"map_name":"*=村长之家"}},"position":{"floor":1006,"map_name":"*=村长之家","x":15,"y":22,"direction":"*=4"},"status":{"level":1,"hp":44,"max_hp":44,"mp":100,"max_mp":100,"exp":0,"next_exp":2,"gold":"*=1000000"},"control":{"controller":"player","you":"observer"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "warp", "data": {"place": 4}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":4000,"map_name":"卡鲁它那村","x":100,"y":96,"direction":4}}}
+{"conn":"player","dir":"s2c","msg":{"id":8,"type":"warp","ok":true,"data":{}}}
+{"conn":"agent","dir":"s2c","msg":{"type":"position_changed","data":{"floor":4000,"map_name":"卡鲁它那村","x":100,"y":96,"direction":4}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "take_control", "data": {}}}
+{"conn":"player","dir":"s2c","msg":{"id":9,"type":"take_control","ok":true,"data":{}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "release_control", "data": {}}}
+{"conn":"player","dir":"s2c","msg":{"type":"control_changed","data":{"controller":"agent","you":"observer","reason":"RELEASED_BY_PLAYER"}}}
+{"conn":"player","dir":"s2c","msg":{"id":10,"type":"release_control","ok":true,"data":{}}}
+{"conn":"agent","dir":"s2c","msg":{"type":"control_changed","data":{"controller":"agent","you":"controller","reason":"RELEASED_BY_PLAYER"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "warp", "data": {"place": 2}}}
+{"conn":"player","dir":"s2c","msg":{"id":11,"type":"warp","ok":false,"error":{"code":"CONTROLLED_BY_AGENT","message":"*=错误说明"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 6, "type": "warp", "data": {"place": 3}}}
+{"conn":"agent","dir":"s2c","msg":{"type":"position_changed","data":{"floor":3000,"map_name":"加加村","x":74,"y":54,"direction":4}}}
+{"conn":"agent","dir":"s2c","msg":{"id":6,"type":"warp","ok":true,"data":{}}}
+{"conn":"player","dir":"s2c","msg":{"type":"position_changed","data":{"floor":3000,"map_name":"加加村","x":74,"y":54,"direction":4}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_activity", "data": {"full": false, "items": [{"time_ms": "*", "request": "warp", "summary": "传送 place=3", "ok": true, "code": null}]}}}

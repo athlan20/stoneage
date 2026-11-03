@@ -1,0 +1,29 @@
+{"meta": {"desc": "STAGE-78：道具的目标类型。小块肉是“己方一个”，选中后焦点落在自己身上，回车发出的是 target 0（客户端场景用：用例在宠物轮到出招时停下）", "stage": "STAGE-78", "server_config": null, "manual": false}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"heartbeat_seconds": 20, "idle_timeout_seconds": 60, "protocol": 1, "register_enabled": true, "server": "stoneage-server/0.1.0"}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "register"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 3, "ok": true, "type": "login"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"character": {"appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "level": 1, "location": {"floor": 1006, "map_name": "萨姆吉尔的村长家"}, "name": "勇者小明", "slot": 0}}, "id": 4, "ok": true, "type": "create_character"}}
+{"conn": "setup", "dir": "admin", "do": "clear_pets", "character": "勇者小明"}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "give_magic", "magic_id": 301}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "give_magic"}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "give_pet", "level": 5, "pet_id": 1}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 1234}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"heartbeat_seconds": 20, "idle_timeout_seconds": 60, "protocol": 1, "register_enabled": true, "server": "stoneage-server/0.1.0"}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "login"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"characters": [{"appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "level": 1, "location": {"floor": 1006, "map_name": "萨姆吉尔的村长家"}, "name": "勇者小明", "slot": 0}], "max_slots": 2}, "id": 3, "ok": true, "type": "characters"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"character": {"appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "level": 1, "location": {"floor": 1006, "map_name": "萨姆吉尔的村长家"}, "name": "勇者小明", "slot": 0}, "control": {"controller": "player", "you": "controller"}, "encounter": false, "position": {"direction": 4, "floor": 1006, "map_name": "萨姆吉尔的村长家", "x": 15, "y": 22}, "status": {"derived": {"agility": 4, "attack": 5, "charm": 60, "defense": 5, "luck": "*=3"}, "elements": {"earth": 6, "fire": 0, "water": 4, "wind": 0}, "exp": 0, "gold": 1000000, "hp": 44, "level": 1, "magic": [{"id": 301, "mp": 10, "name": "岩石撞击", "slot": 0, "target_type": "enemy", "effect": "攻击敌方一个，威力 100，地属性"}, {"id": 0, "mp": 6, "name": "治愈的精灵 Lv1", "slot": 1, "target_type": "self", "effect": "回复自己 HP 80"}], "max_hp": 44, "max_mp": 100, "mp": 100, "next_exp": 2, "skill_points": 0, "stats": {"dexterity": 4, "strength": 4, "toughness": 4, "vital": 8}, "title": "", "transmigration": 0}}, "id": 4, "ok": true, "type": "enter_world"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"gold": 1000000, "slots": [{"count": 1, "effect": "耐久力20前後回复", "item_id": 1234, "name": "小块肉", "slot": 5, "target_type": "ally", "type": 20}]}, "id": 5, "ok": true, "type": "inventory"}}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "start_battle", "scenario": "win"}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"allow": {"capture": true, "escape": true}, "battle_id": "*>battle_1=b_1", "kind": "wild", "scene": "野外", "units": [{"elements": {"earth": 60, "fire": 0, "water": 40, "wind": 0}, "hp": 44, "hp_pct": 100, "kind": "player", "level": 1, "max_hp": 44, "max_mp": 100, "mp": 100, "name": "勇者小明", "no": 0, "ride": false, "status": []}, {"elements": {"earth": 80, "fire": 0, "water": 20, "wind": 0}, "hp": 41, "hp_pct": 100, "kind": "pet", "level": 5, "max_hp": 41, "name": "乌力", "no": 5, "ride": false, "status": []}, {"elements": {"earth": 80, "fire": 0, "water": 20, "wind": 0}, "hp_pct": 100, "kind": "monster", "level": 1, "name": "乌力", "no": 15, "ride": false, "status": []}, {"elements": {"earth": 80, "fire": 0, "water": 20, "wind": 0}, "hp_pct": 100, "kind": "monster", "level": 1, "name": "乌力", "no": 16, "ride": false, "status": []}], "you": 0}, "type": "battle_start"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"battle_id": "$battle_1", "deadline_ms": "*=1791787152161", "needs": ["player", "pet"], "progress": {"done": 0, "total": 1}, "server_time_ms": "*=1791787122161", "turn": 1}, "type": "battle_turn"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "battle_command", "data": {"turn": 1, "actor": "player", "action": "item", "slot": 5, "target": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"next": "pet"}, "id": 6, "ok": true, "type": "battle_command"}}

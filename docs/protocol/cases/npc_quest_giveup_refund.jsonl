@@ -1,0 +1,42 @@
+{"meta": {"desc": "任务 NPC 放弃时退款（STAGE-94，docs/quest.md「放弃时撤销」）：沙拉的接任务（REQUEST，事件 21）收走背包里的 2487，进行中；随后再说话是普通闲谈（2487 已收走，放弃条件不成立）；补上 2487 后放弃，退回接任务时收走的 2487，任务 28 清掉", "stage": "STAGE-94"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 20608, "x": 9, "y": 3}
+{"conn": "setup", "dir": "admin", "do": "give_quest", "character": "勇者小明", "quest_no": 27, "state": "done"}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 2487, "count": 1}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "talk", "data": {"npc": 1391}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1391, "name": "沙拉", "type": "任务", "text": "*=咦？请问你找我有什么事吗？", "options": [{"no": 1, "label": "是"}, {"no": 2, "label": "否"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": "*"}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "quests_changed", "data": {"quests": [{"no": 28, "name": "强恩洞窟 找到吉德的女儿", "state": "doing"}, {"no": 27, "name": "强恩洞窟 找到强恩", "state": "done"}], "changed": [28]}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1391, "name": "沙拉", "type": "任务", "text": "*=事情我都知道了。这个发饰是", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "talk", "data": {"npc": 1391}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1391, "name": "沙拉", "type": "任务", "text": "*=帮我跟强恩说我要留在这里。", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "talk", "ok": true, "data": {}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 2487, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "talk", "data": {"npc": 1391}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1391, "name": "沙拉", "type": "任务", "text": "*=你还是要把我带回去吗？", "options": [{"no": 1, "label": "是"}, {"no": 2, "label": "否"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": "*"}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": "*"}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "quests_changed", "data": {"quests": [{"no": 27, "name": "强恩洞窟 找到强恩", "state": "done"}], "changed": [28]}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1391, "name": "沙拉", "type": "任务", "text": "*=可是，我不回去。", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "npc_choose", "ok": true, "data": {}}}

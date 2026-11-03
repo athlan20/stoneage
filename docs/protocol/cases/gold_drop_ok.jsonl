@@ -1,0 +1,30 @@
+{"meta": {"desc": "丢弃石币（STAGE-328）：金币 9999950 丢 1000 yes，回 gold 9998950 并推 status_changed，inventory 的金币随之减少；全部丢光后金币为 0。卖东西不再因 GOLD_FULL 失效，见 gold_drop_errors 的反例", "stage": "STAGE-328"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}}}
+{"conn": "setup", "dir": "admin", "do": "set_gold", "character": "勇者小明", "gold": 9999950}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "inventory", "ok": true, "data": {"gold": 9999950, "slots": []}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "gold_drop", "data": {"amount": 1000, "confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "gold_drop", "ok": true, "data": {"gold": 9998950}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "inventory", "ok": true, "data": {"gold": 9998950, "slots": []}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "gold_drop", "data": {"amount": 9998950, "confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "gold_drop", "ok": true, "data": {"gold": 0}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "inventory", "ok": true, "data": {"gold": 0, "slots": []}}}

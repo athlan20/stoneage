@@ -1,0 +1,104 @@
+{"meta": {"desc": "骑乘训练师（STAGE-122）：主菜单，学中级班时没学初级班被拦；学初级班（免费，推 status_changed 和系统消息）；学过了回“不需要再学”；查询可骑乘的宠物；确认页选否；管理命令设成 200 后学特级班", "stage": "STAGE-122"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}}}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 1040, "x": 61, "y": 45}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1040, "map_name": "*=村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1040, "map_name": "*=村长之家"}}, "position": {"floor": 1040, "map_name": "*=村长之家", "x": 61, "y": 45, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000"}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 101, "type": "status", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 101, "type": "status", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 102, "type": "talk", "data": {"npc": 1784}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "我是这个村子里的骑乘训练师！\n你想办什么吗？", "options": [{"no": 1, "label": "关于骑乘宠物"}, {"no": 2, "label": "查询可骑乘的宠物"}, {"no": 3, "label": "学习骑乘宠物"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 102, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 103, "type": "npc_choose", "data": {"no": 3}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "你要参加那一种课程呢？", "options": [{"no": 1, "label": "初级班 (能骑乘 Lv40 以下的宠物)"}, {"no": 2, "label": "中级班 (能骑乘 Lv80 以下的宠物)"}, {"no": 3, "label": "高级班 (能骑乘 Lv120 以下的宠物)"}, {"no": 4, "label": "特级班 (能骑乘全部等级的宠物)"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 103, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 104, "type": "npc_choose", "data": {"no": 2}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "你必须先学过初级班才能来中级班唷。", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 104, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 105, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 105, "type": "npc_choose", "ok": false, "error": {"code": "NPC_BAD_CHOICE", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 106, "type": "npc_close", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CLOSED"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 106, "type": "npc_close", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 107, "type": "talk", "data": {"npc": 1784}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "我是这个村子里的骑乘训练师！\n你想办什么吗？", "options": [{"no": 1, "label": "关于骑乘宠物"}, {"no": 2, "label": "查询可骑乘的宠物"}, {"no": 3, "label": "学习骑乘宠物"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 107, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 108, "type": "npc_choose", "data": {"no": 3}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "你要参加那一种课程呢？", "options": [{"no": 1, "label": "初级班 (能骑乘 Lv40 以下的宠物)"}, {"no": 2, "label": "中级班 (能骑乘 Lv80 以下的宠物)"}, {"no": 3, "label": "高级班 (能骑乘 Lv120 以下的宠物)"}, {"no": 4, "label": "特级班 (能骑乘全部等级的宠物)"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 108, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 109, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "学习骑乘初级班不需要学费。你确定要学习吗？", "options": [{"no": 1, "label": "是"}, {"no": 2, "label": "否"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 109, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 110, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "notice", "data": {"level": "info", "text": "恭喜你！你已经完成骑乘初级班了。\n可以骑乘 Lv40 以下的宠物，\n请小心骑乘喔！"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 110, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 111, "type": "talk", "data": {"npc": 1784}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "我是这个村子里的骑乘训练师！\n你想办什么吗？", "options": [{"no": 1, "label": "关于骑乘宠物"}, {"no": 2, "label": "查询可骑乘的宠物"}, {"no": 3, "label": "学习骑乘宠物"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 111, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 112, "type": "npc_choose", "data": {"no": 3}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "你要参加那一种课程呢？", "options": [{"no": 1, "label": "初级班 (能骑乘 Lv40 以下的宠物)"}, {"no": 2, "label": "中级班 (能骑乘 Lv80 以下的宠物)"}, {"no": 3, "label": "高级班 (能骑乘 Lv120 以下的宠物)"}, {"no": 4, "label": "特级班 (能骑乘全部等级的宠物)"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 112, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 113, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "你已经学会初级班了呀。\n不需要再学了。", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 113, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 114, "type": "npc_close", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CLOSED"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 114, "type": "npc_close", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 115, "type": "talk", "data": {"npc": 1784}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "我是这个村子里的骑乘训练师！\n你想办什么吗？", "options": [{"no": 1, "label": "关于骑乘宠物"}, {"no": 2, "label": "查询可骑乘的宠物"}, {"no": 3, "label": "学习骑乘宠物"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 115, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 116, "type": "npc_choose", "data": {"no": 2}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "你的外形能骑的宠物：\n虎：金格萨贝鲁\n雷龙：布拉奇多斯", "options": [{"no": 1, "label": "上一页"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 116, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 117, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "我是这个村子里的骑乘训练师！\n你想办什么吗？", "options": [{"no": 1, "label": "关于骑乘宠物"}, {"no": 2, "label": "查询可骑乘的宠物"}, {"no": 3, "label": "学习骑乘宠物"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 117, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 118, "type": "npc_choose", "data": {"no": 3}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "你要参加那一种课程呢？", "options": [{"no": 1, "label": "初级班 (能骑乘 Lv40 以下的宠物)"}, {"no": 2, "label": "中级班 (能骑乘 Lv80 以下的宠物)"}, {"no": 3, "label": "高级班 (能骑乘 Lv120 以下的宠物)"}, {"no": 4, "label": "特级班 (能骑乘全部等级的宠物)"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 118, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 119, "type": "npc_choose", "data": {"no": 2}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "学习骑乘中级班不需要学费。你确定要学习吗？", "options": [{"no": 1, "label": "是"}, {"no": 2, "label": "否"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 119, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 120, "type": "npc_choose", "data": {"no": 2}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 120, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "setup", "dir": "admin", "do": "set_ride_level", "character": "勇者小明", "level": 200}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 121, "type": "talk", "data": {"npc": 1784}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "我是这个村子里的骑乘训练师！\n你想办什么吗？", "options": [{"no": 1, "label": "关于骑乘宠物"}, {"no": 2, "label": "查询可骑乘的宠物"}, {"no": 3, "label": "学习骑乘宠物"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 121, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 122, "type": "npc_choose", "data": {"no": 3}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "你要参加那一种课程呢？", "options": [{"no": 1, "label": "初级班 (能骑乘 Lv40 以下的宠物)"}, {"no": 2, "label": "中级班 (能骑乘 Lv80 以下的宠物)"}, {"no": 3, "label": "高级班 (能骑乘 Lv120 以下的宠物)"}, {"no": 4, "label": "特级班 (能骑乘全部等级的宠物)"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 122, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 123, "type": "npc_choose", "data": {"no": 4}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1784, "name": "骑乘训练师", "type": "骑乘训练师", "text": "你已经学会特级班了呀。\n不需要再学了。", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 123, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 124, "type": "npc_close", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CLOSED"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 124, "type": "npc_close", "ok": true, "data": {}}}

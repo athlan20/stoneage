@@ -1,0 +1,51 @@
+{"meta": {"desc": "商店买卖（STAGE-70）：talk 特产品贩卖员弹买卖菜单，选买看商品列表、选商品报数量成交（扣金币入背包），卖背包里的小斧头（加金币删物品）；买数量报多了回 NOT_ENOUGH_GOLD 且数据不变", "stage": "STAGE-70"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}, "position": {"floor": 1006, "map_name": "*=村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000"}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "warp", "data": {"place": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "position_changed", "data": {"floor": 1000, "map_name": "萨姆吉尔村", "x": 50, "y": 116, "direction": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "warp", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "talk", "data": {"npc": 198}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 198, "name": "特产品贩卖员", "type": "商店", "text": "欢迎光临", "options": [{"no": 1, "label": "买"}, {"no": 2, "label": "卖"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 198, "name": "特产品贩卖员", "type": "商店", "text": "贩卖萨姆吉尔的特产品\n要买什么吗？", "options": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 198, "name": "特产品贩卖员", "type": "商店", "text": "要买多少？\n萨姆吉尔产的桃子：25 金币一个。输入 reply 数量 购买。", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "npc_reply", "data": {"text": "50000"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "npc_reply", "ok": false, "error": {"code": "NOT_ENOUGH_GOLD", "message": "*=金币不够"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "npc_reply", "data": {"text": "2"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": 999950, "slots": [{"slot": 5, "item_id": 12153, "count": 1, "name": "萨姆吉尔产的桃子", "effect": "*", "type": 20, "target_type": "none"}, {"slot": 6, "item_id": 12153, "count": 1, "name": "萨姆吉尔产的桃子", "effect": "*", "type": 20, "target_type": "none"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "npc_reply", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "npc_reply", "data": {"text": "1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "npc_reply", "ok": false, "error": {"code": "WRONG_STATE", "message": "*=窗口已关闭"}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 0, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": 999950, "slots": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "talk", "data": {"npc": 198}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 198, "name": "特产品贩卖员", "type": "商店", "text": "欢迎光临", "options": [{"no": 1, "label": "买"}, {"no": 2, "label": "卖"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "npc_choose", "data": {"no": 2}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 198, "name": "特产品贩卖员", "type": "商店", "text": "还是要卖什么东西吗？", "options": [{"no": 5, "label": "萨姆吉尔产的桃子（回收 12 金币）"}, {"no": 6, "label": "萨姆吉尔产的桃子（回收 12 金币）"}, {"no": 7, "label": "*"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 13, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "npc_choose", "data": {"no": 5}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": 999962, "slots": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 14, "type": "npc_choose", "ok": true, "data": {}}}

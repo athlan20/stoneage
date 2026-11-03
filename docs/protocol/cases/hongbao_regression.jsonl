@@ -1,0 +1,45 @@
+{"meta": {"desc": "红暴 40 回归（STAGE-333）：老爷爷接任务（进行中）→ 龙王交任务得宠物（完成）→ 再找龙王拿两颗守护，再来不重复给", "stage": "STAGE-333"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "register"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 3, "ok": true, "type": "login"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}, "id": 4, "ok": true, "type": "create_character"}}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "move_character", "floor": 5500, "x": 12, "y": 17}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "login"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "id": 3, "ok": true, "type": "enter_world"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "talk", "data": {"npc": 1308}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "走失孙女的老爷爷", "npc": 1308, "options": [{"label": "是", "no": 1}, {"label": "否", "no": 2}], "text": "*=我的孙女被龙给抓走了！\n萨姆吉尔不知道能不能救回我孙女...\n真令人担心！！\n你能帮我看看萨姆吉尔现在的情形吗？他也还只是个孩子。\n如果遇到的话，请尽可能协助他。", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 4, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "CHOSEN"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"changed": [40], "quests": [{"name": "红暴任务", "no": 40, "state": "doing"}]}, "type": "quests_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "走失孙女的老爷爷", "npc": 1308, "options": [], "text": "*=真是太感谢你了...\n我的孙女有救了...\n我真的很感动...呜～呜\n在这种环境下，还可以遇到像你这样的好人\n我真的很感谢你...\n谢谢你...", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 5, "ok": true, "type": "npc_choose"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "warp", "data": {"floor": 5511}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"direction": 4, "floor": 5511, "map_name": "龙穴", "x": 0, "y": 25}, "type": "position_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "MOVED"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 6, "ok": true, "type": "warp"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "talk", "data": {"npc": 1315}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "龙王", "npc": 1315, "options": [{"label": "是", "no": 1}, {"label": "否", "no": 2}], "text": "*=\n年轻的勇者啊～\n你是来了解事实真相的吗？", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 7, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "CHOSEN"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"changed": [40], "quests": [{"name": "红暴任务", "no": 40, "state": "done"}]}, "type": "quests_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "pets_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"level": "info", "text": "拿到巴朵兰恩。"}, "type": "notice"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "龙王", "npc": 1315, "options": [{"label": "下一页", "no": 1}], "text": "*=勇敢的人类啊....知道为什么我们会去袭击人类的村子吗？那是因为你们建筑的水坝，让整个波拉河的河水逆流回龙穴，让我的子民们陆续地死亡...\n因此我们才会怨恨人类...让你们也尝尝生命受到威胁的痛苦...", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 8, "ok": true, "type": "npc_choose"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "talk", "data": {"npc": 1315}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "龙王", "npc": 1315, "options": [], "text": "*=\n我会守护着你…………", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 9, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "talk", "data": {"npc": 1315}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "龙王", "npc": 1315, "options": [], "text": "*=吼～～人类啊，这个地方不要待太久，不然会有危险……吼～～", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 10, "ok": true, "type": "talk"}}

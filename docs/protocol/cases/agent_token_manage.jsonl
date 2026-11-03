@@ -1,0 +1,29 @@
+{"meta": {"desc": "玩家生成令牌（原文只返回一次）、列出、吊销；参数不合法、吊销不存在的令牌", "stage": "STAGE-6"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "create_agent_token", "data": {"label": "我的 Claude", "expires_in_days": 30}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "create_agent_token", "ok": true, "data": {"token_id": "*>tid=t_7Hq2Xa9k", "token": "*>tok=sat_Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZmdoaWo", "label": "我的 Claude", "expires_at": "*=2026-11-08T12:00:00Z"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "agent_tokens", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "agent_tokens", "ok": true, "data": {"tokens": [{"token_id": "$tid", "label": "我的 Claude", "created_at": "*=2026-10-09T12:00:00Z", "expires_at": "*=2026-11-08T12:00:00Z", "last_used_at": null}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "create_agent_token", "data": {"label": "x", "expires_in_days": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "create_agent_token", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "create_agent_token", "data": {"label": "x", "expires_in_days": 366}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "create_agent_token", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "create_agent_token", "data": {"label": "字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "create_agent_token", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "create_agent_token", "data": {"label": "不写天数"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "create_agent_token", "ok": true, "data": {"token_id": "*", "token": "*", "label": "不写天数", "expires_at": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "revoke_agent_token", "data": {"token_id": "$tid"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "revoke_agent_token", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "revoke_agent_token", "data": {"token_id": "$tid"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "revoke_agent_token", "ok": false, "error": {"code": "TOKEN_NOT_FOUND", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "revoke_agent_token", "data": {"token_id": "t_nonexistent"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "revoke_agent_token", "ok": false, "error": {"code": "TOKEN_NOT_FOUND", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "revoke_agent_token", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 13, "type": "revoke_agent_token", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "agent_tokens", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 14, "type": "agent_tokens", "ok": true, "data": {"tokens": [{"token_id": "*", "label": "不写天数", "created_at": "*", "expires_at": "*", "last_used_at": null}]}}}

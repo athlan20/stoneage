@@ -1,0 +1,37 @@
+{"meta": {"desc": "删除失败：确认名不一致、栏位没有角色、栏位超范围、想删别的账号的角色；失败后角色都还在", "stage": "STAGE-4"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "bob_x", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "bob_x"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "bob_x", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "bob_x"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "别人的角色", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "别人的角色", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "delete_character", "data": {"slot": 0, "name": "勇者小红"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "delete_character", "ok": false, "error": {"code": "NAME_MISMATCH", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "delete_character", "data": {"slot": 0, "name": ""}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "delete_character", "ok": false, "error": {"code": "NAME_MISMATCH", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "delete_character", "data": {"slot": 1, "name": "勇者小明"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "delete_character", "ok": false, "error": {"code": "CHARACTER_NOT_FOUND", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "delete_character", "data": {"slot": 1, "name": "别人的角色"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "delete_character", "ok": false, "error": {"code": "CHARACTER_NOT_FOUND", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "delete_character", "data": {"slot": 0, "name": "别人的角色"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "delete_character", "ok": false, "error": {"code": "NAME_MISMATCH", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "delete_character", "data": {"slot": 2, "name": "勇者小明"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "delete_character", "ok": false, "error": {"code": "INVALID_SLOT", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "delete_character", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "delete_character", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=请求的字段不正确"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "delete_character", "data": {"slot": 0, "name": " 勇者小明 "}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 13, "type": "delete_character", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 14, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": []}}}

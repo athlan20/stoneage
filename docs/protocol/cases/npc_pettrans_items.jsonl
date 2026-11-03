@@ -1,0 +1,59 @@
+{"meta": {"desc": "宠物转生之后删灵石等物品并设事件 71（STAGE-237）：背包里有地灵石 19625、地灵项链 19629、风灵项链 19687 和范围外的小棍棒 100；转生成功后三件删掉，小棍棒留在 8 号格，推 pets_changed、inventory_changed、quests_changed（任务 51 进行中），查背包和任务页两边一致", "stage": "STAGE-237"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}}}}
+{"conn": "setup", "dir": "admin", "do": "set_level", "character": "勇者小明", "level": 90}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 32021, "x": 31, "y": 28}
+{"conn": "setup", "dir": "admin", "do": "give_quest", "character": "勇者小明", "quest_no": 1, "state": "done"}
+{"conn": "setup", "dir": "admin", "do": "give_quest", "character": "勇者小明", "quest_no": 49, "state": "done"}
+{"conn": "setup", "dir": "admin", "do": "give_quest", "character": "勇者小明", "quest_no": 50, "state": "done"}
+{"conn": "setup", "dir": "admin", "do": "give_pet", "character": "勇者小明", "pet_id": 718, "level": 1, "loyalty": 100}
+{"conn": "setup", "dir": "admin", "do": "set_pet_level", "character": "勇者小明", "slot": 3, "level": 79}
+{"conn": "setup", "dir": "admin", "do": "give_pet", "character": "勇者小明", "pet_id": 1, "level": 5, "loyalty": 100}
+{"conn": "setup", "dir": "admin", "do": "set_pet_level", "character": "勇者小明", "slot": 4, "level": 85}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 19625}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 19629}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 19687}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 100}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "talk", "data": {"npc": 1788}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1788, "name": "精灵王", "type": "宠物转生", "text": "玛蕾菲雅：谢谢你让我和精灵王重聚，让我与精灵王赐予你宠物转生的力量吧。", "options": [{"no": 1, "label": "下一步"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1788, "name": "精灵王", "type": "宠物转生", "text": "玛蕾菲雅：你的宠物已经准备好要转生了吗？", "options": [{"no": 1, "label": "是"}, {"no": 2, "label": "否"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1788, "name": "精灵王", "type": "宠物转生", "text": "玛蕾菲雅：请选出一只要接受转生的宠物吧。", "options": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "npc_choose", "data": {"no": 5}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1788, "name": "精灵王", "type": "宠物转生", "text": "是[乌力]没错吧？ \n\n玛蕾菲雅：你确定好了吗？对宠物来说这可是件不得了的事情，身为它的饲主要好好考虑清楚喔！", "options": [{"no": 1, "label": "是"}, {"no": 2, "label": "否"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "pets_changed", "data": "*"}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*", "slots": [{"count": 1, "effect": "攻 +4", "item_id": 100, "name": "小棍棒", "slot": 8, "type": 2}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "quests_changed", "data": {"quests": "*", "changed": [51]}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1788, "name": "精灵王", "type": "宠物转生", "text": "玛蕾菲雅：宠物转生成功了！请好好对待它吧。\n那么我们就在这儿分手了，说不定以后还有机会可以再见面喔，请多保重。", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "npc_close", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CLOSED"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "npc_close", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "inventory", "ok": true, "data": {"gold": "*", "slots": [{"count": 1, "effect": "攻 +4", "item_id": 100, "name": "小棍棒", "slot": 8, "type": 2}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "quests", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "quests", "ok": true, "data": {"quests": [{"no": 51, "name": "精灵王的传说 打封印精灵王", "state": "doing"}, {"no": 1, "name": "成人仪式", "state": "done"}, {"no": 49, "name": "精灵王的传说 前传", "state": "done"}, {"no": 50, "name": "精灵王的传说 转宠", "state": "done"}]}}}

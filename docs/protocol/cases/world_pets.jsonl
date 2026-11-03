@@ -1,0 +1,24 @@
+{"meta": {"desc": "宠物：进入世界后宠物是空的（max_slots 为 5，pets 为空）；离开世界后不能再查", "stage": "STAGE-31", "server_config": null, "manual": false}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"heartbeat_seconds": 20, "idle_timeout_seconds": 60, "protocol": 1, "register_enabled": true, "server": "stoneage-server/0.1.0"}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "register"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 3, "ok": true, "type": "login"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"character": {"appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "level": 1, "location": {"floor": 1006, "map_name": "萨姆吉尔的村长家"}, "name": "勇者小明", "slot": 0}}, "id": 4, "ok": true, "type": "create_character"}}
+{"conn": "setup", "dir": "admin", "do": "clear_pets", "character": "勇者小明"}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"heartbeat_seconds": 20, "idle_timeout_seconds": 60, "protocol": 1, "register_enabled": true, "server": "stoneage-server/0.1.0"}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "login"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"characters": [{"appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "level": 1, "location": {"floor": 1006, "map_name": "萨姆吉尔的村长家"}, "name": "勇者小明", "slot": 0}], "max_slots": 2}, "id": 3, "ok": true, "type": "characters"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"character": {"appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "level": 1, "location": {"floor": 1006, "map_name": "萨姆吉尔的村长家"}, "name": "勇者小明", "slot": 0}, "control": {"controller": "player", "you": "controller"}, "position": {"direction": 4, "floor": 1006, "map_name": "萨姆吉尔的村长家", "x": 15, "y": 22}, "status": {"derived": {"agility": 4, "attack": 5, "charm": 60, "defense": 5, "luck": "*=3"}, "elements": {"earth": 6, "fire": 0, "water": 4, "wind": 0}, "exp": 0, "gold": 1000000, "hp": 44, "level": 1, "magic": [], "max_hp": 44, "max_mp": 100, "mp": 100, "next_exp": 2, "skill_points": 0, "stats": {"dexterity": 4, "strength": 4, "toughness": 4, "vital": 8}, "title": "", "transmigration": 0}}, "id": 4, "ok": true, "type": "enter_world"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "pets", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"max_slots": 20, "pets": []}, "id": 5, "ok": true, "type": "pets"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "leave_world", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 6, "ok": true, "type": "leave_world"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "pets", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"error": {"code": "WRONG_STATE", "message": "当前状态（已登录）不允许 pets 请求"}, "id": 7, "ok": false, "type": "pets"}}

@@ -1,0 +1,19 @@
+{"meta": {"desc": "连续失败 5 次后账号被锁定，锁定期间密码正确也不能登录；retry_after_seconds 是剩余秒数", "stage": "STAGE-3"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "*=账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "login", "data": {"account": "alice", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "*=账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 5, "type": "login", "data": {"account": "alice", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 5, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "*=账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 6, "type": "login", "data": {"account": "alice", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 6, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "*=账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 7, "type": "login", "data": {"account": "alice", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 7, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "*=账号或密码错误"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": false, "error": {"code": "ACCOUNT_LOCKED", "message": "*=登录失败次数过多，账号已被暂时锁定", "data": {"retry_after_seconds": "*=897"}}}}

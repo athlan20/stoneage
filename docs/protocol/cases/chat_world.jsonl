@@ -1,0 +1,31 @@
+{"meta": {"desc": "公开聊天·世界（STAGE-278）单账号：等级 1 时 world 回复 CHAT_LEVEL_LOW（min_level 5）；升到 5 级后推送给自己；world 冷却内再发 RATE_LIMITED；world 与 map 各自计时；用 set_setting 把世界冷却临时改成 2 秒，结束时改回默认 30", "stage": "STAGE-278"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "set_setting", "key": "chat.world_cooldown_seconds", "value": 2}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "chat", "data": {"channel": "world", "text": "世界测试"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "chat", "ok": false, "error": {"code": "CHAT_LEVEL_LOW", "message": "*=错误说明", "data": {"min_level": 5}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "leave_world", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "leave_world", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "set_level", "character": "勇者小明", "level": 5}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "chat", "data": {"channel": "world", "text": "世界测试"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "world", "from": "勇者小明", "level": 5, "text": "世界测试", "time_ms": "*=1760000000000"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "chat", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "chat", "data": {"channel": "world", "text": "再来一句"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "chat", "ok": false, "error": {"code": "RATE_LIMITED", "message": "*=错误说明", "data": {"retry_after_seconds": "*"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "chat", "data": {"channel": "world", "text": "世界第二句"}}, "delay_ms": 2100}
+{"conn": "player", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "world", "from": "勇者小明", "level": 5, "text": "世界第二句", "time_ms": "*=1760000000000"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "chat", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "chat", "data": {"channel": "map", "text": "本图不受世界冷却"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 5, "text": "本图不受世界冷却", "time_ms": "*=1760000000000"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "chat", "ok": true, "data": {}}}
+{"conn": "setup", "dir": "admin", "do": "set_setting", "key": "chat.world_cooldown_seconds", "value": 30}

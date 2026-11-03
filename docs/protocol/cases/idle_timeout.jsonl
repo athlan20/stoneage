@@ -1,0 +1,5 @@
+{"meta": {"desc": "超过空闲时限没有任何消息：推送 IDLE_TIMEOUT 后断开", "stage": "STAGE-2", "server_config": {"idle_timeout_seconds": 2}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "disconnect", "data": {"reason": "IDLE_TIMEOUT", "message": "*=长时间没有响应，连接已断开"}}, "delay_ms": 3000}
+{"conn": "player", "dir": "s2c", "closed": true}

@@ -1,0 +1,10 @@
+# cargo-dist 的包级配置（STAGE-98）。
+# publish = false 的包 cargo-dist 默认不分发，这里 dist = true 显式打开。
+[dist]
+dist = true
+# Homebrew 配方名（默认是包名 stoneage-client），这样用户可以 brew install athlan20/tap/stoneage。
+formula = "stoneage"
+
+# 发布包只带 stoneage；mock-server 是测试用的模拟服务端，不随发布包分发。
+[package]
+binaries = ["stoneage"]

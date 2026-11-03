@@ -1,0 +1,47 @@
+{"meta": {"desc": "同一 IP 10 分钟内密码错误 20 次后，该 IP 的登录被限制（回复 RATE_LIMITED 和剩余秒数）", "stage": "STAGE-3"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "nobody0", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "nobody1", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "login", "data": {"account": "nobody2", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 5, "type": "login", "data": {"account": "nobody3", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 5, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 6, "type": "login", "data": {"account": "nobody4", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 6, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 7, "type": "login", "data": {"account": "nobody5", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 7, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 8, "type": "login", "data": {"account": "nobody6", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 8, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 9, "type": "login", "data": {"account": "nobody7", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 9, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 10, "type": "login", "data": {"account": "nobody8", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 10, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 11, "type": "login", "data": {"account": "nobody9", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 11, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 12, "type": "login", "data": {"account": "nobody10", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 12, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 13, "type": "login", "data": {"account": "nobody11", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 13, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 14, "type": "login", "data": {"account": "nobody12", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 14, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 15, "type": "login", "data": {"account": "nobody13", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 15, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 16, "type": "login", "data": {"account": "nobody14", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 16, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 17, "type": "login", "data": {"account": "nobody15", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 17, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 18, "type": "login", "data": {"account": "nobody16", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 18, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 19, "type": "login", "data": {"account": "nobody17", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 19, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 20, "type": "login", "data": {"account": "nobody18", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 20, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 21, "type": "login", "data": {"account": "nobody19", "password": "wrongpw1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 21, "type": "login", "ok": false, "error": {"code": "WRONG_CREDENTIALS", "message": "账号或密码错误"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "nobody99", "password": "wrongpw1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": false, "error": {"code": "RATE_LIMITED", "message": "*=登录失败次数过多，请稍后再试", "data": {"retry_after_seconds": "*=600"}}}}

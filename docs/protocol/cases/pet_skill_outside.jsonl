@@ -1,0 +1,40 @@
+{"meta": {"desc": "战斗外使用宠物技能（STAGE-144，pet_skill）：加工、料理是战斗外场合（STAGE-207 起是合成，见 pet_skill_merge），缺 items 时回复 BAD_REQUEST；场合为战斗的技能（防御）战斗外回复 SKILL_UNUSABLE；空技能栏位、没有宠物的栏位、栏位和技能编号越界回复对应错误；带 target 时 target 被忽略；战斗中回复 IN_BATTLE", "manual": false, "server_config": null, "stage": "STAGE-144"}}
+{"conn": "setup", "dir": "c2s", "msg": {"data": {"client": "*", "protocol": 1, "role": "player"}, "id": 1, "type": "hello"}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"heartbeat_seconds": 20, "idle_timeout_seconds": 60, "protocol": 1, "register_enabled": true, "server": "stoneage-server/0.1.0"}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "setup", "dir": "c2s", "msg": {"data": {"account": "alice", "password": "secret1"}, "id": 2, "type": "register"}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "register"}}
+{"conn": "setup", "dir": "c2s", "msg": {"data": {"account": "alice", "password": "secret1"}, "id": 3, "type": "login"}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 3, "ok": true, "type": "login"}}
+{"conn": "setup", "dir": "c2s", "msg": {"data": {"appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "elements": {"earth": 6, "fire": 0, "water": 4, "wind": 0}, "hometown": 0, "name": "勇者小明", "slot": 0, "stats": {"dexterity": 4, "strength": 4, "toughness": 4, "vital": 8}}, "id": 4, "type": "create_character"}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"character": {"appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "level": 1, "location": {"floor": 1006, "map_name": "萨姆吉尔的村长家"}, "name": "勇者小明", "slot": 0}}, "id": 4, "ok": true, "type": "create_character"}}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "clear_pets"}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "give_pet", "level": 5, "pet_id": 1062}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"client": "*", "protocol": 1, "role": "player"}, "id": 1, "type": "hello"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"heartbeat_seconds": 20, "idle_timeout_seconds": 60, "protocol": 1, "register_enabled": true, "server": "stoneage-server/0.1.0"}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"account": "alice", "password": "secret1"}, "id": 2, "type": "login"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "login"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {}, "id": 3, "type": "characters"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"characters": [{"appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "level": 1, "location": {"floor": 1006, "map_name": "萨姆吉尔的村长家"}, "name": "勇者小明", "slot": 0}], "max_slots": 2}, "id": 3, "ok": true, "type": "characters"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"slot": 0}, "id": 4, "type": "enter_world"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"agent": {"online": false, "token_id": null}, "character": {"appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "level": 1, "location": {"floor": 1006, "map_name": "萨姆吉尔的村长家"}, "name": "勇者小明", "slot": 0}, "control": {"controller": "player", "you": "controller"}, "encounter": false, "position": {"direction": 4, "floor": 1006, "map_name": "萨姆吉尔的村长家", "x": 15, "y": 22}, "status": {"derived": {"agility": 4, "attack": 5, "charm": 60, "defense": 5, "luck": 3}, "elements": {"earth": 6, "fire": 0, "water": 4, "wind": 0}, "exp": 0, "gold": 1000000, "hp": 44, "level": 1, "magic": [], "max_hp": 44, "max_mp": 100, "mp": 100, "next_exp": 2, "skill_points": 0, "stats": {"dexterity": 4, "strength": 4, "toughness": 4, "vital": 8}, "title": "", "transmigration": 0}}, "id": 4, "ok": true, "type": "enter_world"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"skill": 3, "slot": 0}, "id": 5, "type": "pet_skill"}}
+{"conn": "player", "dir": "s2c", "msg": {"error": {"code": "BAD_REQUEST", "message": "需要 items 字段，是背包格号（5–19）的列表，2–15 件"}, "id": 5, "ok": false, "type": "pet_skill"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"skill": 3, "slot": 0, "target": 1}, "id": 6, "type": "pet_skill"}}
+{"conn": "player", "dir": "s2c", "msg": {"error": {"code": "BAD_REQUEST", "message": "需要 items 字段，是背包格号（5–19）的列表，2–15 件"}, "id": 6, "ok": false, "type": "pet_skill"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"skill": 2, "slot": 0}, "id": 7, "type": "pet_skill"}}
+{"conn": "player", "dir": "s2c", "msg": {"error": {"code": "SKILL_UNUSABLE", "message": "防御 只能在战斗中使用"}, "id": 7, "ok": false, "type": "pet_skill"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"skill": 4, "slot": 0}, "id": 8, "type": "pet_skill"}}
+{"conn": "player", "dir": "s2c", "msg": {"error": {"code": "SKILL_UNUSABLE", "message": "0 号宠物的 4 号技能栏位是空的"}, "id": 8, "ok": false, "type": "pet_skill"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"skill": 1, "slot": 3}, "id": 9, "type": "pet_skill"}}
+{"conn": "player", "dir": "s2c", "msg": {"error": {"code": "NO_PET", "message": "3 号栏位没有宠物"}, "id": 9, "ok": false, "type": "pet_skill"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"slot": 0}, "id": 10, "type": "pet_skill"}}
+{"conn": "player", "dir": "s2c", "msg": {"error": {"code": "BAD_REQUEST", "message": "需要 skill 字段，是 1–7 的整数（宠物页的技能栏位）"}, "id": 10, "ok": false, "type": "pet_skill"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"skill": 3, "slot": 20}, "id": 11, "type": "pet_skill"}}
+{"conn": "player", "dir": "s2c", "msg": {"error": {"code": "BAD_REQUEST", "message": "需要 slot 字段，是 0–19 的整数"}, "id": 11, "ok": false, "type": "pet_skill"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"skill": 8, "slot": 0}, "id": 12, "type": "pet_skill"}}
+{"conn": "player", "dir": "s2c", "msg": {"error": {"code": "BAD_REQUEST", "message": "需要 skill 字段，是 1–7 的整数（宠物页的技能栏位）"}, "id": 12, "ok": false, "type": "pet_skill"}}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "start_battle", "scenario": "win"}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"allow": {"capture": true, "escape": true}, "battle_id": "b_1", "kind": "wild", "scene": "野外", "units": [{"elements": {"earth": 60, "fire": 0, "water": 40, "wind": 0}, "hp": 44, "hp_pct": 100, "kind": "player", "level": 1, "max_hp": 44, "max_mp": 100, "mp": 100, "name": "勇者小明", "no": 0, "ride": false, "status": []}, {"elements": {"earth": 20, "fire": 0, "water": 0, "wind": 80}, "hp": 44, "hp_pct": 100, "kind": "pet", "level": 5, "max_hp": 44, "name": "凯比", "no": 5, "ride": false, "status": []}, {"elements": {"earth": 80, "fire": 0, "water": 20, "wind": 0}, "hp_pct": 100, "kind": "monster", "level": 1, "name": "乌力", "no": 15, "ride": false, "status": []}, {"elements": {"earth": 80, "fire": 0, "water": 20, "wind": 0}, "hp_pct": 100, "kind": "monster", "level": 1, "name": "乌力", "no": 16, "ride": false, "status": []}], "you": 0}, "type": "battle_start"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"battle_id": "b_1", "deadline_ms": "*=1792205047545", "needs": ["player", "pet"], "progress": {"done": 0, "total": 1}, "server_time_ms": "*=1792205017545", "turn": 1}, "type": "battle_turn"}}
+{"conn": "player", "dir": "c2s", "msg": {"data": {"skill": 3, "slot": 0}, "id": 13, "type": "pet_skill"}}
+{"conn": "player", "dir": "s2c", "msg": {"error": {"code": "IN_BATTLE", "message": "战斗中不能这样做"}, "id": 13, "ok": false, "type": "pet_skill"}}

@@ -1,0 +1,1831 @@
+[
+ {
+  "no": 1,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "石器时代的世界的名称是?",
+  "options": [
+   "尼斯",
+   "尼结",
+   "眯斯"
+  ]
+ },
+ {
+  "no": 2,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "这个世界钱的单位是?",
+  "options": [
+   "石头",
+   "斯头",
+   "狮头"
+  ]
+ },
+ {
+  "no": 3,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "聊天室中的大厅叫什么名称?",
+  "options": [
+   "长毛象大厅",
+   "乌力斯坦大厅",
+   "格鲁西斯大厅"
+  ]
+ },
+ {
+  "no": 4,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "愿藏的宠物的名字是?",
+  "options": [
+   "呼拔吉",
+   "呼拔告",
+   "呼拔古"
+  ]
+ },
+ {
+  "no": 5,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "近藏的宠物的名字是？",
+  "options": [
+   "小卡",
+   "小胜"
+  ]
+ },
+ {
+  "no": 6,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "在萨姆吉尔里大石像的模特儿是谁？",
+  "options": [
+   "萨姆吉尔",
+   "萨姆高尔"
+  ]
+ },
+ {
+  "no": 7,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "马伦所饲养的宠物的名字是？",
+  "options": [
+   "加特力奴",
+   "艾力萨贝斯",
+   "刚萨雷斯"
+  ]
+ },
+ {
+  "no": 9,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "石器时代新手报到包的定价是？",
+  "options": [
+   "250台币",
+   "1250台币",
+   "2250台币"
+  ]
+ },
+ {
+  "no": 10,
+  "type": 1,
+  "level": 1,
+  "answertype": 4,
+  "answer": 1,
+  "question": "在画面上可以选择出身地的村庄是玛丽娜丝、萨姆吉尔、加加、还有一个是？",
+  "options": [
+   "卡鲁它那"
+  ]
+ },
+ {
+  "no": 11,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "通过海底通道需要什么?",
+  "options": [
+   "通行证",
+   "通行手印",
+   "通行书"
+  ]
+ },
+ {
+  "no": 12,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "成人的仪式结束之后能得到什么呢？",
+  "options": [
+   "仪之兜",
+   "仪之铠",
+   "我的兜"
+  ]
+ },
+ {
+  "no": 13,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "乌力斯坦的颜色是什么色跟什么色？",
+  "options": [
+   "黑色跟白色",
+   "黑色跟红色",
+   "红色跟白色"
+  ]
+ },
+ {
+  "no": 14,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "加工用的道具中，最便宜的是东西是什么石？",
+  "options": [
+   "石1",
+   "石2",
+   "石3"
+  ]
+ },
+ {
+  "no": 15,
+  "type": 1,
+  "level": 2,
+  "answertype": 4,
+  "answer": 1,
+  "question": "在沙姆岛（地上），除了鸟的恐龙之外还有什么恐龙出没？　用恐龙名回答。",
+  "options": [
+   "布拉奇多斯"
+  ]
+ },
+ {
+  "no": 16,
+  "type": 1,
+  "level": 4,
+  "answertype": 4,
+  "answer": 1,
+  "question": "全身发红、看起来又软弱，还会过来用大舌头舔人，这恶心的宠物名字是？",
+  "options": [
+   "贝洛宝利"
+  ]
+ },
+ {
+  "no": 17,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "基本上来说，虽然攻击力上升，但是防御或敏捷会极端下降的武器是？",
+  "options": [
+   "斧头",
+   "棍棒",
+   "矛"
+  ]
+ },
+ {
+  "no": 18,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "长毛象公车的大象名字叫什么？",
+  "options": [
+   "玛恩摩",
+   "恩摩摩",
+   "摩恩摩"
+  ]
+ },
+ {
+  "no": 19,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "一遇到跑过来的长毛象公车、人物会变成怎样？",
+  "options": [
+   "不会怎样",
+   "会被辗平",
+   "被撞飞"
+  ]
+ },
+ {
+  "no": 20,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "怎样才能坐长毛象公车呢?",
+  "options": [
+   "加入团队",
+   "报名比武",
+   "搭讪"
+  ]
+ },
+ {
+  "no": 21,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "等级由1变到2要多少经验值?",
+  "options": [
+   "２",
+   "４",
+   "６"
+  ]
+ },
+ {
+  "no": 22,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "石器时代的世界的名称是?",
+  "options": [
+   "尼斯",
+   "尼结",
+   "眯斯"
+  ]
+ },
+ {
+  "no": 23,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "在医院，要帮宠物回复要花多少石头？",
+  "options": [
+   "不用钱",
+   "LVX10石头",
+   "LVX5石头"
+  ]
+ },
+ {
+  "no": 24,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "在玛丽娜丝的医院帮我们的回复的护士，手上拿着什么?",
+  "options": [
+   "注射器",
+   "听诊器"
+  ]
+ },
+ {
+  "no": 25,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "只能帮自己回复的咒术是?",
+  "options": [
+   "治愈的精灵",
+   "滋润的精灵",
+   "恩惠的精灵"
+  ]
+ },
+ {
+  "no": 26,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "在达那村的道具店中，下列哪一种东西最昂贵？",
+  "options": [
+   "黑骨首饰",
+   "黑玉首饰",
+   "绿骨首饰"
+  ]
+ },
+ {
+  "no": 27,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "能帮团队全员回复的咒术是?",
+  "options": [
+   "恩惠的精灵",
+   "滋润的精灵",
+   "治愈的精灵"
+  ]
+ },
+ {
+  "no": 28,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 2,
+  "question": "玩家人物中头发是黑色的有多少人?",
+  "options": [
+   "3",
+   "4",
+   "5"
+  ]
+ },
+ {
+  "no": 29,
+  "type": 1,
+  "level": 16,
+  "answertype": 4,
+  "answer": 1,
+  "question": "在萨伊那斯的桥上阻碍通行的是谁?",
+  "options": [
+   "坏心眼的愿藏"
+  ]
+ },
+ {
+  "no": 30,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 3,
+  "question": "在卡鲁它那的附近打工抓宠物中LV20以上30未满的宠物是?",
+  "options": [
+   "克克洛斯",
+   "龟之盾",
+   "多利诺布斯"
+  ]
+ },
+ {
+  "no": 31,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "乌力斯坦最初所拥有的技能是下列哪一个？",
+  "options": [
+   "攻击",
+   "防御",
+   "待机"
+  ]
+ },
+ {
+  "no": 32,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "加加的储存点拿什么肉来就会让我们纪录呢？",
+  "options": [
+   "乌宝宝的肉",
+   "威威的肉",
+   "耶耶的肉"
+  ]
+ },
+ {
+  "no": 33,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "长毛象公车在公车站停留多久的时间呢？",
+  "options": [
+   "3分",
+   "5分",
+   "1分"
+  ]
+ },
+ {
+  "no": 34,
+  "type": 1,
+  "level": 4,
+  "answertype": 4,
+  "answer": 1,
+  "question": "柯尔克村宠物店里有的宠物是呼拔拔和贝洛恩和后一个是什么？",
+  "options": [
+   "小特洛昆"
+  ]
+ },
+ {
+  "no": 35,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 2,
+  "question": "柯尔克的石屋主人是几岁开始作投掷石的呢？",
+  "options": [
+   "12",
+   "13",
+   "14"
+  ]
+ },
+ {
+  "no": 36,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 2,
+  "question": "石龟属性是？",
+  "options": [
+   "地１０",
+   "地９　风１",
+   "地８　风２"
+  ]
+ },
+ {
+  "no": 37,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "到卡坦村看医生的患者初诊通常都是患什么病呢？",
+  "options": [
+   "中暑",
+   "流行感冒",
+   "胃溃疡"
+  ]
+ },
+ {
+  "no": 38,
+  "type": 1,
+  "level": 2,
+  "answertype": 4,
+  "answer": 1,
+  "question": "恐龙接龙“？？？”里面恐龙的名字是？　“贝鲁伊卡”->“？？？”->“特洛昆”",
+  "options": [
+   "卡比特"
+  ]
+ },
+ {
+  "no": 39,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "经营长毛象公车的是？",
+  "options": [
+   "长毛象客运",
+   "长毛象快递",
+   "华义客运"
+  ]
+ },
+ {
+  "no": 40,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "吃回复气力的料理的时候玩家角色的反应是？",
+  "options": [
+   "点头",
+   "高兴",
+   "挥手"
+  ]
+ },
+ {
+  "no": 41,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "在玛丽娜丝卖的高级玛丽娜丝虾要多少石头？（请用半形数字回答）",
+  "options": [
+   "150"
+  ]
+ },
+ {
+  "no": 42,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "塔姆塔姆村里的“情报员”是怎样的人？",
+  "options": [
+   "老伯",
+   "伯母",
+   "女生"
+  ]
+ },
+ {
+  "no": 43,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "玛丽娜丝村庄中和青年在一起的乌力乌力的叫什么名字？",
+  "options": [
+   "乌力次郎",
+   "寿司次郎",
+   "乌力次朗"
+  ]
+ },
+ {
+  "no": 44,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "能跟乌力斯凯说话的道具是？",
+  "options": [
+   "不可思议的贝壳",
+   "核对石",
+   "仙尼亚的花"
+  ]
+ },
+ {
+  "no": 45,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 2,
+  "question": "在萨姆吉尔村出生的人所拿的原生宠物是什么？",
+  "options": [
+   "乌力乌梭",
+   "乌力乌力",
+   "乌力哇力"
+  ]
+ },
+ {
+  "no": 46,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 2,
+  "question": "可以恢复我们魅力的是谁？",
+  "options": [
+   "美发师",
+   "美容师",
+   "医师"
+  ]
+ },
+ {
+  "no": 47,
+  "type": 1,
+  "level": 1,
+  "answertype": 4,
+  "answer": 1,
+  "question": "在画面上可以选择出身地的村庄是玛丽娜丝、萨姆吉尔、加加、还有一个是？",
+  "options": [
+   "卡鲁它那"
+  ]
+ },
+ {
+  "no": 48,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "宠物的技巧之中保护玩家的技能叫做什么？",
+  "options": [
+   "忠犬",
+   "忠狗",
+   "癞皮狗"
+  ]
+ },
+ {
+  "no": 49,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "这个世上用钱做成的地方是哪里？",
+  "options": [
+   "吉鲁岛",
+   "萨伊那斯岛",
+   "加鲁卡岛"
+  ]
+ },
+ {
+  "no": 50,
+  "type": 1,
+  "level": 2,
+  "answertype": 1,
+  "answer": 2,
+  "question": "哥亚山的乌力斯凯是把信交给谁？",
+  "options": [
+   "乌力米",
+   "乌力美"
+  ]
+ },
+ {
+  "no": 51,
+  "type": 1,
+  "level": 8,
+  "answertype": 2,
+  "answer": 3,
+  "question": "道具‘仙尼亚的花’的正确说明是哪一个？",
+  "options": [
+   "在萨姆吉尔能够采的花",
+   "在萨姆吉尔的花园内采的花",
+   "在萨姆吉尔花圃上摘的花"
+  ]
+ },
+ {
+  "no": 52,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "在公式比武中规定的50～59的等级是？",
+  "options": [
+   "贝鲁卡级",
+   "鲁尼帖斯级",
+   "玛恩摩级"
+  ]
+ },
+ {
+  "no": 53,
+  "type": 1,
+  "level": 4,
+  "answertype": 1,
+  "answer": 1,
+  "question": "加鲁卡巡回全岛活动（JOT）的A路线的第9个的核对点的场所在哪里？",
+  "options": [
+   "乌鲁力",
+   "多多"
+  ]
+ },
+ {
+  "no": 54,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "组成团队最大人数是多少人？",
+  "options": [
+   "5人",
+   "6人"
+  ]
+ },
+ {
+  "no": 55,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 2,
+  "question": "长毛象公车出发时的鸣叫声是？",
+  "options": [
+   "叭叭～～",
+   "叭叭叭～～～",
+   "叭～"
+  ]
+ },
+ {
+  "no": 56,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "查罕三兄弟中最小的弟弟名字是哪一个？",
+  "options": [
+   "查罕鲁德",
+   "查罕奇鲁",
+   "查罕乌鲁夫"
+  ]
+ },
+ {
+  "no": 57,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "在卡鲁它那牧场利用恐龙的什么跟什么可以生成加工素材呢？",
+  "options": [
+   "皮跟骨",
+   "皮跟爪",
+   "皮跟牙"
+  ]
+ },
+ {
+  "no": 58,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "小斧头跟小棍棒，哪一个比较贵呢？",
+  "options": [
+   "小斧头",
+   "小棍棒"
+  ]
+ },
+ {
+  "no": 59,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 2,
+  "question": "乌西摩尼叶的说明中，“解毒的？？？植物”这个“？？？”要放入什么？",
+  "options": [
+   "羊齿类",
+   "热带性",
+   "全红的"
+  ]
+ },
+ {
+  "no": 60,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "玩家角色或是宠物气绝时在头上环绕的星星有几个？",
+  "options": [
+   "3个",
+   "4个",
+   "5个"
+  ]
+ },
+ {
+  "no": 61,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "战斗中用弓箭给予伤害（或是接受）之后，打中的箭会变成怎样？",
+  "options": [
+   "回合结束之前还会存在",
+   "战斗终了之前还会存在",
+   "马上会消失"
+  ]
+ },
+ {
+  "no": 62,
+  "type": 1,
+  "level": 1,
+  "answertype": 4,
+  "answer": 1,
+  "question": "玛丽娜丝的村庄的女子提到的鸭子是？",
+  "options": [
+   "加亚鸭"
+  ]
+ },
+ {
+  "no": 63,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "这个游戏的英文名称是？",
+  "options": [
+   "STONEAGE",
+   "AGESTONE",
+   "STOENAGE"
+  ]
+ },
+ {
+  "no": 64,
+  "type": 1,
+  "level": 1,
+  "answertype": 4,
+  "answer": 1,
+  "question": "宠物接龙“？？？”里的宠物的名字是？“贝洛恩”→“？？？”→“摩娜西普”",
+  "options": [
+   "恩摩摩"
+  ]
+ },
+ {
+  "no": 65,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "日美子和弥生谁在玛丽娜丝？",
+  "options": [
+   "弥生",
+   "日美子"
+  ]
+ },
+ {
+  "no": 66,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "“○○○○的近藏”那么○里面应该是？",
+  "options": [
+   "山贼志愿",
+   "山贼志望"
+  ]
+ },
+ {
+  "no": 67,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "玩家互相比试应要叫做什么？",
+  "options": [
+   "决斗",
+   "打斗"
+  ]
+ },
+ {
+  "no": 68,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "萨姆吉尔村长家的料理人名字是？",
+  "options": [
+   "鲍尔"
+  ]
+ },
+ {
+  "no": 69,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "卡坦的储存点是拿什么肉去才会给我们记录呢？",
+  "options": [
+   "特洛昆",
+   "达克尔"
+  ]
+ },
+ {
+  "no": 70,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "“坏心眼的愿藏”是哪一手拿着武器的呢？",
+  "options": [
+   "右手",
+   "左手"
+  ]
+ },
+ {
+  "no": 71,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "肚子是橘色的鲨鱼系宠物是？",
+  "options": [
+   "加克拉",
+   "加格",
+   "克邦凯斯"
+  ]
+ },
+ {
+  "no": 72,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "凯比特的身体是什么颜色？",
+  "options": [
+   "黄色",
+   "橘色"
+  ]
+ },
+ {
+  "no": 73,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "在加鲁卡岛最北边的村庄名称是?",
+  "options": [
+   "塔姆塔姆",
+   "乌鲁力",
+   "奇喀喀"
+  ]
+ },
+ {
+  "no": 74,
+  "type": 1,
+  "level": 2,
+  "answertype": 1,
+  "answer": 1,
+  "question": "在卡鲁它那的素材店（石头、木）有在卖‘骨的碎片’要多少钱呢？",
+  "options": [
+   "26STONE",
+   "28STONE"
+  ]
+ },
+ {
+  "no": 75,
+  "type": 1,
+  "level": 2,
+  "answertype": 4,
+  "answer": 1,
+  "question": "“逃走呼拔拔”猎人名人的名字是？",
+  "options": [
+   "吉萨拉奇"
+  ]
+ },
+ {
+  "no": 76,
+  "type": 1,
+  "level": 4,
+  "answertype": 1,
+  "answer": 1,
+  "question": "在卡鲁它那村里的情报员10年前地震的时候是几岁呢？",
+  "options": [
+   "7岁",
+   "6岁"
+  ]
+ },
+ {
+  "no": 77,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "加鲁卡岛最南边的村庄的名称是？",
+  "options": [
+   "奇喀喀",
+   "塔姆塔姆",
+   "乌鲁力"
+  ]
+ },
+ {
+  "no": 78,
+  "type": 1,
+  "level": 4,
+  "answertype": 4,
+  "answer": 1,
+  "question": "卡鲁它那的长毛象客运的介绍人的名字是？",
+  "options": [
+   "阿民"
+  ]
+ },
+ {
+  "no": 79,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "摩浦叶是在哪里生长的植物呢？",
+  "options": [
+   "平原",
+   "湿地带",
+   "海边"
+  ]
+ },
+ {
+  "no": 80,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 1,
+  "question": "气力回复40的气力回复药瓶子是什么颜色的呢？",
+  "options": [
+   "黄色",
+   "绿色",
+   "茶色"
+  ]
+ },
+ {
+  "no": 81,
+  "type": 1,
+  "level": 1,
+  "answertype": 1,
+  "answer": 1,
+  "question": "萨姆吉尔的学校的老师手里拿着什么？",
+  "options": [
+   "骨头",
+   "肉"
+  ]
+ },
+ {
+  "no": 82,
+  "type": 1,
+  "level": 2,
+  "answertype": 4,
+  "answer": 1,
+  "question": "恐龙博士的助手的名字是？",
+  "options": [
+   "吉鲁"
+  ]
+ },
+ {
+  "no": 83,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "在柯尔克村的道具店中，下列那一种东西最便宜？",
+  "options": [
+   "红色大首饰",
+   "苍玉的手环",
+   "黑色大首饰"
+  ]
+ },
+ {
+  "no": 84,
+  "type": 1,
+  "level": 1,
+  "answertype": 2,
+  "answer": 3,
+  "question": "玩家在石器里无法做的动作是？",
+  "options": [
+   "坐",
+   "生气",
+   "睡觉"
+  ]
+ },
+ {
+  "no": 85,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 2,
+  "question": "玩家身上最多可以带多少石头币？",
+  "options": [
+   "100000",
+   "1000000",
+   "10000000"
+  ]
+ },
+ {
+  "no": 86,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "长毛象客运加加分店的介绍人的名字是？",
+  "options": [
+   "卡鲁那"
+  ]
+ },
+ {
+  "no": 87,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "卡鲁它那的村子的东77南93有谁在那呢？",
+  "options": [
+   "钓竿专家"
+  ]
+ },
+ {
+  "no": 88,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "卡鲁它那牧场屋内的宠物全部有几只？",
+  "options": [
+   "10",
+   "8",
+   "17"
+  ]
+ },
+ {
+  "no": 89,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "在加加的村子的防具屋卖594S的防具名称正确的说出来。",
+  "options": [
+   "提欧Lv1铠2"
+  ]
+ },
+ {
+  "no": 90,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "盗贼的洞窟地下3楼的人的名字是？",
+  "options": [
+   "铁壁的小守"
+  ]
+ },
+ {
+  "no": 91,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 3,
+  "question": "阿布的独栋房屋里共有多少坐垫呢？",
+  "options": [
+   "8枚",
+   "12枚",
+   "10枚"
+  ]
+ },
+ {
+  "no": 92,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "阿布的洞窟前的储存点要用布伊和什么宠物的肉才能储存呢？",
+  "options": [
+   "火鸡"
+  ]
+ },
+ {
+  "no": 93,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 3,
+  "question": "那一个不是霍特尔产的？",
+  "options": [
+   "马铃薯",
+   "大蒜",
+   "萝卜"
+  ]
+ },
+ {
+  "no": 94,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "请回答卡坦的留言板的座标？（例→东0:南0 数字和“:”是半形）",
+  "options": [
+   "东78:南97"
+  ]
+ },
+ {
+  "no": 95,
+  "type": 1,
+  "level": 4,
+  "answertype": 4,
+  "answer": 1,
+  "question": "柯尔克的青年买了弓和什么武器之后却在烦恼呢？",
+  "options": [
+   "回力标"
+  ]
+ },
+ {
+  "no": 96,
+  "type": 1,
+  "level": 4,
+  "answertype": 4,
+  "answer": 1,
+  "question": "向我们推销茶的村长是哪个村庄的？（写村名即可，例→加加村请输入加加）",
+  "options": [
+   "柯尔克"
+  ]
+ },
+ {
+  "no": 97,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "柯奥的防具店最高卖价的东西和霍特尔的武器店最高卖价的东西总值是？（限用半形数字回答）",
+  "options": [
+   "10850"
+  ]
+ },
+ {
+  "no": 98,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "多多的便利武器店所卖商品的总值是？（只限半形数字）",
+  "options": [
+   "34170"
+  ]
+ },
+ {
+  "no": 99,
+  "type": 1,
+  "level": 16,
+  "answertype": 1,
+  "answer": 1,
+  "question": "料理“肉粽”的道具说明是以下的哪一个？",
+  "options": [
+   "包肉的粽子",
+   "加了酱汁的粽子"
+  ]
+ },
+ {
+  "no": 100,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "清澈的鳞是鳞的成分几呢。",
+  "options": [
+   "鳞的成分4",
+   "鳞的成分3",
+   "鳞的成分5"
+  ]
+ },
+ {
+  "no": 101,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 2,
+  "question": "以下属性没有‘地10’的是哪一个？",
+  "options": [
+   "乌力斯坦",
+   "绿龟",
+   "鲁尼帖斯"
+  ]
+ },
+ {
+  "no": 102,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 3,
+  "question": "以下有地属性的宠物是哪一个？",
+  "options": [
+   "克洛尔",
+   "克克尔",
+   "克雷尔"
+  ]
+ },
+ {
+  "no": 103,
+  "type": 1,
+  "level": 4,
+  "answertype": 4,
+  "answer": 1,
+  "question": "卡比特、凯比、昆伊、凯比特的各别风属性合计值是多少？（请用半形数字输入。）",
+  "options": [
+   "26"
+  ]
+ },
+ {
+  "no": 104,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "请选出下列名称错误的东西。",
+  "options": [
+   "绿玉首饰",
+   "绿骨首饰",
+   "黑玉首饰"
+  ]
+ },
+ {
+  "no": 105,
+  "type": 1,
+  "level": 4,
+  "answertype": 1,
+  "answer": 1,
+  "question": "要做“危险的生鱼片”的材料是下咧哪一个？",
+  "options": [
+   "卷贝",
+   "大贝"
+  ]
+ },
+ {
+  "no": 106,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "晒干的海星跟晒干的炭可以做成哪种料理？",
+  "options": [
+   "海星火焰"
+  ]
+ },
+ {
+  "no": 107,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "要做成渔村风烤贝壳以下哪一个是不需要的？",
+  "options": [
+   "卡鲁它那产的盐",
+   "卡鲁它那产的贝",
+   "加加产的高级炭"
+  ]
+ },
+ {
+  "no": 108,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "用多多的美味的水、毛蟹、大王花枝、塔姆塔姆产的胡椒能做出来的料理是？",
+  "options": [
+   "美食汤"
+  ]
+ },
+ {
+  "no": 109,
+  "type": 1,
+  "level": 16,
+  "answertype": 4,
+  "answer": 1,
+  "question": "请回答用新鲜的花枝、美丽的盐、品质优良的炭能做出来的材料的说明文是？",
+  "options": [
+   "拿很新鲜的花枝来烤"
+  ]
+ },
+ {
+  "no": 110,
+  "type": 1,
+  "level": 16,
+  "answertype": 4,
+  "answer": 1,
+  "question": "用新鲜的花枝、美丽的盐、品质优良的炭能做出来的料理是。",
+  "options": [
+   "新鲜的烤花枝"
+  ]
+ },
+ {
+  "no": 111,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "请回答料理“独门秘方牛肉炖煮”的说明文是。",
+  "options": [
+   "炖很久的牛肉炖煮"
+  ]
+ },
+ {
+  "no": 112,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "“苹果酱汁牛排”料理的说明文为以下何者?",
+  "options": [
+   "都是苹果的牛排",
+   "都是酱汁的牛排",
+   "苹果和酱汁的牛排"
+  ]
+ },
+ {
+  "no": 113,
+  "type": 1,
+  "level": 8,
+  "answertype": 2,
+  "answer": 1,
+  "question": "料理“烤焦的虾子串烧”的效果是以下哪一个？",
+  "options": [
+   "石化3回合前后",
+   "睡眠3回合前后",
+   "中毒3回合前后"
+  ]
+ },
+ {
+  "no": 114,
+  "type": 1,
+  "level": 8,
+  "answertype": 2,
+  "answer": 1,
+  "question": "以下那些没有“气2回复”效果的是？",
+  "options": [
+   "生包心菜",
+   "石烤地瓜",
+   "萝卜棒"
+  ]
+ },
+ {
+  "no": 115,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "以下那些没有“气5回复”效果的是？",
+  "options": [
+   "绿色沙拉",
+   "水果拼盘",
+   "热米汤"
+  ]
+ },
+ {
+  "no": 116,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "回答料理“豪华船生鱼片”的说明文。",
+  "options": [
+   "究极生鱼片"
+  ]
+ },
+ {
+  "no": 117,
+  "type": 1,
+  "level": 8,
+  "answertype": 1,
+  "answer": 1,
+  "question": "料理“螃蟹味噌汤”的效果是以下哪个？",
+  "options": [
+   "气70回复(1体)",
+   "气50回复(1体)"
+  ]
+ },
+ {
+  "no": 118,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "下面哪一个没有“捕获率1UP ”的效果？",
+  "options": [
+   "橘子糖",
+   "樱桃糖",
+   "苹果糖"
+  ]
+ },
+ {
+  "no": 119,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "说明文为“跟料理铁人一样有所坚持的关东煮”的料理是哪一个？",
+  "options": [
+   "铁人关东煮"
+  ]
+ },
+ {
+  "no": 120,
+  "type": 1,
+  "level": 4,
+  "answertype": 4,
+  "answer": 1,
+  "question": "大的海星和水分多的梨子能做成何种料理？",
+  "options": [
+   "海星梨"
+  ]
+ },
+ {
+  "no": 121,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "以下没有“酒醉4回合前后”效果的料理是？",
+  "options": [
+   "甜的水果酒",
+   "水果酒",
+   "苦的水果酒"
+  ]
+ },
+ {
+  "no": 122,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "下列哪一个是在生日蛋糕的材料中是没有的？",
+  "options": [
+   "橡树实",
+   "草莓",
+   "砂糖"
+  ]
+ },
+ {
+  "no": 123,
+  "type": 1,
+  "level": 8,
+  "answertype": 2,
+  "answer": 1,
+  "question": "料理“海星的盐味串烧”的效果是以下哪一个？",
+  "options": [
+   "5回合左右酒醉",
+   "5回合前后石化",
+   "5回合前后中毒"
+  ]
+ },
+ {
+  "no": 124,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "红玉的手环的数值是以下的哪一个？",
+  "options": [
+   "攻+2防+2敏-2魅+1",
+   "攻+3防-3敏+3魅+2",
+   "攻-3防+3敏+3魅+2"
+  ]
+ },
+ {
+  "no": 125,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "“充满原始风味的粽子”之称的是哪一种料理？",
+  "options": [
+   "原始粽子"
+  ]
+ },
+ {
+  "no": 126,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "说明文为“里面有青蛙…”的料理是下面哪一种？",
+  "options": [
+   "青蛙手卷",
+   "烤青蛙",
+   "跳跃青蛙"
+  ]
+ },
+ {
+  "no": 127,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "做三明治的时候那一种东西是绝对会被放进去的？",
+  "options": [
+   "橡树果",
+   "空心菜",
+   "小黄瓜"
+  ]
+ },
+ {
+  "no": 128,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "下列那一种料理是不存在的？",
+  "options": [
+   "新鲜好吃的牛肉",
+   "水果三明治",
+   "高级的晒鱼干"
+  ]
+ },
+ {
+  "no": 129,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 1,
+  "question": "料理“跳跃青蛙”是由下列哪种材料所制造出来的？",
+  "options": [
+   "青蛙+油",
+   "青蛙+炭火",
+   "青蛙+盐"
+  ]
+ },
+ {
+  "no": 130,
+  "type": 1,
+  "level": 8,
+  "answertype": 2,
+  "answer": 1,
+  "question": "下列哪种料理没有回复气力22的效果?",
+  "options": [
+   "石烤地瓜",
+   "香料沙拉",
+   "烂青菜的串烧"
+  ]
+ },
+ {
+  "no": 131,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "回答卡鲁它那的村长所站位置的座标。（例→东0：南0 数字跟“:”用半形）",
+  "options": [
+   "东17:南20"
+  ]
+ },
+ {
+  "no": 132,
+  "type": 1,
+  "level": 4,
+  "answertype": 2,
+  "answer": 2,
+  "question": "卡鲁它那的情报员现在几岁请选出正确的答案。",
+  "options": [
+   "16",
+   "17",
+   "18"
+  ]
+ },
+ {
+  "no": 133,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 3,
+  "question": "以下有火属性的宠物是？",
+  "options": [
+   "布比",
+   "布伊",
+   "布伊比"
+  ]
+ },
+ {
+  "no": 134,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 2,
+  "question": "加加的蔬菜店有卖以下哪种东西？",
+  "options": [
+   "萨姆吉尔产的梨",
+   "萨姆吉尔产的柿子",
+   "萨姆吉尔产的桃子"
+  ]
+ },
+ {
+  "no": 135,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "格尔顿跟格尔格在前面和后面，那么奇拉顿在齐尔格尔顿上下左右的哪边呢？（提示:看相片簿吧！答案请用上下左右的一个字写出来）",
+  "options": [
+   "上"
+  ]
+ },
+ {
+  "no": 136,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "加加的便利商店里，料理老师并没有告诉我们以下哪种东西？",
+  "options": [
+   "料理的说明",
+   "提示",
+   "素材的说明"
+  ]
+ },
+ {
+  "no": 137,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "在加加的便利商店内，圆的坐垫有几张？（请用半形数字回答）",
+  "options": [
+   "32"
+  ]
+ },
+ {
+  "no": 138,
+  "type": 1,
+  "level": 4,
+  "answertype": 4,
+  "answer": 1,
+  "question": "能使玩家在被攻击时将攻击反射回去一次的是哪种精灵咒术?",
+  "options": [
+   "镜的精灵"
+  ]
+ },
+ {
+  "no": 139,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "请正确回答能够改变战斗画面中全体团员（含宠物及敌人全体）属性为无的精灵咒术。",
+  "options": [
+   "调和的精灵"
+  ]
+ },
+ {
+  "no": 140,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "请写出可以一次回复全体团员耐久力的精灵咒术？",
+  "options": [
+   "恩惠的精灵"
+  ]
+ },
+ {
+  "no": 141,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "下面3个精灵之中属于非回复系咒术的是哪个？",
+  "options": [
+   "守护的精灵",
+   "滋润的精灵",
+   "恩惠的精灵"
+  ]
+ },
+ {
+  "no": 142,
+  "type": 1,
+  "level": 4,
+  "answertype": 1,
+  "answer": 1,
+  "question": "加加的道具屋有卖什么？",
+  "options": [
+   "阿昆尼斯Lv3鸣子",
+   "阿昆尼斯Lv2鸣子"
+  ]
+ },
+ {
+  "no": 143,
+  "type": 1,
+  "level": 1,
+  "answertype": 4,
+  "answer": 1,
+  "question": "美容师给玩家哪一种参数值的改变呢？",
+  "options": [
+   "魅力"
+  ]
+ },
+ {
+  "no": 144,
+  "type": 1,
+  "level": 16,
+  "answertype": 1,
+  "answer": 1,
+  "question": "对着奇喀喀村长家大门时，站左侧的警备员是哥哥还是弟弟？",
+  "options": [
+   "弟弟",
+   "哥哥"
+  ]
+ },
+ {
+  "no": 145,
+  "type": 1,
+  "level": 2,
+  "answertype": 2,
+  "answer": 1,
+  "question": "塔姆塔姆的医生2年前曾经在哪个医院呢？",
+  "options": [
+   "萨姆吉尔",
+   "卡鲁它那",
+   "加加"
+  ]
+ },
+ {
+  "no": 146,
+  "type": 1,
+  "level": 4,
+  "answertype": 4,
+  "answer": 1,
+  "question": "用最棒的食材制作的纳豆名称为？",
+  "options": [
+   "特选纳豆"
+  ]
+ },
+ {
+  "no": 147,
+  "type": 1,
+  "level": 8,
+  "answertype": 2,
+  "answer": 1,
+  "question": "下面哪种料理内有青蛙跟海藻？",
+  "options": [
+   "青蛙手卷",
+   "烤青蛙",
+   "跳跃青蛙"
+  ]
+ },
+ {
+  "no": 148,
+  "type": 1,
+  "level": 16,
+  "answertype": 2,
+  "answer": 1,
+  "question": "下列哪个无法回复25气力？",
+  "options": [
+   "热肉汤",
+   "很好喝的加米汤",
+   "甜味鱼的味噌汤"
+  ]
+ },
+ {
+  "no": 149,
+  "type": 1,
+  "level": 16,
+  "answertype": 1,
+  "answer": 1,
+  "question": "捉迷藏少年里奥所持有的愿藏人偶是朝向左右哪一边呢？",
+  "options": [
+   "右",
+   "左"
+  ]
+ },
+ {
+  "no": 150,
+  "type": 1,
+  "level": 8,
+  "answertype": 4,
+  "answer": 1,
+  "question": "到卡鲁它那上学的小孩子有几个人？（半形数字）",
+  "options": [
+   "5"
+  ]
+ }
+]

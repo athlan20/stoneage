@@ -1,0 +1,59 @@
+{"meta": {"desc": "STAGE-302 便利店素材店 40 种商品：1009 萨姆吉尔便利商店素材屋(石、木)（(27,17)，40 件）talk 后买卖菜单选项为 40 个；买第 40 项（11839 牙 10 级）成功扣金币入背包；再买 13 件后背包剩 1 格，admin 给一件后背包满，买第 40 项在选数量时回 BAG_FULL", "stage": "STAGE-302"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}}}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 1009, "x": 27, "y": 19}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "talk", "data": {"npc": 231}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 231, "name": "素材屋(石、木)", "type": "商店", "text": "*", "options": [{"no": 1, "label": "买"}, {"no": 2, "label": "卖"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 231, "name": "素材屋(石、木)", "type": "商店", "text": "*", "options": [{"no": 1, "label": "长青苔的石（26 金币）"}, {"no": 2, "label": "光滑的石（118 金币）"}, {"no": 3, "label": "球石（468 金币）"}, {"no": 4, "label": "凹凸不平的石（1368 金币）"}, {"no": 5, "label": "洗涤石（2700 金币）"}, {"no": 6, "label": "坏石（5040 金币）"}, {"no": 7, "label": "酸石（7740 金币）"}, {"no": 8, "label": "好石（11880 金币）"}, {"no": 9, "label": "发光的钝石（19080 金币）"}, {"no": 10, "label": "发红光的石（27000 金币）"}, {"no": 11, "label": "腐烂的木（22 金币）"}, {"no": 12, "label": "小枝（98 金币）"}, {"no": 13, "label": "枝干（390 金币）"}, {"no": 14, "label": "潮湿的木（1140 金币）"}, {"no": 15, "label": "新木（2250 金币）"}, {"no": 16, "label": "晒乾的木（4200 金币）"}, {"no": 17, "label": "光滑的木（6450 金币）"}, {"no": 18, "label": "古代木（9900 金币）"}, {"no": 19, "label": "灵木（15900 金币）"}, {"no": 20, "label": "神木（22500 金币）"}, {"no": 21, "label": "骨的碎片（26 金币）"}, {"no": 22, "label": "有裂痕的骨（118 金币）"}, {"no": 23, "label": "弱的骨（468 金币）"}, {"no": 24, "label": "变色的骨（1368 金币）"}, {"no": 25, "label": "珍贵的骨（2700 金币）"}, {"no": 26, "label": "硬的骨（5040 金币）"}, {"no": 27, "label": "兽之骨（7740 金币）"}, {"no": 28, "label": "古老的骨（11880 金币）"}, {"no": 29, "label": "骨的化石（19080 金币）"}, {"no": 30, "label": "龙骨的化石（27000 金币）"}, {"no": 31, "label": "牙的碎片（24 金币）"}, {"no": 32, "label": "小牙（108 金币）"}, {"no": 33, "label": "折断的牙（430 金币）"}, {"no": 34, "label": "硬的牙（1254 金币）"}, {"no": 35, "label": "大牙（2476 金币）"}, {"no": 36, "label": "锐利的牙（4620 金币）"}, {"no": 37, "label": "猛兽的牙（7096 金币）"}, {"no": 38, "label": "龙之牙（10890 金币）"}, {"no": 39, "label": "月之牙（17490 金币）"}, {"no": 40, "label": "太阳之牙（24750 金币）"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "npc_choose", "data": {"no": 40}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 231, "name": "素材屋(石、木)", "type": "商店", "text": "你要几个呢？\n太阳之牙：24750 金币一个。输入 reply 数量 购买。", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "npc_reply", "data": {"text": "1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": 975250, "slots": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "npc_reply", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "talk", "data": {"npc": 231}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 231, "name": "素材屋(石、木)", "type": "商店", "text": "*", "options": [{"no": 1, "label": "买"}, {"no": 2, "label": "卖"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 231, "name": "素材屋(石、木)", "type": "商店", "text": "*", "options": [{"no": 1, "label": "长青苔的石（26 金币）"}, {"no": 2, "label": "光滑的石（118 金币）"}, {"no": 3, "label": "球石（468 金币）"}, {"no": 4, "label": "凹凸不平的石（1368 金币）"}, {"no": 5, "label": "洗涤石（2700 金币）"}, {"no": 6, "label": "坏石（5040 金币）"}, {"no": 7, "label": "酸石（7740 金币）"}, {"no": 8, "label": "好石（11880 金币）"}, {"no": 9, "label": "发光的钝石（19080 金币）"}, {"no": 10, "label": "发红光的石（27000 金币）"}, {"no": 11, "label": "腐烂的木（22 金币）"}, {"no": 12, "label": "小枝（98 金币）"}, {"no": 13, "label": "枝干（390 金币）"}, {"no": 14, "label": "潮湿的木（1140 金币）"}, {"no": 15, "label": "新木（2250 金币）"}, {"no": 16, "label": "晒乾的木（4200 金币）"}, {"no": 17, "label": "光滑的木（6450 金币）"}, {"no": 18, "label": "古代木（9900 金币）"}, {"no": 19, "label": "灵木（15900 金币）"}, {"no": 20, "label": "神木（22500 金币）"}, {"no": 21, "label": "骨的碎片（26 金币）"}, {"no": 22, "label": "有裂痕的骨（118 金币）"}, {"no": 23, "label": "弱的骨（468 金币）"}, {"no": 24, "label": "变色的骨（1368 金币）"}, {"no": 25, "label": "珍贵的骨（2700 金币）"}, {"no": 26, "label": "硬的骨（5040 金币）"}, {"no": 27, "label": "兽之骨（7740 金币）"}, {"no": 28, "label": "古老的骨（11880 金币）"}, {"no": 29, "label": "骨的化石（19080 金币）"}, {"no": 30, "label": "龙骨的化石（27000 金币）"}, {"no": 31, "label": "牙的碎片（24 金币）"}, {"no": 32, "label": "小牙（108 金币）"}, {"no": 33, "label": "折断的牙（430 金币）"}, {"no": 34, "label": "硬的牙（1254 金币）"}, {"no": 35, "label": "大牙（2476 金币）"}, {"no": 36, "label": "锐利的牙（4620 金币）"}, {"no": 37, "label": "猛兽的牙（7096 金币）"}, {"no": 38, "label": "龙之牙（10890 金币）"}, {"no": 39, "label": "月之牙（17490 金币）"}, {"no": 40, "label": "太阳之牙（24750 金币）"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "npc_choose", "data": {"no": 40}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 231, "name": "素材屋(石、木)", "type": "商店", "text": "*", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "npc_reply", "data": {"text": "13"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": 653500, "slots": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "npc_reply", "ok": true, "data": {}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 0, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": 653500, "slots": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "talk", "data": {"npc": 231}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 231, "name": "素材屋(石、木)", "type": "商店", "text": "*", "options": [{"no": 1, "label": "买"}, {"no": 2, "label": "卖"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 13, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 231, "name": "素材屋(石、木)", "type": "商店", "text": "*", "options": [{"no": 1, "label": "长青苔的石（26 金币）"}, {"no": 2, "label": "光滑的石（118 金币）"}, {"no": 3, "label": "球石（468 金币）"}, {"no": 4, "label": "凹凸不平的石（1368 金币）"}, {"no": 5, "label": "洗涤石（2700 金币）"}, {"no": 6, "label": "坏石（5040 金币）"}, {"no": 7, "label": "酸石（7740 金币）"}, {"no": 8, "label": "好石（11880 金币）"}, {"no": 9, "label": "发光的钝石（19080 金币）"}, {"no": 10, "label": "发红光的石（27000 金币）"}, {"no": 11, "label": "腐烂的木（22 金币）"}, {"no": 12, "label": "小枝（98 金币）"}, {"no": 13, "label": "枝干（390 金币）"}, {"no": 14, "label": "潮湿的木（1140 金币）"}, {"no": 15, "label": "新木（2250 金币）"}, {"no": 16, "label": "晒乾的木（4200 金币）"}, {"no": 17, "label": "光滑的木（6450 金币）"}, {"no": 18, "label": "古代木（9900 金币）"}, {"no": 19, "label": "灵木（15900 金币）"}, {"no": 20, "label": "神木（22500 金币）"}, {"no": 21, "label": "骨的碎片（26 金币）"}, {"no": 22, "label": "有裂痕的骨（118 金币）"}, {"no": 23, "label": "弱的骨（468 金币）"}, {"no": 24, "label": "变色的骨（1368 金币）"}, {"no": 25, "label": "珍贵的骨（2700 金币）"}, {"no": 26, "label": "硬的骨（5040 金币）"}, {"no": 27, "label": "兽之骨（7740 金币）"}, {"no": 28, "label": "古老的骨（11880 金币）"}, {"no": 29, "label": "骨的化石（19080 金币）"}, {"no": 30, "label": "龙骨的化石（27000 金币）"}, {"no": 31, "label": "牙的碎片（24 金币）"}, {"no": 32, "label": "小牙（108 金币）"}, {"no": 33, "label": "折断的牙（430 金币）"}, {"no": 34, "label": "硬的牙（1254 金币）"}, {"no": 35, "label": "大牙（2476 金币）"}, {"no": 36, "label": "锐利的牙（4620 金币）"}, {"no": 37, "label": "猛兽的牙（7096 金币）"}, {"no": 38, "label": "龙之牙（10890 金币）"}, {"no": 39, "label": "月之牙（17490 金币）"}, {"no": 40, "label": "太阳之牙（24750 金币）"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 14, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 15, "type": "npc_choose", "data": {"no": 40}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 231, "name": "素材屋(石、木)", "type": "商店", "text": "*", "options": []}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 15, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 16, "type": "npc_reply", "data": {"text": "1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 16, "type": "npc_reply", "ok": false, "error": {"code": "BAG_FULL", "message": "*"}}}

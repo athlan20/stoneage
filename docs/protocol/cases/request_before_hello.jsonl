@@ -1,0 +1,4 @@
+{"meta": {"desc": "没握手就发请求：回复 WRONG_STATE 并断开", "stage": "STAGE-2"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "ping", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "ping", "ok": false, "error": {"code": "WRONG_STATE", "message": "*=请先发送 hello 完成握手"}}}
+{"conn": "player", "dir": "s2c", "closed": true}

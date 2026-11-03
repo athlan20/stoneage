@@ -1,0 +1,35 @@
+{"meta": {"desc": "真人组队的单账号错误（STAGE-274）：独行者没有队伍、没有其他在线玩家。找不到的名字回 PLAYER_NOT_FOUND，邀请或申请自己回 INVALID_TARGET，没有队伍时离队和踢人回 NOT_IN_PARTY，没有这条请求的答复或撤回回 REQUEST_NOT_FOUND，缺字段回 BAD_REQUEST", "stage": "STAGE-274", "server_config": {"party.players_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "solo", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "solo"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "solo", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "solo"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "独行者", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "characters", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "party_invite", "data": {"name": "不存在的人"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "party_invite", "ok": false, "error": {"code": "PLAYER_NOT_FOUND", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "party_invite", "data": {"name": "独行者"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "party_invite", "ok": false, "error": {"code": "INVALID_TARGET", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "party_join", "data": {"name": "不存在的人"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "party_join", "ok": false, "error": {"code": "PLAYER_NOT_FOUND", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "party_join", "data": {"name": "独行者"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "party_join", "ok": false, "error": {"code": "INVALID_TARGET", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "party_leave", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "party_leave", "ok": false, "error": {"code": "NOT_IN_PARTY", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "party_kick", "data": {"name": "不存在的人"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "party_kick", "ok": false, "error": {"code": "NOT_IN_PARTY", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "party_reply", "data": {"id": "r-404", "accept": true}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 13, "type": "party_reply", "ok": false, "error": {"code": "REQUEST_NOT_FOUND", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "party_cancel", "data": {"id": "r-404"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 14, "type": "party_cancel", "ok": false, "error": {"code": "REQUEST_NOT_FOUND", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 15, "type": "party_reply", "data": {"id": "r-404"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 15, "type": "party_reply", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 16, "type": "party_invite", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 16, "type": "party_invite", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 17, "type": "party_disband", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 17, "type": "party_disband", "ok": false, "error": {"code": "NOT_IN_PARTY", "message": "*"}}}

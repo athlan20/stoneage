@@ -1,0 +1,79 @@
+{"meta": {"desc": "真人组队（STAGE-274）：勇者小明（alice，队长候选）与路人乙（bob）同在村长家 1006。无队伍的申请对象不是队长回 TARGET_NOT_LEADER；邀请接受后建队（created，who 为答复者）并推 players_changed 的 party 字段；已在队伍的目标回 TARGET_IN_PARTY；30 秒内重复邀请回 REQUEST_PENDING、10 秒内同对象再邀请回 RATE_LIMITED；拒绝、撤回；答复已处理的请求回 REQUEST_NOT_FOUND；队员离队只剩一人时解散（disbanded）；解散后组分身队，再邀请回 ALREADY_IN_PARTY、解散分身队", "stage": "STAGE-274", "server_config": {"party.players_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "bob"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "bob"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "路人乙", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": "*"}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 5, "type": "characters", "data": {}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 5, "type": "characters", "ok": true, "data": "*"}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 6, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 6, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1006, "changes": [{"op": "enter", "player": {"name": "路人乙", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}}]}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1006, "changes": [{"op": "enter", "player": {"name": "勇者小明", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}}]}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 7, "type": "party_join", "data": {"name": "勇者小明"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 7, "type": "party_join", "ok": false, "error": {"code": "TARGET_NOT_LEADER", "message": "*"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 5, "type": "party_invite", "data": {"name": "路人乙"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 5, "type": "party_invite", "ok": true, "data": {"request": {"id": "*>req1", "kind": "invite", "from": "勇者小明", "to": "路人乙", "expires_in": 30}}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "party_request", "data": {"request": {"id": "$req1", "kind": "invite", "from": "勇者小明", "to": "路人乙", "party": null, "expires_in": 30}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 6, "type": "party_invite", "data": {"name": "路人乙"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 6, "type": "party_invite", "ok": false, "error": {"code": "REQUEST_PENDING", "message": "*"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 8, "type": "party_reply", "data": {"id": "$req1", "accept": true}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "party_changed", "data": {"reason": "created", "who": "路人乙", "party": {"kind": "players", "leader": "勇者小明", "members": [{"index": 0, "name": "勇者小明", "leader": true, "clone": false, "online": true, "level": 1, "hp": "*", "max_hp": "*", "mp": "*", "max_mp": "*", "pet": "*?=null", "position": "*"}, {"index": 1, "name": "路人乙", "leader": false, "clone": false, "online": true, "level": 1, "hp": "*", "max_hp": "*", "mp": "*", "max_mp": "*", "pet": "*?=null", "position": "*"}]}}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 8, "type": "party_reply", "ok": true, "data": {"party": "*"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1006, "changes": [{"op": "update", "player": {"name": "勇者小明", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": {"leader": "勇者小明", "size": 2, "max": 5}}}]}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "party_request_result", "data": {"id": "$req1", "kind": "invite", "status": "accepted", "from": "勇者小明", "to": "路人乙"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "party_changed", "data": {"reason": "created", "who": "路人乙", "party": {"kind": "players", "leader": "勇者小明", "members": [{"index": 0, "name": "勇者小明", "leader": true, "clone": false, "online": true, "level": 1, "hp": "*", "max_hp": "*", "mp": "*", "max_mp": "*", "pet": "*?=null", "position": "*"}, {"index": 1, "name": "路人乙", "leader": false, "clone": false, "online": true, "level": 1, "hp": "*", "max_hp": "*", "mp": "*", "max_mp": "*", "pet": "*?=null", "position": "*"}]}}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1006, "changes": [{"op": "update", "player": {"name": "路人乙", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": {"leader": "勇者小明", "size": 2, "max": 5}}}]}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 7, "type": "party_invite", "data": {"name": "路人乙"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 7, "type": "party_invite", "ok": false, "error": {"code": "TARGET_IN_PARTY", "message": "*"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 9, "type": "party_leave", "data": {}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "party_changed", "data": {"reason": "left", "who": "路人乙", "party": null}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 9, "type": "party_leave", "ok": true, "data": {}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1006, "changes": [{"op": "update", "player": {"name": "勇者小明", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}}]}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "party_changed", "data": {"reason": "disbanded", "who": "路人乙", "party": null}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1006, "changes": [{"op": "update", "player": {"name": "路人乙", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}}]}}}
+{"conn": "alice", "dir": "c2s", "delay_ms": 10500, "msg": {"id": 8, "type": "party_invite", "data": {"name": "路人乙"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 8, "type": "party_invite", "ok": true, "data": {"request": {"id": "*>req2", "kind": "invite", "from": "勇者小明", "to": "路人乙", "expires_in": 30}}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "party_request", "data": {"request": {"id": "$req2", "kind": "invite", "from": "勇者小明", "to": "路人乙", "party": null, "expires_in": 30}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 9, "type": "party_cancel", "data": {"id": "$req2"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 9, "type": "party_cancel", "ok": true, "data": {}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "party_request_result", "data": {"id": "$req2", "kind": "invite", "status": "cancelled", "from": "勇者小明", "to": "路人乙"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 10, "type": "party_invite", "data": {"name": "路人乙"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 10, "type": "party_invite", "ok": false, "error": {"code": "RATE_LIMITED", "message": "*", "data": {"retry_after_seconds": "*"}}}}
+{"conn": "alice", "dir": "c2s", "delay_ms": 10500, "msg": {"id": 11, "type": "party_invite", "data": {"name": "路人乙"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 11, "type": "party_invite", "ok": true, "data": {"request": {"id": "*>req3", "kind": "invite", "from": "勇者小明", "to": "路人乙", "expires_in": 30}}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "party_request", "data": {"request": {"id": "$req3", "kind": "invite", "from": "勇者小明", "to": "路人乙", "party": null, "expires_in": 30}}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 10, "type": "party_reply", "data": {"id": "$req3", "accept": false}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 10, "type": "party_reply", "ok": true, "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "party_request_result", "data": {"id": "$req3", "kind": "invite", "status": "declined", "from": "勇者小明", "to": "路人乙"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 11, "type": "party_reply", "data": {"id": "$req3", "accept": true}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 11, "type": "party_reply", "ok": false, "error": {"code": "REQUEST_NOT_FOUND", "message": "*"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 12, "type": "party_leave", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 12, "type": "party_leave", "ok": false, "error": {"code": "NOT_IN_PARTY", "message": "*"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 13, "type": "party_clone", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "party_changed", "data": {"reason": "created", "party": "*"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 13, "type": "party_clone", "ok": true, "data": {"party": "*"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 14, "type": "party_invite", "data": {"name": "路人乙"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 14, "type": "party_invite", "ok": false, "error": {"code": "ALREADY_IN_PARTY", "message": "*"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 15, "type": "party_disband", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "party_changed", "data": {"reason": "disbanded", "party": null}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 15, "type": "party_disband", "ok": true, "data": {}}}

@@ -1,0 +1,70 @@
+{"meta": {"desc": "宠物店（STAGE-73）：move_character 到店后 talk 宠物店弹菜单（寄放/领取/卖/买），卖出生宠（原版确认页，估价按魅力与忠诚打折），寄放收 54 金币并从随身列表消失，领取免费取回，买占位商品入第一个空栏位；随身栏位满时买宠按 getfull_msg 拒绝", "stage": "STAGE-73"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}}}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 130, "x": 10, "y": 10}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 130, "map_name": "*=宠物店一楼"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 130, "map_name": "*=宠物店一楼"}}, "position": {"floor": 130, "map_name": "*=宠物店一楼", "x": 10, "y": 10, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000"}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "talk", "data": {"npc": 74}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 74, "name": "宠物店", "type": "宠物店", "text": "*", "options": [{"no": 1, "label": "寄放宠物"}, {"no": 2, "label": "领取宠物"}, {"no": 3, "label": "卖宠物"}, {"no": 4, "label": "买宠物"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "npc_choose", "data": {"no": 3}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 74, "name": "宠物店", "type": "宠物店", "text": "要卖哪一只？", "options": [{"no": 0, "label": "*"}, {"no": 1, "label": "*"}, {"no": 2, "label": "*"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "npc_choose", "data": {"no": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 74, "name": "宠物店", "type": "宠物店", "text": "*=是[乌力乌力]没错吧？\n\n这只宠物的话、大概这样吧！\n\n    买卖价格         6 STONE", "options": [{"no": 1, "label": "卖掉"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "pets_changed", "data": "*"}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "talk", "data": {"npc": 74}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 74, "name": "宠物店", "type": "宠物店", "text": "*", "options": [{"no": 1, "label": "寄放宠物"}, {"no": 2, "label": "领取宠物"}, {"no": 3, "label": "卖宠物"}, {"no": 4, "label": "买宠物"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 74, "name": "宠物店", "type": "宠物店", "text": "要寄放哪一只？", "options": [{"no": 1, "label": "*"}, {"no": 2, "label": "*"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 74, "name": "宠物店", "type": "宠物店", "text": "*=寄放[乌力乌力]\n\n    寄放价格            54 stone", "options": [{"no": 1, "label": "寄放"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "pets_changed", "data": "*"}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "talk", "data": {"npc": 74}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 74, "name": "宠物店", "type": "宠物店", "text": "*", "options": [{"no": 1, "label": "寄放宠物"}, {"no": 2, "label": "领取宠物"}, {"no": 3, "label": "卖宠物"}, {"no": 4, "label": "买宠物"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 13, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "npc_choose", "data": {"no": 2}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 74, "name": "宠物店", "type": "宠物店", "text": "要领回哪一只？", "options": [{"no": 0, "label": "*"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 14, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 15, "type": "npc_choose", "data": {"no": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "pets_changed", "data": "*"}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 15, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 16, "type": "talk", "data": {"npc": 74}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 74, "name": "宠物店", "type": "宠物店", "text": "*", "options": [{"no": 1, "label": "寄放宠物"}, {"no": 2, "label": "领取宠物"}, {"no": 3, "label": "卖宠物"}, {"no": 4, "label": "买宠物"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 16, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 17, "type": "npc_choose", "data": {"no": 4}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 74, "name": "宠物店", "type": "宠物店", "text": "要买哪一只？", "options": [{"no": 1, "label": "*"}, {"no": 2, "label": "*"}, {"no": 3, "label": "*"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 17, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 18, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 74, "name": "宠物店", "type": "宠物店", "text": "*要买下它吗？*", "options": [{"no": 1, "label": "买下"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 18, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 19, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "pets_changed", "data": "*"}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window_closed", "data": {"reason": "CHOSEN"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 19, "type": "npc_choose", "ok": true, "data": {}}}

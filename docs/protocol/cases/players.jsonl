@@ -1,0 +1,43 @@
+{"meta": {"desc": "附近玩家（STAGE-273）：alice、bob 进同一张地图（萨姆吉尔村 1000）后互相出现；列表不含自己；bob 换图到玛丽娜丝渔村（2000）后 alice 收到 leave，两边列表随之变化", "stage": "STAGE-273"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 1000, "x": 50, "y": 116}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "bob"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "bob"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "路人乙", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "路人乙", "floor": 1000, "x": 52, "y": 116}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 3, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 4, "type": "players", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 4, "type": "players", "ok": true, "data": {"floor": 1000, "truncated": false, "players": []}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 6, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 6, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 7, "type": "players", "data": {}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 7, "type": "players", "ok": true, "data": {"floor": 1000, "truncated": false, "players": [{"name": "勇者小明", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}]}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1000, "changes": [{"op": "enter", "player": {"name": "勇者小明", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}}]}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1000, "changes": [{"op": "enter", "player": {"name": "路人乙", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}}]}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 5, "type": "players", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 5, "type": "players", "ok": true, "data": {"floor": 1000, "truncated": false, "players": [{"name": "路人乙", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}]}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 8, "type": "warp", "data": {"place": 2}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "position_changed", "data": {"floor": 2000, "map_name": "玛丽娜丝渔村", "x": 72, "y": 33, "direction": "*"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 8, "type": "warp", "ok": true, "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1000, "changes": [{"op": "leave", "name": "路人乙"}]}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 6, "type": "players", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 6, "type": "players", "ok": true, "data": {"floor": 1000, "truncated": false, "players": []}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 9, "type": "players", "data": {}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 9, "type": "players", "ok": true, "data": {"floor": 2000, "truncated": false, "players": []}}}

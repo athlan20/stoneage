@@ -1,0 +1,63 @@
+{"meta": {"desc": "穿脱与整理的错误：格子编号不对、空格子、不能穿的类型、等级不够、丢弃没有 yes 或数量不对，都回复对应错误码，背包不变；装备格和背包格用错了也要拒绝", "stage": "STAGE-29"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}, "position": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000"}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "inventory", "ok": true, "data": {"gold": "*=1000000", "slots": []}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 0, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 5, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}]}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 1233, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 5, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}, {"slot": 6, "item_id": 1233, "name": "迷人香菇", "effect": "使用後你也会变得更迷人", "type": 16, "count": 1, "target_type": "none"}]}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 140, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 5, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}, {"slot": 6, "item_id": 1233, "name": "迷人香菇", "effect": "使用後你也会变得更迷人", "type": 16, "count": 1, "target_type": "none"}, {"slot": 7, "item_id": 140, "name": "大的棍棒", "effect": "攻 +20", "type": 2, "count": 1, "target_type": "none"}]}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 800, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 5, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}, {"slot": 6, "item_id": 1233, "name": "迷人香菇", "effect": "使用後你也会变得更迷人", "type": 16, "count": 1, "target_type": "none"}, {"slot": 7, "item_id": 140, "name": "大的棍棒", "effect": "攻 +20", "type": 2, "count": 1, "target_type": "none"}, {"slot": 8, "item_id": 800, "name": "粗杂的兜", "effect": "防 +3", "type": 6, "count": 1, "target_type": "none"}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "item_equip", "data": {"slot": 2}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "item_equip", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "item_equip", "data": {"slot": 30}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "item_equip", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "item_equip", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "item_equip", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "item_equip", "data": {"slot": 10}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "item_equip", "ok": false, "error": {"code": "EMPTY_SLOT", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "item_equip", "data": {"slot": 6}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "item_equip", "ok": false, "error": {"code": "NOT_EQUIPMENT", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "item_equip", "data": {"slot": 7}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "item_equip", "ok": false, "error": {"code": "REQUIREMENT_NOT_MET", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "item_unequip", "data": {"slot": 5}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "item_unequip", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "item_unequip", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 13, "type": "item_unequip", "ok": false, "error": {"code": "EMPTY_SLOT", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "item_move", "data": {"from": 5, "to": 5}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 14, "type": "item_move", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 15, "type": "item_move", "data": {"from": 10, "to": 11}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 15, "type": "item_move", "ok": false, "error": {"code": "EMPTY_SLOT", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 16, "type": "item_move", "data": {"from": 8, "to": 3}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 16, "type": "item_move", "ok": false, "error": {"code": "NOT_EQUIPMENT", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 17, "type": "item_move", "data": {"from": 5}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 17, "type": "item_move", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 18, "type": "item_drop", "data": {"slot": 5}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 18, "type": "item_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 19, "type": "item_drop", "data": {"slot": 5, "confirm": "YES"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 19, "type": "item_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 20, "type": "item_drop", "data": {"slot": 5, "count": 2, "confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 20, "type": "item_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 21, "type": "item_drop", "data": {"slot": 5, "count": 0, "confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 21, "type": "item_drop", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 22, "type": "item_drop", "data": {"slot": 10, "confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 22, "type": "item_drop", "ok": false, "error": {"code": "EMPTY_SLOT", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 23, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 23, "type": "inventory", "ok": true, "data": {"gold": "*=1000000", "slots": [{"slot": 5, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}, {"slot": 6, "item_id": 1233, "name": "迷人香菇", "effect": "使用後你也会变得更迷人", "type": 16, "count": 1, "target_type": "none"}, {"slot": 7, "item_id": 140, "name": "大的棍棒", "effect": "攻 +20", "type": 2, "count": 1, "target_type": "none"}, {"slot": 8, "item_id": 800, "name": "粗杂的兜", "effect": "防 +3", "type": 6, "count": 1, "target_type": "none"}]}}}

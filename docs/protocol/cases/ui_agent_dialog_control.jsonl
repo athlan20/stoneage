@@ -1,0 +1,53 @@
+{"meta":{"desc":"观察模式下按数字选对话选项（STAGE-104 的客户端拦截；控制权和对话窗口的服务端行为属于 STAGE-6 / STAGE-69）：商店窗口开着时 agent 接管，玩家成为观察方后按数字不发 npc_choose；take 收回控制权后再按数字照常发出","stage":"STAGE-6"}}
+{"conn":"setup","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"setup","dir":"s2c","msg":{"data":{"heartbeat_seconds":20,"idle_timeout_seconds":60,"protocol":1,"register_enabled":true,"server":"*=stoneage-mock/0.1.0"},"id":1,"ok":true,"type":"hello"}}
+{"conn":"setup","dir":"c2s","msg":{"id":2,"type":"register","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"data":{"account":"alice"},"id":2,"ok":true,"type":"register"}}
+{"conn":"setup","dir":"c2s","msg":{"id":3,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"setup","dir":"s2c","msg":{"data":{"account":"alice"},"id":3,"ok":true,"type":"login"}}
+{"conn":"setup","dir":"c2s","msg":{"id":4,"type":"create_character","data":{"slot":0,"name":"勇者小明","appearance":{"body":3,"color":2,"eye":1,"mouth":4},"stats":{"vital":8,"strength":4,"toughness":4,"dexterity":4},"elements":{"earth":6,"water":4,"fire":0,"wind":0},"hometown":0}}}
+{"conn":"setup","dir":"s2c","msg":{"data":{"character":{"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"level":1,"location":{"floor":1006,"map_name":"萨姆吉尔的村长家"},"name":"勇者小明","slot":0}},"id":4,"ok":true,"type":"create_character"}}
+{"conn":"player","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"player"}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"heartbeat_seconds":20,"idle_timeout_seconds":60,"protocol":1,"register_enabled":true,"server":"*=stoneage-mock/0.1.0"},"id":1,"ok":true,"type":"hello"}}
+{"conn":"player","dir":"c2s","msg":{"id":2,"type":"login","data":{"account":"alice","password":"secret1"}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"account":"alice"},"id":2,"ok":true,"type":"login"}}
+{"conn":"player","dir":"c2s","msg":{"id":3,"type":"characters","data":{}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"characters":[{"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"level":1,"location":{"floor":1006,"map_name":"萨姆吉尔的村长家"},"name":"勇者小明","slot":0}],"max_slots":2},"id":3,"ok":true,"type":"characters"}}
+{"conn":"player","dir":"c2s","msg":{"id":4,"type":"enter_world","data":{"slot":0}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"character":{"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"level":1,"location":{"floor":1006,"map_name":"萨姆吉尔的村长家"},"name":"勇者小明","slot":0},"control":{"controller":"player","you":"controller"},"encounter":false,"position":{"direction":4,"floor":1006,"map_name":"萨姆吉尔的村长家","x":15,"y":22},"status":{"derived":{"agility":4,"attack":5,"charm":60,"defense":5,"luck":"*=2"},"elements":{"earth":6,"fire":0,"water":4,"wind":0},"exp":0,"gold":"*=1000000","hp":44,"level":1,"magic":[],"max_hp":44,"max_mp":100,"mp":100,"next_exp":2,"skill_points":0,"stats":{"dexterity":4,"strength":4,"toughness":4,"vital":8},"title":"","transmigration":0}},"id":4,"ok":true,"type":"enter_world"}}
+{"conn":"player","dir":"c2s","msg":{"id":5,"type":"create_agent_token","data":{"label":"助手","expires_in_days":30}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"expires_at":"*=2026-11-14T06:39:44Z","label":"助手","token":"*>tok=sat_Z0FKDL8EYkmMES_WnuCJ9Od7h6qUeMKOoiXTYt36Xw0","token_id":"*>tid=t_VwLK63ZX"},"id":5,"ok":true,"type":"create_agent_token"}}
+{"conn":"player","dir":"c2s","msg":{"id":6,"type":"agent_tokens","data":{}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"tokens":[{"created_at":"*=2026-10-15T06:39:44Z","expires_at":"*=2026-11-14T06:39:44Z","label":"助手","last_used_at":null,"token_id":"$tid"}]},"id":6,"ok":true,"type":"agent_tokens"}}
+{"conn":"agent","dir":"c2s","msg":{"id":1,"type":"hello","data":{"protocol":1,"client":"*","role":"agent"}}}
+{"conn":"agent","dir":"s2c","msg":{"data":{"heartbeat_seconds":20,"idle_timeout_seconds":60,"protocol":1,"register_enabled":true,"server":"*=stoneage-mock/0.1.0"},"id":1,"ok":true,"type":"hello"}}
+{"conn":"agent","dir":"c2s","msg":{"id":2,"type":"agent_login","data":{"token":"$tok"}}}
+{"conn":"agent","dir":"s2c","msg":{"data":{"account":"alice","token_id":"$tid"},"id":2,"ok":true,"type":"agent_login"}}
+{"conn":"player","dir":"s2c","msg":{"data":{"online":true,"token_id":"$tid"},"type":"agent_status"}}
+{"conn":"player","dir":"c2s","msg":{"id":7,"type":"warp","data":{"place":1}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"direction":4,"floor":1000,"map_name":"萨姆吉尔村","x":50,"y":116},"type":"position_changed"}}
+{"conn":"player","dir":"s2c","msg":{"data":{},"id":7,"ok":true,"type":"warp"}}
+{"conn":"player","dir":"c2s","msg":{"id":8,"type":"npc_open","data":{"npc":198}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"name":"特产品贩卖员","npc":198,"options":[{"label":"买","no":1},{"label":"卖","no":2}],"text":"欢迎光临","type":"商店","window_id":"*>win1=window-1","stage":"menu"},"type":"npc_window"}}
+{"conn":"player","dir":"s2c","msg":{"data":{},"id":8,"ok":true,"type":"npc_open"}}
+{"conn":"agent","dir":"c2s","msg":{"id":3,"type":"enter_world","data":{"slot":0}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"controller":"agent","reason":"AGENT_ENTERED","you":"observer"},"type":"control_changed"}}
+{"conn":"agent","dir":"s2c","msg":{"data":{"controller":"agent","reason":"AGENT_ENTERED","you":"controller"},"type":"control_changed"}}
+{"conn":"agent","dir":"s2c","msg":{"data":{"character":{"appearance":{"body":3,"color":2,"eye":1,"mouth":4},"level":1,"location":{"floor":1000,"map_name":"萨姆吉尔村"},"name":"勇者小明","slot":0},"control":{"controller":"agent","you":"controller"},"encounter":false,"position":{"direction":4,"floor":1000,"map_name":"萨姆吉尔村","x":50,"y":116},"status":{"derived":{"agility":4,"attack":5,"charm":60,"defense":5,"luck":"*=2"},"elements":{"earth":6,"fire":0,"water":4,"wind":0},"exp":0,"gold":"*=1000000","hp":44,"level":1,"magic":[],"max_hp":44,"max_mp":100,"mp":100,"next_exp":2,"skill_points":0,"stats":{"dexterity":4,"strength":4,"toughness":4,"vital":8},"title":"","transmigration":0}},"id":3,"ok":true,"type":"enter_world"}}
+{"conn":"player","dir":"s2c","msg":{"type":"agent_activity","data":{"full":false,"items":[{"time_ms":"*=1760000000000","request":"enter_world","summary":"进入世界 slot=0","ok":true,"code":null}]}}}
+{"conn":"player","dir":"c2s","msg":{"id":9,"type":"take_control","data":{}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"controller":"player","reason":"TAKEN_BY_PLAYER","you":"controller"},"type":"control_changed"}}
+{"conn":"player","dir":"s2c","msg":{"data":{},"id":9,"ok":true,"type":"take_control"}}
+{"conn":"agent","dir":"s2c","msg":{"data":{"controller":"player","reason":"TAKEN_BY_PLAYER","you":"observer"},"type":"control_changed"}}
+{"conn":"player","dir":"c2s","msg":{"id":10,"type":"npc_choose","data":{"no":1,"window_id":"$win1"}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"name":"特产品贩卖员","npc":198,"options":[{"label":"萨姆吉尔产的桃子（25 金币）","no":1},{"label":"萨姆吉尔产的苹果（25 金币）","no":2},{"label":"萨姆吉尔产的草莓（25 金币）","no":3},{"label":"萨姆吉尔产的梨子（25 金币）","no":4},{"label":"萨姆吉尔产的葡萄（25 金币）","no":5},{"label":"萨姆吉尔产的樱桃（25 金币）","no":6},{"label":"萨姆吉尔产的橘子（25 金币）","no":7},{"label":"萨姆吉尔产的柿子（25 金币）","no":8}],"text":"贩卖萨姆吉尔的特产品\n要买什么吗？","type":"商店","window_id":"*>win2=window-2","stage":"buy_list"},"type":"npc_window"}}
+{"conn":"player","dir":"s2c","msg":{"data":{},"id":10,"ok":true,"type":"npc_choose"}}
+{"conn":"agent","dir":"s2c","msg":{"data":{"name":"特产品贩卖员","npc":198,"options":[{"label":"萨姆吉尔产的桃子（25 金币）","no":1},{"label":"萨姆吉尔产的苹果（25 金币）","no":2},{"label":"萨姆吉尔产的草莓（25 金币）","no":3},{"label":"萨姆吉尔产的梨子（25 金币）","no":4},{"label":"萨姆吉尔产的葡萄（25 金币）","no":5},{"label":"萨姆吉尔产的樱桃（25 金币）","no":6},{"label":"萨姆吉尔产的橘子（25 金币）","no":7},{"label":"萨姆吉尔产的柿子（25 金币）","no":8}],"text":"贩卖萨姆吉尔的特产品\n要买什么吗？","type":"商店","window_id":"*>win2=window-2","stage":"buy_list"},"type":"npc_window"}}
+{"conn":"player","dir":"c2s","msg":{"id":12,"type":"npc_back","data":{"window_id":"$win2"}}}
+{"conn":"player","dir":"s2c","msg":{"type":"npc_window","data":{"npc":198,"name":"特产品贩卖员","type":"商店","stage":"menu","window_id":"*>back=back-window","text":"欢迎光临","options":[{"no":1,"label":"买"},{"no":2,"label":"卖"}]}}}
+{"conn":"agent","dir":"s2c","msg":{"type":"npc_window","data":{"npc":198,"name":"特产品贩卖员","type":"商店","stage":"menu","window_id":"*>back=back-window","text":"欢迎光临","options":[{"no":1,"label":"买"},{"no":2,"label":"卖"}]}}}
+{"conn":"player","dir":"s2c","msg":{"id":12,"type":"npc_back","ok":true,"data":{}}}
+{"conn":"player","dir":"c2s","msg":{"id":11,"type":"npc_close","data":{"window_id":"$back"}}}
+{"conn":"player","dir":"s2c","msg":{"data":{"reason":"CLOSED"},"type":"npc_window_closed"}}
+{"conn":"agent","dir":"s2c","msg":{"data":{"reason":"CLOSED"},"type":"npc_window_closed"}}
+{"conn":"player","dir":"s2c","msg":{"data":{},"id":11,"ok":true,"type":"npc_close"}}

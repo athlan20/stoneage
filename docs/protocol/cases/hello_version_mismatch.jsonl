@@ -1,0 +1,4 @@
+{"meta": {"desc": "协议版本不一致：回复 PROTOCOL_VERSION 并列出支持的版本，然后断开", "stage": "STAGE-2"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 99, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": false, "error": {"code": "PROTOCOL_VERSION", "message": "*=协议版本不一致", "data": {"supported": [1]}}}}
+{"conn": "player", "dir": "s2c", "closed": true}

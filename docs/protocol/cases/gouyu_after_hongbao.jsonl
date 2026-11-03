@@ -1,0 +1,42 @@
+{"meta": {"desc": "萨姆吉尔的勾玉在红暴已完成后照常（STAGE-333）：红暴 40 已完成，长老照样接任务 111，萨姆吉尔照常发第一块勾玉", "stage": "STAGE-333"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "register"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 3, "ok": true, "type": "login"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}, "id": 4, "ok": true, "type": "create_character"}}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "give_quest", "quest_no": 40, "state": "done"}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "move_character", "floor": 5500, "x": 32, "y": 21}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "login"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "id": 3, "ok": true, "type": "enter_world"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "talk", "data": {"npc": 640}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "长老", "npc": 640, "options": [{"label": "是", "no": 1}, {"label": "否", "no": 2}], "text": "*=萨姆吉尔这孩子为了大家一直很辛苦...\n他身上的萨姆吉尔勾玉必须有人帮他找齐。\n你愿意帮他的忙吗？", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 4, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "CHOSEN"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"changed": [111], "quests": [{"name": "萨姆吉尔的勾玉", "no": 111, "state": "doing"}, {"name": "红暴任务", "no": 40, "state": "done"}]}, "type": "quests_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "长老", "npc": 640, "options": [], "text": "*=太好了！萨姆吉尔就在岛上某处，你去找他吧。\n找齐五块勾玉后，记得交给萨姆吉尔的孙女。", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 5, "ok": true, "type": "npc_choose"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "warp", "data": {"floor": 5501}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"direction": 4, "floor": 5501, "map_name": "水坝南方洞窟", "x": 56, "y": 5}, "type": "position_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "MOVED"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 6, "ok": true, "type": "warp"}}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 1501}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "talk", "data": {"npc": 1311}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [{"label": "是", "no": 1}, {"label": "否", "no": 2}], "text": "*=可不可以给我耐久力力回复药...我的耐力不太够...恐怕会撑不下去", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 7, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "CHOSEN"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [], "text": "*=嗯～体力果然回复不少，为了表示感谢！\n我将这一块勾玉给你，希望对你有所帮助！！\n你有回复气力60的气力回复药吗？\n我现在气力剩下的不多...", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"floor": 5501, "npcs": [{"id": 1311, "name": "萨姆吉尔", "type": "任务", "x": 43, "y": 5}]}, "type": "npcs_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 8, "ok": true, "type": "npc_choose"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "quests", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "quests", "ok": true, "data": {"quests": [{"name": "萨姆吉尔的勾玉", "no": 111, "state": "doing"}, {"name": "红暴任务", "no": 40, "state": "done"}]}}}

@@ -1,0 +1,5 @@
+{"meta": {"desc": "握手时不写 role 视为玩家：玩家连接发 agent_login 会被拒绝", "stage": "STAGE-2"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "agent_login", "data": {"token": "sat_x"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "agent_login", "ok": false, "error": {"code": "WRONG_ROLE", "message": "*=玩家连接不能发送 agent_login 请求"}}}

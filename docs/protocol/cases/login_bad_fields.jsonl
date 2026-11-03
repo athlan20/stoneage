@@ -1,0 +1,9 @@
+{"meta": {"desc": "登录缺少字段或类型不对：回复 BAD_REQUEST", "stage": "STAGE-3"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=需要 account 和 password 字段"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": 123456}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=请求的 data 字段不正确"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "register", "data": {"account": "alice"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "register", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=需要 account 和 password 字段"}}}

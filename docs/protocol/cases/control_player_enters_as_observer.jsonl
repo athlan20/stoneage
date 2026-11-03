@@ -1,0 +1,26 @@
+{"meta": {"desc": "agent 先在世界中：玩家进入时直接是观察方，操作被拒；查看和私聊正常", "stage": "STAGE-6"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "create_agent_token", "data": {"label": "我的 Claude", "expires_in_days": 30}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "create_agent_token", "ok": true, "data": {"token_id": "*>tid=t_7Hq2Xa9k", "token": "*>tok=sat_Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZmdoaWo", "label": "我的 Claude", "expires_at": "*=2026-11-08T12:00:00Z"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "agent"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 2, "type": "agent_login", "data": {"token": "$tok"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 2, "type": "agent_login", "ok": true, "data": {"account": "alice", "token_id": "$tid"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_status", "data": {"online": true, "token_id": "$tid"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 3, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}, "position": {"floor": 1006, "map_name": "*=村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000"}, "control": {"controller": "agent", "you": "controller"}}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_activity", "data": {"full": false, "items": [{"time_ms": "*", "request": "enter_world", "summary": "进入世界 slot=0", "ok": true, "code": null}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_activity", "data": {"full": true, "items": [{"time_ms": "*", "request": "enter_world", "summary": "进入世界 slot=0", "ok": true, "code": null}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}, "position": {"floor": 1006, "map_name": "*=村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000"}, "control": {"controller": "agent", "you": "observer"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "turn", "data": {"direction": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "turn", "ok": false, "error": {"code": "CONTROLLED_BY_AGENT", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "status", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "status", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}, "position": {"floor": 1006, "map_name": "*=村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000"}, "control": {"controller": "agent", "you": "observer"}}}}

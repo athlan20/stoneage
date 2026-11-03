@@ -1,0 +1,136 @@
+{"meta": {"desc": "萨姆吉尔的勾玉兑换后不重复（STAGE-333）：完整流程后长老只道谢不再接，五块勾玉再拿到也不再换，孙女不再给", "stage": "STAGE-333"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "register"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 3, "ok": true, "type": "login"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}, "id": 4, "ok": true, "type": "create_character"}}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "move_character", "floor": 5500, "x": 32, "y": 21}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}, "id": 1, "ok": true, "type": "hello"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"account": "alice"}, "id": 2, "ok": true, "type": "login"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "id": 3, "ok": true, "type": "enter_world"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "talk", "data": {"npc": 640}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "长老", "npc": 640, "options": [{"label": "是", "no": 1}, {"label": "否", "no": 2}], "text": "*=萨姆吉尔这孩子为了大家一直很辛苦...\n他身上的萨姆吉尔勾玉必须有人帮他找齐。\n你愿意帮他的忙吗？", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 4, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "CHOSEN"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"changed": [111], "quests": [{"name": "萨姆吉尔的勾玉", "no": 111, "state": "doing"}]}, "type": "quests_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "长老", "npc": 640, "options": [], "text": "*=太好了！萨姆吉尔就在岛上某处，你去找他吧。\n找齐五块勾玉后，记得交给萨姆吉尔的孙女。", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 5, "ok": true, "type": "npc_choose"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "warp", "data": {"floor": 5501}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"direction": 4, "floor": 5501, "map_name": "水坝南方洞窟", "x": 56, "y": 5}, "type": "position_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "MOVED"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 6, "ok": true, "type": "warp"}}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 1501}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "talk", "data": {"npc": 1311}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [{"label": "是", "no": 1}, {"label": "否", "no": 2}], "text": "*=可不可以给我耐久力力回复药...我的耐力不太够...恐怕会撑不下去", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 7, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "CHOSEN"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [], "text": "*=嗯～体力果然回复不少，为了表示感谢！\n我将这一块勾玉给你，希望对你有所帮助！！\n你有回复气力60的气力回复药吗？\n我现在气力剩下的不多...", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"floor": 5501, "npcs": [{"id": 1311, "name": "萨姆吉尔", "type": "任务", "x": 43, "y": 5}]}, "type": "npcs_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 8, "ok": true, "type": "npc_choose"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "warp", "data": {"floor": 5501}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"direction": 4, "floor": 5501, "map_name": "水坝南方洞窟", "x": 56, "y": 5}, "type": "position_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "MOVED"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 9, "ok": true, "type": "warp"}}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 1512}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "talk", "data": {"npc": 1311}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [{"label": "是", "no": 1}, {"label": "否", "no": 2}], "text": "*=可不可以给我气力回复药...我的气力不太够...", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 10, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "CHOSEN"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [], "text": "*=嗯～气力果然回复不少，为了表示感谢！\n我将这一块勾玉给你，希望对你有所帮助！！", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"floor": 5501, "npcs": []}, "type": "npcs_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 11, "ok": true, "type": "npc_choose"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "warp", "data": {"floor": 5502}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"direction": 4, "floor": 5502, "map_name": "水坝南方洞窟地下一楼", "x": 30, "y": 53}, "type": "position_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "MOVED"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 12, "ok": true, "type": "warp"}}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 12667}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "talk", "data": {"npc": 1311}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [{"label": "是", "no": 1}, {"label": "否", "no": 2}], "text": "*=可不可以给我烤猪排...我的肚子好饿啊...", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 13, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "CHOSEN"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [], "text": "*=嗯～体力果然回复不少，为了表示感谢！\n我将这一块勾玉给你，希望对你有所帮助！！\n不过我肚子依然会饿！！\n突然想喝妈妈常做做给我喝的味道爽口的肉汤....\n啊～～口水都快流出来了！\n真希望可以喝到味道爽口的肉汤...", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"floor": 5502, "npcs": []}, "type": "npcs_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 14, "ok": true, "type": "npc_choose"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 15, "type": "warp", "data": {"floor": 5503}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"direction": 4, "floor": 5503, "map_name": "水坝南方洞窟地下二楼", "x": 16, "y": 84}, "type": "position_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "MOVED"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 15, "ok": true, "type": "warp"}}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 12507}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 16, "type": "talk", "data": {"npc": 1311}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [{"label": "是", "no": 1}, {"label": "否", "no": 2}], "text": "*=可不可以给我味道爽口的肉汤...我的肚子好饿啊...", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 16, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 17, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "CHOSEN"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [], "text": "*=嗯～体力果然回复不少，为了表示感谢！\n我将这一块勾玉给你，希望对你有所帮助！！\n不过我肚子还是有点饿饿！！\n突然想吃我最喜欢吃的威力上升的蘑菇....\n我的肚子都咕噜咕噜叫起来了...\n真希望可以吃到威力上升的蘑菇...", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"floor": 5503, "npcs": [{"id": 1311, "name": "萨姆吉尔", "type": "任务", "x": 48, "y": 77}]}, "type": "npcs_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 17, "ok": true, "type": "npc_choose"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 18, "type": "warp", "data": {"floor": 5503}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"direction": 4, "floor": 5503, "map_name": "水坝南方洞窟地下二楼", "x": 16, "y": 84}, "type": "position_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "MOVED"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 18, "ok": true, "type": "warp"}}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 12849}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 19, "type": "talk", "data": {"npc": 1311}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [{"label": "是", "no": 1}, {"label": "否", "no": 2}], "text": "*=可不可以给我威力上升的蘑菇...我的肚子好饿啊...", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 19, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 20, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "CHOSEN"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "萨姆吉尔", "npc": 1311, "options": [], "text": "*=嗯～体力果然完全回复了，为了表示感谢！\n我将这一块勾玉给你，希望对你有所帮助！！", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"floor": 5503, "npcs": []}, "type": "npcs_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 20, "ok": true, "type": "npc_choose"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 21, "type": "warp", "data": {"floor": 1013}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"direction": 4, "floor": 1013, "map_name": "老爷爷的家", "x": 10, "y": 16}, "type": "position_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "MOVED"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 21, "ok": true, "type": "warp"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 22, "type": "talk", "data": {"npc": 1241}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "老爷爷的孙女", "npc": 1241, "options": [{"label": "是", "no": 1}, {"label": "否", "no": 2}], "text": "*=啊～你身上带有五块萨姆吉尔的勾玉啊？", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 22, "ok": true, "type": "talk"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 23, "type": "npc_choose", "data": {"no": 1}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "CHOSEN"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"changed": [111], "quests": [{"name": "萨姆吉尔的勾玉", "no": 111, "state": "done"}]}, "type": "quests_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "老爷爷的孙女", "npc": 1241, "options": [{"label": "下一页", "no": 1}], "text": "*=爷爷有跟我说过，拥有五块萨姆吉尔勾玉的人，\n一定是具备爱与勇气的人，而你正好拥有这五块勾玉，我们家族一直等待的人...就是你", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 23, "ok": true, "type": "npc_choose"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 24, "type": "warp", "data": {"floor": 5500}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"direction": 4, "floor": 5500, "map_name": "避难洞窟", "x": 0, "y": 19}, "type": "position_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "MOVED"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 24, "ok": true, "type": "warp"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 25, "type": "talk", "data": {"npc": 640}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "长老", "npc": 640, "options": [], "text": "*=\n谢谢你帮助萨姆吉尔，英雄的故事会一直流传下去。", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 25, "ok": true, "type": "talk"}}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 18538}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 18539}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 18540}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 18541}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"character": "勇者小明", "conn": "setup", "count": 1, "dir": "admin", "do": "give_item", "item_id": 18542}
+{"conn": "player", "dir": "s2c", "msg": {"data": "*", "type": "inventory_changed"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 26, "type": "warp", "data": {"floor": 1013}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"direction": 4, "floor": 1013, "map_name": "老爷爷的家", "x": 10, "y": 16}, "type": "position_changed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"reason": "MOVED"}, "type": "npc_window_closed"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 26, "ok": true, "type": "warp"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 27, "type": "talk", "data": {"npc": 1241}}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {"name": "老爷爷的孙女", "npc": 1241, "options": [], "text": "*=哇～～你好棒啊！爷爷已经跟我说过你的冒险了～", "type": "任务"}, "type": "npc_window"}}
+{"conn": "player", "dir": "s2c", "msg": {"data": {}, "id": 27, "ok": true, "type": "talk"}}

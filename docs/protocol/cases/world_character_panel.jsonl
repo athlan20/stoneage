@@ -1,0 +1,23 @@
+{"meta": {"desc": "角色页（STAGE-23）：新建角色能力点 5/5/5/5、属性 地 8 水 2，进入世界和 status 返回的 status 对象里有能力、衍生数值、属性、转生、称号、未分配点数；攻击 6、防御 6、敏捷 5、最大 HP 35", "stage": "STAGE-23"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*", "heartbeat_seconds": "*", "idle_timeout_seconds": "*", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 5, "strength": 5, "toughness": 5, "dexterity": 5}, "elements": {"earth": 8, "water": 2, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*", "heartbeat_seconds": "*", "idle_timeout_seconds": "*", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*"}}, "position": {"floor": 1006, "map_name": "*", "x": 15, "y": 22, "direction": 4}, "status": {"level": 1, "hp": 35, "max_hp": 35, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": 1000000, "transmigration": 0, "title": "", "skill_points": 0, "stats": {"vital": 5, "strength": 5, "toughness": 5, "dexterity": 5}, "derived": {"attack": 6, "defense": 6, "agility": 5, "charm": 60, "luck": "*=3"}, "elements": {"earth": 8, "water": 2, "fire": 0, "wind": 0}}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "status", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "status", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*"}}, "position": {"floor": 1006, "map_name": "*", "x": 15, "y": 22, "direction": 4}, "status": {"level": 1, "hp": 35, "max_hp": 35, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": 1000000, "transmigration": 0, "title": "", "skill_points": 0, "stats": {"vital": 5, "strength": 5, "toughness": 5, "dexterity": 5}, "derived": {"attack": 6, "defense": 6, "agility": 5, "charm": 60, "luck": "*=3"}, "elements": {"earth": 8, "water": 2, "fire": 0, "wind": 0}}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "leave_world", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "leave_world", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*"}}]}}}

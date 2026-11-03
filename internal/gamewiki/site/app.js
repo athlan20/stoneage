@@ -1,0 +1,465 @@
+"use strict";
+const $ = (id) => document.getElementById(id);
+// 左侧目录不列的分类（STAGE-185）：词条仍在搜索和详情里，只是不进目录。终端百科 client/src/wiki/mod.rs 的 HIDDEN_CATEGORIES 要同步。
+const HIDDEN_DIRECTORY = new Set(["server_task", "npc_template", "guide"]);
+const el = (tag, text, cls) => {
+  const n = document.createElement(tag);
+  if (text != null) n.textContent = text;
+  if (cls) n.className = cls;
+  return n;
+};
+let sequence = 0,
+  detailSequence = 0,
+  cleanupMedia,
+  controller,
+  labels = {};
+function state() {
+  const p = new URLSearchParams(location.hash.slice(1));
+  return {
+    kind: p.get("kind") || "",
+    q: p.get("q") || "",
+    offset: Math.max(0, Number(p.get("offset")) || 0),
+    entry: p.get("entry") || "",
+  };
+}
+function navigate(changes) {
+  const s = { ...state(), ...changes };
+  const p = new URLSearchParams();
+  for (const [k, v] of Object.entries(s)) if (v) p.set(k, String(v));
+  location.hash = p.toString();
+}
+// Search runs in a worker against one prebuilt static index. No query text is
+// sent to the server. Only the most recently viewed detail shard is retained.
+let requestID = 0,
+  shardCache;
+const pending = new Map();
+let searchWorker;
+function ensureWorker() {
+  if (searchWorker) return;
+  searchWorker = new Worker("/wiki/search-worker.js");
+
+  searchWorker.onmessage = ({ data }) => {
+    const task = pending.get(data.id);
+    if (!task) return;
+    pending.delete(data.id);
+    task.cleanup();
+    if (data.error) task.reject(new Error(data.error));
+    else task.resolve(data.data);
+  };
+  searchWorker.onerror = () => {
+    for (const task of pending.values()) {
+      task.cleanup();
+      task.reject(new Error("本地搜索无法启动，请刷新页面"));
+    }
+    pending.clear();
+  };
+}
+function localLookup(params, signal) {
+  ensureWorker();
+  return new Promise((resolve, reject) => {
+    const id = ++requestID;
+    const abort = () => {
+      pending.delete(id);
+      reject(Object.assign(new Error("已取消"), { name: "AbortError" }));
+    };
+    if (signal?.aborted) {
+      abort();
+      return;
+    }
+    const cleanup = () => signal?.removeEventListener("abort", abort);
+    pending.set(id, { resolve, reject, cleanup });
+    signal?.addEventListener("abort", abort, { once: true });
+    searchWorker.postMessage({ id, params });
+  });
+}
+async function request(params, signal) {
+  const result = await localLookup(params, signal);
+  if (!params.entry) return result;
+  if (!shardCache || shardCache.url !== result.url) {
+    const url = result.url;
+    const promise = fetch(url).then((r) => {
+      if (!r.ok) throw new Error("详情读取失败，请刷新页面后重试");
+      return r.json();
+    });
+    shardCache = { url, promise };
+    promise.catch(() => {
+      if (shardCache?.promise === promise) shardCache = null;
+    });
+  }
+  const shard = await shardCache.promise;
+  if (!shard[params.entry]) throw new Error("没有找到该条目");
+  return shard[params.entry];
+}
+
+let directoryPromise;
+function directory() {
+  if (!directoryPromise)
+    directoryPromise = fetch("/wiki/data/catalog.json", { cache: "no-cache" })
+      .then((r) => {
+        if (!r.ok) throw new Error("目录读取失败");
+        return r.json();
+      })
+      .then((d) => ({ ...d, directory: true }))
+      .catch((e) => {
+        directoryPromise = null;
+        throw e;
+      });
+  return directoryPromise;
+}
+function btn(text, fn, cls) {
+  const b = el("button", text, cls);
+  b.type = "button";
+  b.onclick = fn;
+  return b;
+}
+async function render() {
+  const s = state(),
+    seq = ++sequence;
+  controller?.abort();
+  controller = new AbortController();
+  $("query").value = s.q;
+  $("status").textContent = "正在读取资料…";
+  $("results").replaceChildren();
+  $("pagination").replaceChildren();
+  if (s.entry) openDetail(s.entry);
+  else {
+    detailSequence++;
+    cleanupMedia?.();
+    cleanupMedia = null;
+    $("detail").close();
+  }
+  try {
+    const d =
+      s.kind || s.q
+        ? await request(
+            { kind: s.kind, q: s.q, offset: s.offset, limit: 40 },
+            controller.signal,
+          )
+        : await directory();
+    if (seq !== sequence) return;
+    labels = Object.fromEntries(d.categories.map((c) => [c.id, c.name]));
+    const ordered = d.categories.filter((c) => !HIDDEN_DIRECTORY.has(c.id));
+    $("categories").replaceChildren(
+      ...[
+        {
+          id: "",
+          name: "百科目录",
+          count: ordered.reduce((n, c) => n + c.count, 0),
+        },
+        ...ordered,
+      ].flatMap((c) => {
+        const b = btn(
+          c.name,
+          () =>
+            navigate({ kind: c.id, q: c.id ? s.q : "", offset: 0, entry: "" }),
+          c.id === s.kind ? "active" : "",
+        );
+        b.append(el("span", c.count.toLocaleString()));
+        if (c.id === s.kind) b.setAttribute("aria-current", "page");
+        return [b];
+      }),
+    );
+    if (d.directory) {
+      $("status").textContent = "百科目录 · 选择分类开始查阅";
+      $("results").replaceChildren(
+        ...ordered.flatMap((c) => {
+          const b = btn(
+            "",
+            () =>
+              navigate({
+                kind: c.id,
+                q: c.id ? s.q : "",
+                offset: 0,
+                entry: "",
+              }),
+            "card directory-card",
+          );
+          b.append(
+            el("h2", c.name),
+            el("p", c.count.toLocaleString() + " 条资料"),
+            el("span", "进入分类 →", "metrics"),
+          );
+          return [b];
+        }),
+      );
+      $("pagination").replaceChildren();
+      return;
+    }
+    $("status").textContent =
+      `${labels[s.kind] || "全部资料"} · ${d.total.toLocaleString()} 条${s.q ? " · 搜索「" + s.q + "」" : ""}`;
+    $("results").replaceChildren(
+      ...d.entries.map((e) => {
+        const b = btn("", () => navigate({ entry: e.key }), "card");
+        b.append(
+          el("span", e.group || labels[e.kind], "badge"),
+          el("h2", e.name),
+          el("p", e.description),
+        );
+        if (e.location) b.append(el("p", "位置 · " + e.location));
+        if (e.hp || e.level)
+          b.append(
+            el(
+              "p",
+              [e.level && "等级 " + e.level, e.hp && "HP " + e.hp]
+                .filter(Boolean)
+                .join("　"),
+              "metrics",
+            ),
+          );
+        if (e.skills) b.append(el("p", e.skills, "skills"));
+        const img=mediaImage(e.image,e.name,"card-image");if(img)b.append(img);
+        return b;
+      }),
+    );
+    if (!d.entries.length)
+      $("results").append(el("p", "没有匹配的资料，请尝试其他名称或编号。"));
+    const prev = btn("← 上一页", () =>
+      navigate({ offset: Math.max(0, s.offset - 40) }),
+    );
+    prev.disabled = s.offset === 0;
+    const next = btn("下一页 →", () => navigate({ offset: s.offset + 40 }));
+    next.disabled = s.offset + 40 >= d.total;
+    $("pagination").replaceChildren(
+      prev,
+      el(
+        "span",
+        `${Math.floor(s.offset / 40) + 1} / ${Math.max(1, Math.ceil(d.total / 40))}`,
+      ),
+      next,
+    );
+  } catch (e) {
+    if (e.name !== "AbortError" && seq === sequence)
+      $("status").textContent = e.message;
+  }
+}
+let mediaCacheReady;
+function ensureMediaCache() {
+  if (!mediaCacheReady) mediaCacheReady = (async () => {
+    if (typeof navigator === "undefined" || !navigator.serviceWorker) return;
+    try {
+      await navigator.serviceWorker.register("/sw.js", {scope:"/"});
+      await Promise.race([navigator.serviceWorker.ready, new Promise(resolve => setTimeout(resolve, 3000))]);
+      if (!navigator.serviceWorker.controller) await new Promise(resolve => {
+        const done = () => { navigator.serviceWorker.removeEventListener("controllerchange", done); resolve(); };
+        navigator.serviceWorker.addEventListener("controllerchange", done);
+        setTimeout(done, 1500);
+      });
+    } catch { /* Ordinary HTTP cache remains available if workers are disabled. */ }
+  })();
+  return mediaCacheReady;
+}
+function mediaURL(path) {
+  const base = $("media-config")?.getAttribute?.("content") || "";
+  if (!/^https:\/\//.test(base) || !/^(assets\/bitmaps\/(?:white-tiger-8\.5\/)?bitmap_\d+\.png|audio\/(?:se|bgm)\/[a-z0-9_]+\.wav|wiki\/materials\/(?:[a-f0-9]{64}\.zip|catalog\.json|materials-[a-f0-9]{16}\/(?:[a-f0-9]{2}|sprite-\d+)\.json)|wiki\/maps\/(thumb-)?\d+-[a-f0-9]+\.webp)$/.test(path || "")) return "";
+  return base.replace(/\/$/, "") + "/" + path;
+}
+function mediaImage(path, caption, cls) {
+  const url = mediaURL(path);
+  if (!url) return null;
+  const img = el("img", null, cls);
+  img.alt = caption;
+  img.loading = "lazy";
+  img.decoding = "async";
+  ensureMediaCache().then(() => { img.src = url; });
+  img.onerror = () => { img.hidden = true; };
+  return img;
+}
+function showMedia(entry, article) {
+  if (entry.map_status) article.append(el("p", entry.map_status, "map-help"));
+  if (entry.map) {
+    const map = entry.map, section = el("section", null, "map-viewer");
+    const toolbar = el("div", null, "map-tools"), viewport = el("div", null, "map-viewport"), stage = el("div", null, "map-stage");
+    const picture = mediaImage(map.path, entry.name + "全图", "map-image");
+    if (!picture) return;
+    let zoom = 1;
+    const zoomText = el("span", "100%");
+    stage.style.aspectRatio = map.width + " / " + map.height;
+    function resize(value, anchor) {
+      const frame = viewport.getBoundingClientRect(), before = stage.getBoundingClientRect();
+      const x = anchor?.x ?? frame.left + viewport.clientWidth / 2;
+      const y = anchor?.y ?? frame.top + viewport.clientHeight / 2;
+      const u = before.width ? (x - before.left) / before.width : 0.5;
+      const v = before.height ? (y - before.top) / before.height : 0.5;
+      zoom = Math.max(1, Math.min(6, value));
+      const fit = Math.min(viewport.clientWidth, viewport.clientHeight * map.width / map.height);
+      stage.style.width = Math.max(1, fit * zoom) + "px";
+      zoomText.textContent = Math.round(zoom * 100) + "%";
+      const after = stage.getBoundingClientRect();
+      viewport.scrollLeft += after.left + u * after.width - x;
+      viewport.scrollTop += after.top + v * after.height - y;
+      if (zoom === 1) { viewport.scrollLeft = 0; viewport.scrollTop = 0; }
+    }
+    const smaller = btn("−", () => resize(zoom / 1.5));
+    const larger = btn("＋", () => resize(zoom * 1.5));
+    smaller.setAttribute("aria-label", "缩小地图");
+    larger.setAttribute("aria-label", "放大地图");
+    toolbar.append(el("strong", entry.name + " · 全图"), smaller, zoomText, larger, btn("适应窗口", () => resize(1)));
+    viewport.addEventListener("wheel", event => {
+      event.preventDefault();
+      const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientHeight : 1);
+      resize(zoom * Math.exp(-Math.max(-120, Math.min(120, delta)) * 0.002), {x:event.clientX, y:event.clientY});
+    }, {passive:false});
+    const dialog = $("detail");
+    let fallbackFullscreen = false, disposed = false;
+    const syncFullscreen = () => {
+      fullscreen.textContent = document.fullscreenElement === section || fallbackFullscreen ? "退出全屏" : "全屏查看";
+      fullscreen.setAttribute("aria-pressed", String(document.fullscreenElement === section || fallbackFullscreen));
+    };
+    const setFallback = value => {
+      fallbackFullscreen = value;
+      section.classList.toggle("map-fullscreen", value);
+      dialog.classList.toggle("map-dialog-fullscreen", value);
+      syncFullscreen();
+    };
+    const fullscreen = btn("全屏查看", async () => {
+      if (document.fullscreenElement === section) {
+        await document.exitFullscreen();
+      } else if (fallbackFullscreen) {
+        setFallback(false);
+      } else {
+        try {
+          if (!section.requestFullscreen) throw new Error("Fullscreen unavailable");
+          await section.requestFullscreen();
+        } catch {
+          if (!disposed) setFallback(true);
+        }
+      }
+    });
+    fullscreen.setAttribute("aria-pressed", "false");
+    toolbar.append(fullscreen);
+    section.addEventListener("fullscreenchange", syncFullscreen);
+    const cancelFullscreen = event => {
+      if (!fallbackFullscreen) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      setFallback(false);
+    };
+    dialog.addEventListener("cancel", cancelFullscreen, true);
+    const toggle = btn("隐藏标记", () => { stage.classList.toggle("hide-markers"); toggle.textContent = stage.classList.contains("hide-markers") ? "显示标记" : "隐藏标记"; });
+    toolbar.append(toggle);
+    const original = el("a", "查看原图 ↗"); original.href = mediaURL(map.path); original.target = "_blank"; original.rel = "noopener noreferrer"; toolbar.append(original);
+    stage.append(picture);
+    for (const marker of map.markers || []) {
+      if(marker.x<0 || marker.x>1 || marker.y<0 || marker.y>1)continue;
+      const pin = btn(marker.kind === "exit" ? "↗" : "●", () => navigate({entry:marker.key}), "map-pin " + marker.kind);
+      pin.style.left = (marker.x * 100) + "%"; pin.style.top = (marker.y * 100) + "%";
+      pin.title = marker.name; pin.setAttribute("aria-label", marker.name); stage.append(pin);
+    }
+    viewport.append(stage); section.append(toolbar,viewport,el("p", "滚轮缩放 · 拖动查看 · 蓝色为 NPC，点击橙色入口查看对应地图", "map-help"));
+    let drag;
+    viewport.onpointerdown = (event) => { if (event.button !== 0 || event.target.closest("button") || event.pointerType === "touch") return; event.preventDefault(); drag = {x:event.clientX,y:event.clientY,left:viewport.scrollLeft,top:viewport.scrollTop}; viewport.setPointerCapture(event.pointerId); };
+    viewport.onpointermove = (event) => { if (!drag)return; viewport.scrollLeft=drag.left+drag.x-event.clientX;viewport.scrollTop=drag.top+drag.y-event.clientY; };
+    viewport.onpointerup = viewport.onpointercancel = viewport.onlostpointercapture = () => { drag=null; };
+    picture.draggable = false;
+    article.append(section);
+    const observer = new ResizeObserver(() => resize(zoom));
+    observer.observe(viewport);
+    cleanupMedia = () => {
+      disposed = true;
+      observer.disconnect();
+      dialog.removeEventListener("cancel", cancelFullscreen, true);
+      if (document.fullscreenElement === section) document.exitFullscreen().catch(() => {});
+      setFallback(false);
+    };
+    requestAnimationFrame(() => { if (!disposed) resize(1); });
+    return;
+  }
+  if (!entry.images?.length) return;
+  const gallery = el("div", null, "media-gallery");
+  for (const m of entry.images) {
+    const img=mediaImage(m.path,m.caption,"entry-image"); if(!img)continue;
+    const figure=el("figure");figure.append(img,el("figcaption",m.caption));gallery.append(figure);
+  }
+  article.append(gallery);
+}
+
+async function openDetail(id) {
+  cleanupMedia?.();
+  cleanupMedia = null;
+  const seq = ++detailSequence;
+  $("article").replaceChildren(el("p", "正在读取详情…"));
+  if (!$("detail").open) $("detail").showModal();
+  try {
+    const e = await request({ entry: id });
+    if (seq !== detailSequence) return;
+    const a = $("article");
+    a.replaceChildren(
+      el("p", e.group || labels[e.kind] || e.kind, "eyebrow"),
+      el("h2", e.name),
+      el("p", e.description),
+    );
+    showMedia(e, a);
+    if (window.WikiMaterials && (e.images?.length || e.map || e.fields?.some(f => f.label === "图号") || e.kind === "map")) {
+      const previous = cleanupMedia;
+      const materialCleanup = window.WikiMaterials.mount(e, a, {mediaURL, ensureCache: ensureMediaCache});
+      cleanupMedia = () => { previous?.(); materialCleanup(); };
+    }
+    const dl = el("dl");
+    for (const f of e.fields || [])
+      dl.append(el("dt", f.label), el("dd", f.value));
+    a.append(dl);
+    if (e.notes?.length) {
+      const n = el("div", null, "notice");
+      for (const note of e.notes) n.append(el("p", note));
+      a.append(n);
+    }
+    for (const t of e.tables || []) {
+      a.append(el("h3", t.title));
+      const wrap = el("div", null, "table-wrap"),
+        table = el("table"),
+        head = el("thead"),
+        tr = el("tr"),
+        body = el("tbody");
+      for (const c of t.columns) tr.append(el("th", c));
+      head.append(tr);
+      for (const row of t.rows || []) {
+        const tr = el("tr");
+        for (const cell of row) tr.append(el("td", cell));
+        body.append(tr);
+      }
+      table.append(head, body);
+      wrap.append(table);
+      a.append(wrap);
+    }
+    if (e.links?.length) {
+      a.append(el("h3", "相关词条"));
+      const links = el("div", null, "links");
+      for (const l of e.links) {
+        const link = el("a", l.name);
+        if (l.key) {
+          const p = new URLSearchParams(location.hash.slice(1));
+          p.set("entry", l.key);
+          link.href = "#" + p;
+        } else {
+          try {
+            const u = new URL(l.url);
+            if (u.protocol !== "https:") continue;
+            link.href = u.href;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+          } catch {
+            continue;
+          }
+        }
+        links.append(link);
+      }
+      a.append(links);
+    }
+    if(e.kind !== "quest") a.append(el("h3", "配置参考"), el("pre", (e.sources || []).join("\n")));
+    $("detail").scrollTop = 0;
+  } catch (e) {
+    if (seq === detailSequence)
+      $("article").replaceChildren(el("p", e.message));
+  }
+}
+$("search").onsubmit = (e) => {
+  e.preventDefault();
+  navigate({ q: $("query").value.trim(), offset: 0, entry: "" });
+};
+$("close").onclick = () => navigate({ entry: "" });
+$("detail").addEventListener("cancel", (e) => {
+  e.preventDefault();
+  navigate({ entry: "" });
+});
+window.addEventListener("hashchange", render);
+render();

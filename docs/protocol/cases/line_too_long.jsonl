@@ -1,0 +1,6 @@
+{"meta": {"desc": "一行超过 64 KiB：回复 BAD_REQUEST 后断开", "stage": "STAGE-2"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "raw_len": 70000}
+{"conn": "player", "dir": "s2c", "msg": {"id": 0, "type": "error", "ok": false, "error": {"code": "BAD_REQUEST", "message": "*=一行消息不能超过 64 KiB"}}}
+{"conn": "player", "dir": "s2c", "closed": true}

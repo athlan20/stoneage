@@ -1,0 +1,37 @@
+{"meta": {"desc": "界面与宠物技能店（STAGE-143）：talk 1763 弹技能列表（第一项是待机），数字键选攻击（第 2 项）、choose 1 选凯比、数字键选 3 号栏位、数字键确认学习，窗口回到列表；供客户端场景测试使用，模拟服务端按剧本回放（拒绝分支见 npc_petskillshop）", "stage": "STAGE-143"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*", "heartbeat_seconds": "*", "idle_timeout_seconds": "*", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*"}}}}}
+{"conn": "setup", "dir": "admin", "do": "clear_pets", "character": "勇者小明"}
+{"conn": "setup", "dir": "admin", "do": "give_pet", "character": "勇者小明", "level": 5, "pet_id": 1062}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 1003, "x": 18, "y": 13}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*", "heartbeat_seconds": "*", "idle_timeout_seconds": "*", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1003, "map_name": "*"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "npc_open", "data": {"npc": 1763}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1763, "name": "*=超级饲育员", "type": "宠物技能店", "text": "*=要教什么技能好呢？", "options": [{"no": 1, "label": "待机（500 金币）：什么也不做"}, {"no": 2, "label": "攻击（1000 金币）：通常攻击"}, {"no": 3, "label": "*=技能3"}, {"no": 4, "label": "*=技能4"}, {"no": 5, "label": "*=技能5"}, {"no": 6, "label": "*=技能6"}, {"no": 7, "label": "*=技能7"}, {"no": 8, "label": "*=技能8"}, {"no": 9, "label": "*=技能9"}], "stage": "options", "window_id": "*>w1=window-1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "npc_open", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "npc_choose", "data": {"no": 2, "window_id": "$w1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1763, "name": "*=超级饲育员", "type": "宠物技能店", "text": "要教哪一只宠物？", "options": [{"no": 1, "label": "凯比 Lv5"}], "stage": "options", "window_id": "*>w2=window-2"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "npc_choose", "data": {"no": 1, "window_id": "$w2"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1763, "name": "*=超级饲育员", "type": "宠物技能店", "text": "要换掉哪一个技能栏位？", "options": [{"no": 1, "label": "*=技能1"}, {"no": 2, "label": "*=技能2"}, {"no": 3, "label": "*=技能3"}, {"no": 4, "label": "*=技能4"}, {"no": 5, "label": "*=技能5"}, {"no": 6, "label": "*=技能6"}], "stage": "options", "window_id": "*>w3=window-3"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "npc_choose", "data": {"no": 3, "window_id": "$w3"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1763, "name": "*=超级饲育员", "type": "宠物技能店", "text": "*=学习[攻击]（通常攻击）\n给[凯比]的 3 号技能栏位\n\n    学习价格  1000 金币", "options": [{"no": 1, "label": "学习"}], "stage": "options", "window_id": "*>w4=window-4"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "npc_choose", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "npc_choose", "data": {"no": 1, "window_id": "$w4"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "pets_changed", "data": "*"}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "npc_window", "data": {"npc": 1763, "name": "*=超级饲育员", "type": "宠物技能店", "text": "*=要教什么技能好呢？", "options": [{"no": 1, "label": "待机（500 金币）：什么也不做"}, {"no": 2, "label": "攻击（1000 金币）：通常攻击"}, {"no": 3, "label": "*=技能3"}, {"no": 4, "label": "*=技能4"}, {"no": 5, "label": "*=技能5"}, {"no": 6, "label": "*=技能6"}, {"no": 7, "label": "*=技能7"}, {"no": 8, "label": "*=技能8"}, {"no": 9, "label": "*=技能9"}], "stage": "options", "window_id": "*>w5=window-5"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "npc_choose", "ok": true, "data": {}}}

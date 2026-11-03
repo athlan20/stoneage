@@ -1,0 +1,37 @@
+{"meta": {"desc": "界面任务页：进入世界后任务页为空（客户端自动取一次 quests）；管理命令改任务进度时 quests_changed 推送不用刷新就更新列表，消息栏提示进行中或已完成（清除不提示）；quest doing/done/all 切换显示范围；离开再进入进度还在", "stage": "STAGE-86"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}, "position": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": 1000000, "transmigration": 0, "title": "", "skill_points": 0, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "derived": {"attack": 5, "defense": 5, "agility": 4, "charm": 60, "luck": "*=3"}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "quests", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "quests", "ok": true, "data": {"quests": []}}}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "give_quest", "quest_no": 2, "state": "done"}
+{"conn": "player", "dir": "s2c", "delay_ms": 300, "msg": {"type": "quests_changed", "data": {"quests": [{"no": 2, "name": "猜谜3兄弟", "state": "done"}], "changed": [2]}}}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "give_quest", "quest_no": 1, "state": "doing"}
+{"conn": "player", "dir": "s2c", "delay_ms": 300, "msg": {"type": "quests_changed", "data": {"quests": [{"no": 1, "name": "成人仪式", "state": "doing"}, {"no": 2, "name": "猜谜3兄弟", "state": "done"}], "changed": [1]}}}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "give_quest", "quest_no": 1, "state": "done"}
+{"conn": "player", "dir": "s2c", "delay_ms": 300, "msg": {"type": "quests_changed", "data": {"quests": [{"no": 1, "name": "成人仪式", "state": "done"}, {"no": 2, "name": "猜谜3兄弟", "state": "done"}], "changed": [1]}}}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "give_quest", "quest_no": 3, "state": "doing"}
+{"conn": "player", "dir": "s2c", "delay_ms": 300, "msg": {"type": "quests_changed", "data": {"quests": [{"no": 3, "name": "猜谜3兄弟 拿蓝暴", "state": "doing"}, {"no": 1, "name": "成人仪式", "state": "done"}, {"no": 2, "name": "猜谜3兄弟", "state": "done"}], "changed": [3]}}}
+{"character": "勇者小明", "conn": "setup", "dir": "admin", "do": "give_quest", "quest_no": 2, "state": "clear"}
+{"conn": "player", "dir": "s2c", "delay_ms": 300, "msg": {"type": "quests_changed", "data": {"quests": [{"no": 3, "name": "猜谜3兄弟 拿蓝暴", "state": "doing"}, {"no": 1, "name": "成人仪式", "state": "done"}], "changed": [2]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "leave_world", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "leave_world", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}, "position": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": 1000000, "transmigration": 0, "title": "", "skill_points": 0, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "derived": {"attack": 5, "defense": 5, "agility": 4, "charm": 60, "luck": "*=3"}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "quests", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "quests", "ok": true, "data": {"quests": [{"no": 3, "name": "猜谜3兄弟 拿蓝暴", "state": "doing"}, {"no": 1, "name": "成人仪式", "state": "done"}]}}}

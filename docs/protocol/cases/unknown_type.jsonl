@@ -1,0 +1,7 @@
+{"meta": {"desc": "不认识的请求类型：回复 UNKNOWN_TYPE，连接保持", "stage": "STAGE-2"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "no_such_type", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "no_such_type", "ok": false, "error": {"code": "UNKNOWN_TYPE", "message": "*=不认识的请求类型"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "ping", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "ping", "ok": true, "data": {"server_time_ms": "*=1760000000000"}}}

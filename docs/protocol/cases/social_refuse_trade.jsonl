@@ -1,0 +1,65 @@
+{"meta": {"desc": "接收交易邀请（STAGE-296）：勇者小明（alice）与路人乙（bob）同在村长家 1000。alice 设 trade=false：bob 对他 trade_invite 得 TARGET_REFUSES（不建请求、alice 不收到 trade_request）；alice 主动邀请 bob 正常，bob 拒绝；alice 断开后重新登录，enter_world 与 status 的 social.trade 仍是 false；最后改回 true，bob 再邀请 alice 正常", "stage": "STAGE-296", "server_config": {"party.players_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 1000, "x": 50, "y": 116}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "bob"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "bob"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "路人乙", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "路人乙", "floor": 1000, "x": 52, "y": 116}
+{"conn": "setup", "dir": "admin", "do": "set_setting", "key": "trade.enabled", "value": 1}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 3, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 4, "type": "players", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 4, "type": "players", "ok": true, "data": {"floor": 1000, "truncated": false, "players": []}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 6, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 6, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 7, "type": "players", "data": {}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 7, "type": "players", "ok": true, "data": {"floor": 1000, "truncated": false, "players": [{"name": "勇者小明", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}]}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1000, "changes": [{"op": "enter", "player": {"name": "勇者小明", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}}]}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1000, "changes": [{"op": "enter", "player": {"name": "路人乙", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}}]}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 5, "type": "players", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 5, "type": "players", "ok": true, "data": {"floor": 1000, "truncated": false, "players": [{"name": "路人乙", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}]}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 6, "type": "social_settings", "data": {"trade": false}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "social_changed", "data": {"social": {"visible": true, "invite": true, "trade": false}}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 6, "type": "social_settings", "ok": true, "data": {"social": {"visible": true, "invite": true, "trade": false}}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 8, "type": "trade_invite", "data": {"name": "勇者小明"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 8, "type": "trade_invite", "ok": false, "error": {"code": "TARGET_REFUSES", "message": "*"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 7, "type": "trade_invite", "data": {"name": "路人乙"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 7, "type": "trade_invite", "ok": true, "data": {"request": {"id": "*>t1", "from": "勇者小明", "to": "路人乙", "expires_in": 30}}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "trade_request", "data": {"request": {"id": "$t1", "from": "勇者小明", "to": "路人乙", "expires_in": 30, "from_level": "*", "from_transmigration": 0}}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 9, "type": "trade_reply", "data": {"id": "$t1", "accept": false}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "trade_request_result", "data": {"id": "$t1", "status": "declined", "from": "勇者小明", "to": "路人乙"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 9, "type": "trade_reply", "ok": true, "data": {}}}
+{"conn": "alice", "dir": "close"}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 3, "type": "enter_world", "ok": true, "data": {"social": {"visible": true, "invite": true, "trade": false}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 4, "type": "status", "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 4, "type": "status", "ok": true, "data": {"social": {"visible": true, "invite": true, "trade": false}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 5, "type": "social_settings", "data": {"trade": true}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "social_changed", "data": {"social": {"visible": true, "invite": true, "trade": true}}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 5, "type": "social_settings", "ok": true, "data": {"social": {"visible": true, "invite": true, "trade": true}}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 10, "type": "trade_invite", "data": {"name": "勇者小明"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 10, "type": "trade_invite", "ok": true, "data": {"request": {"id": "*>t2", "from": "路人乙", "to": "勇者小明", "expires_in": 30}}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "trade_request", "data": {"request": {"id": "$t2", "from": "路人乙", "to": "勇者小明", "expires_in": 30, "from_level": "*", "from_transmigration": 0}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 6, "type": "trade_reply", "data": {"id": "$t2", "accept": false}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "trade_request_result", "data": {"id": "$t2", "status": "declined", "from": "路人乙", "to": "勇者小明"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 6, "type": "trade_reply", "ok": true, "data": {}}}

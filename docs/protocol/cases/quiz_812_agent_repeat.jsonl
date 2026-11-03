@@ -1,0 +1,46 @@
+{"meta": {"desc": "猜谜大师（STAGE-332）：agent 连接认定两次：第一次扣 2753、发 2759；第二次同一个连接再 talk 只说认定台词（幂等），不扣 2753、不再发 2759（没有 inventory_changed 和“拿到谜之箱子”）；玩家连接同样只收到台词", "stage": "STAGE-332", "server_config": null, "manual": false}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=村长之家"}}}}}
+{"conn": "setup", "dir": "admin", "do": "give_quest", "character": "勇者小明", "quest_no": 2, "state": "done"}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 2753, "count": 1}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 812, "x": 29, "y": 15}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明"}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "create_agent_token", "data": {"label": "助手", "expires_in_days": 30}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "create_agent_token", "ok": true, "data": {"token_id": "*>tid=t_7Hq2Xa9k", "token": "*>tok=sat_Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZmdoaWo", "label": "助手", "expires_at": "*=2026-11-08T12:00:00Z"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "agent"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 2, "type": "agent_login", "data": {"token": "$tok"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 2, "type": "agent_login", "ok": true, "data": {"account": "alice", "token_id": "$tid"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_status", "data": {"online": true, "token_id": "$tid"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "control_changed", "data": {"controller": "agent", "you": "observer", "reason": "AGENT_ENTERED"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_activity", "data": {"full": false, "items": [{"time_ms": "*=1760000000000", "request": "enter_world", "summary": "进入世界 slot=0", "ok": true, "code": null}]}}}
+{"conn": "agent", "dir": "s2c", "msg": {"type": "control_changed", "data": {"controller": "agent", "you": "controller", "reason": "AGENT_ENTERED"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 3, "type": "enter_world", "ok": true, "data": {"control": {"controller": "agent", "you": "controller"}}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 4, "type": "talk", "data": {"npc": 1814}}}
+{"conn": "agent", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*", "slots": "*"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"type": "notice", "data": {"level": "info", "text": "拿到谜之箱子。"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"type": "notice", "data": {"level": "info", "text": "猜谜大师：100题全都答对了耶！把这个箱子交给我的弟子看看、可以得到好的东西喔！"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 4, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*", "slots": "*"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "notice", "data": {"level": "info", "text": "拿到谜之箱子。"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "notice", "data": {"level": "info", "text": "猜谜大师：100题全都答对了耶！把这个箱子交给我的弟子看看、可以得到好的东西喔！"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 5, "type": "talk", "data": {"npc": 1814}}}
+{"conn": "agent", "dir": "s2c", "msg": {"type": "notice", "data": {"level": "info", "text": "猜谜大师：100题全都答对了耶！把这个箱子交给我的弟子看看、可以得到好的东西喔！"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 5, "type": "talk", "ok": true, "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_activity", "data": {"full": false, "items": [{"time_ms": "*", "request": "talk", "summary": "和 NPC 对话 npc=1814", "ok": true, "code": null}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "notice", "data": {"level": "info", "text": "猜谜大师：100题全都答对了耶！把这个箱子交给我的弟子看看、可以得到好的东西喔！"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "agent_activity", "data": {"full": false, "items": [{"time_ms": "*", "request": "talk", "summary": "和 NPC 对话 npc=1814", "ok": true, "code": null}]}}}

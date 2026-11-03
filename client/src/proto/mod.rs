@@ -1,0 +1,52 @@
+//! STAGE-1 客户端侧的协议类型与校验，约定见 `docs/protocol.md`。
+
+mod appearance;
+mod battle;
+mod battle_end;
+mod encounter;
+mod inlay;
+mod inventory;
+mod message;
+mod npcs;
+mod chat;
+mod players;
+mod exits;
+pub use exits::*;
+mod npc_window;
+mod party;
+mod party_request;
+mod trade;
+mod leveling_catalog;
+mod social;
+mod pet_catalog;
+mod pets;
+mod quests;
+mod stats;
+mod target;
+mod validate;
+
+pub use appearance::*;
+pub use battle::*;
+pub use leveling_catalog::*;
+pub use battle_end::*;
+pub use encounter::*;
+pub use inlay::*;
+pub use inventory::*;
+pub use message::*;
+pub use npcs::*;
+pub use chat::*;
+pub use players::*;
+pub use npc_window::*;
+pub use party::*;
+pub use party_request::*;
+pub use trade::*;
+pub use social::*;
+pub use pet_catalog::*;
+pub use pets::*;
+pub use quests::*;
+pub use stats::*;
+pub use target::*;
+pub use validate::*;
+
+pub const PROTOCOL_VERSION: u32 = 1;
+pub const CLIENT_NAME: &str = concat!("stoneage-cli/", env!("CARGO_PKG_VERSION"));

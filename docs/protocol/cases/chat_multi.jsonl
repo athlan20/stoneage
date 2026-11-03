@@ -1,0 +1,74 @@
+{"meta": {"desc": "公开聊天·两个账号加 agent（STAGE-278）：alice 的 agent 在世界中发言，本图只推给同图的玩家连接，agent 自己和 agent 连接都收不到公开聊天；bob 在别的地图收不到本图；world 门槛 5 级（bob 为 1 级回 CHAT_LEVEL_LOW）；禁言只挡公开频道，agent_say 私聊照常送达 agent；warp 后 bob 收不到原图发言", "stage": "STAGE-278"}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "set_level", "character": "勇者小明", "level": 5}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "勇者小明", "floor": 1000, "x": 50, "y": 116}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 5, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 5, "type": "enter_world", "ok": true, "data": {"control": {"controller": "player", "you": "controller"}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 6, "type": "create_agent_token", "data": {"label": "助手", "expires_in_days": 30}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 6, "type": "create_agent_token", "ok": true, "data": {"token_id": "*>tid=t_7Hq2Xa9k", "token": "*>tok=sat_Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZmdoaWo", "label": "助手", "expires_at": "*=2026-11-08T12:00:00Z"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "agent"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 2, "type": "agent_login", "data": {"token": "$tok"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 2, "type": "agent_login", "ok": true, "data": {"account": "alice", "token_id": "$tid"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "agent_status", "data": {"online": true, "token_id": "$tid"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 3, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "control_changed", "data": {"controller": "agent", "you": "observer", "reason": "AGENT_ENTERED"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "agent_activity", "data": {"full": false, "items": [{"time_ms": "*=1760000000000", "request": "enter_world", "summary": "进入世界 slot=0", "ok": true, "code": null}]}}}
+{"conn": "agent", "dir": "s2c", "msg": {"type": "control_changed", "data": {"controller": "agent", "you": "controller", "reason": "AGENT_ENTERED"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 3, "type": "enter_world", "ok": true, "data": {"control": {"controller": "agent", "you": "controller"}}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "bob"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "bob", "password": "secret1"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "bob"}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "路人乙", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "move_character", "character": "路人乙", "floor": 1000, "x": 52, "y": 116}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 5, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 5, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1000, "changes": [{"op": "enter", "player": {"name": "勇者小明", "level": 5, "transmigration": 0, "title": "", "in_battle": false, "party": null}}]}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1000, "changes": [{"op": "enter", "player": {"name": "路人乙", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}}]}}}
+{"conn": "agent", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1000, "changes": [{"op": "enter", "player": {"name": "路人乙", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}}]}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 6, "type": "chat", "data": {"channel": "world", "text": "世界"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 6, "type": "chat", "ok": false, "error": {"code": "CHAT_LEVEL_LOW", "message": "*=错误说明", "data": {"min_level": 5}}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 4, "type": "chat", "data": {"channel": "map", "text": "阿牛先去加加村"}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 4, "type": "chat", "ok": true, "data": {}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 5, "text": "阿牛先去加加村", "time_ms": "*=1760000000000"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 5, "text": "阿牛先去加加村", "time_ms": "*=1760000000000"}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 5, "type": "players", "data": {}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 5, "type": "players", "ok": true, "data": {"floor": 1000, "truncated": false, "players": [{"name": "路人乙", "level": 1, "transmigration": 0, "title": "", "in_battle": false, "party": null}]}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 7, "type": "chat", "data": {"channel": "map", "text": "阿牛在线"}}, "delay_ms": 1100}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 5, "text": "阿牛在线", "time_ms": "*=1760000000000"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 7, "type": "chat", "ok": true, "data": {}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 5, "text": "阿牛在线", "time_ms": "*=1760000000000"}}}
+{"conn": "setup", "dir": "admin", "do": "chat_mute", "character": "勇者小明", "seconds": 600}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 8, "type": "chat", "data": {"channel": "map", "text": "被禁言"}}, "delay_ms": 1100}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 8, "type": "chat", "ok": false, "error": {"code": "CHAT_MUTED", "message": "*=错误说明", "data": {"until_ms": "*"}}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 9, "type": "agent_say", "data": {"text": "私聊不受禁言"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 9, "type": "agent_say", "ok": true, "data": {}}}
+{"conn": "agent", "dir": "s2c", "msg": {"type": "agent_message", "data": {"from": "player", "text": "私聊不受禁言", "time_ms": "*=1760000000000"}}}
+{"conn": "setup", "dir": "admin", "do": "chat_unmute", "character": "勇者小明"}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 10, "type": "chat", "data": {"channel": "world", "text": "世界频道"}}, "delay_ms": 1100}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "world", "from": "勇者小明", "level": 5, "text": "世界频道", "time_ms": "*=1760000000000"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "world", "from": "勇者小明", "level": 5, "text": "世界频道", "time_ms": "*=1760000000000"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 10, "type": "chat", "ok": true, "data": {}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 7, "type": "warp", "data": {"place": 2}}}
+{"conn": "bob", "dir": "s2c", "msg": {"type": "position_changed", "data": {"floor": 2000, "map_name": "玛丽娜丝渔村", "x": 72, "y": 33, "direction": "*"}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 7, "type": "warp", "ok": true, "data": {}}}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1000, "changes": [{"op": "leave", "name": "路人乙"}]}}}
+{"conn": "agent", "dir": "s2c", "msg": {"type": "players_changed", "data": {"floor": 1000, "changes": [{"op": "leave", "name": "路人乙"}]}}}
+{"conn": "alice", "dir": "c2s", "msg": {"id": 11, "type": "chat", "data": {"channel": "map", "text": "只有本图"}}, "delay_ms": 1100}
+{"conn": "alice", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 5, "text": "只有本图", "time_ms": "*=1760000000000"}}}
+{"conn": "alice", "dir": "s2c", "msg": {"id": 11, "type": "chat", "ok": true, "data": {}}}
+{"conn": "bob", "dir": "c2s", "msg": {"id": 8, "type": "players", "data": {}}}
+{"conn": "bob", "dir": "s2c", "msg": {"id": 8, "type": "players", "ok": true, "data": {"floor": 2000, "truncated": false, "players": []}}}
+{"conn": "agent", "dir": "c2s", "msg": {"id": 6, "type": "players", "data": {}}}
+{"conn": "agent", "dir": "s2c", "msg": {"id": 6, "type": "players", "ok": true, "data": {"floor": 1000, "truncated": false, "players": []}}}

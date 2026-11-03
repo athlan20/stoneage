@@ -1,0 +1,57 @@
+{"meta": {"desc": "穿脱与整理：管理命令发小斧头后穿到手上（攻击 +9、防御 -3、敏捷 -3 立刻推送 status_changed），同类的新武器互换回背包，卸下放进第一个空背包格，饰品放 3 号，背包内移动，丢弃后不再出现；离开再进入后装备和加成都还在", "stage": "STAGE-29"}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "setup", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "setup", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "characters", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "characters", "ok": true, "data": {"max_slots": 2, "characters": [{"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}, "position": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000"}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "inventory", "ok": true, "data": {"gold": "*=1000000", "slots": []}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 0, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 5, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "item_equip", "data": {"slot": 5}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 2, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": {"derived": {"attack": 14, "defense": 2, "agility": 1}}}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "item_equip", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "inventory", "ok": true, "data": {"gold": "*=1000000", "slots": [{"slot": 2, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}]}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 100, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 2, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}, {"slot": 5, "item_id": 100, "name": "小棍棒", "effect": "攻 +4", "type": 2, "count": 1, "target_type": "none"}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "item_equip", "data": {"slot": 5}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 2, "item_id": 100, "name": "小棍棒", "effect": "攻 +4", "type": 2, "count": 1, "target_type": "none"}, {"slot": 5, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": {"derived": {"attack": 9, "defense": 5, "agility": 4}}}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "item_equip", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "status", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "status", "ok": true, "data": {"status": {"derived": {"attack": 9, "defense": 5, "agility": 4}}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 10, "type": "item_unequip", "data": {"slot": 2}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 5, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}, {"slot": 6, "item_id": 100, "name": "小棍棒", "effect": "攻 +4", "type": 2, "count": 1, "target_type": "none"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": {"derived": {"attack": 5, "defense": 5, "agility": 4}}}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 10, "type": "item_unequip", "ok": true, "data": {}}}
+{"conn": "setup", "dir": "admin", "do": "give_item", "character": "勇者小明", "item_id": 1200, "count": 1}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 5, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}, {"slot": 6, "item_id": 100, "name": "小棍棒", "effect": "攻 +4", "type": 2, "count": 1, "target_type": "none"}, {"slot": 7, "item_id": 1200, "name": "黄色双重手环", "effect": "攻 +1 防 +1 敏 -1 魅 +1", "type": 8, "count": 1, "target_type": "none"}]}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 11, "type": "item_equip", "data": {"slot": 7}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 3, "item_id": 1200, "name": "黄色双重手环", "effect": "攻 +1 防 +1 敏 -1 魅 +1", "type": 8, "count": 1, "target_type": "none"}, {"slot": 5, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}, {"slot": 6, "item_id": 100, "name": "小棍棒", "effect": "攻 +4", "type": 2, "count": 1, "target_type": "none"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "status_changed", "data": {"status": {"derived": {"attack": 6, "defense": 6, "agility": 3}}}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 11, "type": "item_equip", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 12, "type": "item_move", "data": {"from": 5, "to": 8}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 3, "item_id": 1200, "name": "黄色双重手环", "effect": "攻 +1 防 +1 敏 -1 魅 +1", "type": 8, "count": 1, "target_type": "none"}, {"slot": 6, "item_id": 100, "name": "小棍棒", "effect": "攻 +4", "type": 2, "count": 1, "target_type": "none"}, {"slot": 8, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 12, "type": "item_move", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 13, "type": "item_drop", "data": {"slot": 6, "confirm": "yes"}}}
+{"conn": "player", "dir": "s2c", "msg": {"type": "inventory_changed", "data": {"gold": "*=1000000", "slots": [{"slot": 3, "item_id": 1200, "name": "黄色双重手环", "effect": "攻 +1 防 +1 敏 -1 魅 +1", "type": 8, "count": 1, "target_type": "none"}, {"slot": 8, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}]}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 13, "type": "item_drop", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 14, "type": "leave_world", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 14, "type": "leave_world", "ok": true, "data": {}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 15, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 15, "type": "enter_world", "ok": true, "data": {"character": {"slot": 0, "name": "勇者小明", "level": 1, "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "location": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家"}}, "position": {"floor": 1006, "map_name": "*=萨姆吉尔村长之家", "x": 15, "y": 22, "direction": "*=4"}, "status": {"level": 1, "hp": 44, "max_hp": 44, "mp": 100, "max_mp": 100, "exp": 0, "next_exp": 2, "gold": "*=1000000", "derived": {"attack": 6, "defense": 6, "agility": 3}}, "control": {"controller": "player", "you": "controller"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 16, "type": "inventory", "data": {}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 16, "type": "inventory", "ok": true, "data": {"gold": "*=1000000", "slots": [{"slot": 3, "item_id": 1200, "name": "黄色双重手环", "effect": "攻 +1 防 +1 敏 -1 魅 +1", "type": 8, "count": 1, "target_type": "none"}, {"slot": 8, "item_id": 0, "name": "小斧头", "effect": "攻 +9 防 -3 敏 -3", "type": 1, "count": 1, "target_type": "none"}]}}}

@@ -1,0 +1,24 @@
+{"meta": {"desc": "公开聊天·禁言（STAGE-278）单账号：管理员禁言期内 map 回复 CHAT_MUTED（until_ms）；禁言不影响 agent_say（没有 agent 时回 PEER_OFFLINE，而不是 CHAT_MUTED）；禁言到期后自动恢复；chat_unmute 立即恢复", "stage": "STAGE-278"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "*", "role": "player"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": true, "data": {"protocol": 1, "server": "*=stoneage-mock/0.1.0", "heartbeat_seconds": "*=20", "idle_timeout_seconds": "*=60", "register_enabled": true}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 2, "type": "register", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 2, "type": "register", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 3, "type": "login", "data": {"account": "alice", "password": "secret1"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 3, "type": "login", "ok": true, "data": {"account": "alice"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 4, "type": "create_character", "data": {"slot": 0, "name": "勇者小明", "appearance": {"body": 3, "color": 2, "eye": 1, "mouth": 4}, "stats": {"vital": 8, "strength": 4, "toughness": 4, "dexterity": 4}, "elements": {"earth": 6, "water": 4, "fire": 0, "wind": 0}, "hometown": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 4, "type": "create_character", "ok": true, "data": "*"}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 5, "type": "enter_world", "data": {"slot": 0}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 5, "type": "enter_world", "ok": true, "data": "*"}}
+{"conn": "setup", "dir": "admin", "do": "chat_mute", "character": "勇者小明", "seconds": 2}
+{"conn": "player", "dir": "c2s", "msg": {"id": 6, "type": "chat", "data": {"channel": "map", "text": "禁言中"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 6, "type": "chat", "ok": false, "error": {"code": "CHAT_MUTED", "message": "*=错误说明", "data": {"until_ms": "*"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 7, "type": "agent_say", "data": {"text": "私聊不受影响"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 7, "type": "agent_say", "ok": false, "error": {"code": "PEER_OFFLINE", "message": "*=错误说明"}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 8, "type": "chat", "data": {"channel": "map", "text": "解禁后"}}, "delay_ms": 2100}
+{"conn": "player", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 1, "text": "解禁后", "time_ms": "*=1760000000000"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 8, "type": "chat", "ok": true, "data": {}}}
+{"conn": "setup", "dir": "admin", "do": "chat_mute", "character": "勇者小明", "seconds": 600}
+{"conn": "setup", "dir": "admin", "do": "chat_unmute", "character": "勇者小明"}
+{"conn": "player", "dir": "c2s", "msg": {"id": 9, "type": "chat", "data": {"channel": "map", "text": "解除后"}}, "delay_ms": 1100}
+{"conn": "player", "dir": "s2c", "msg": {"type": "chat_message", "data": {"channel": "map", "from": "勇者小明", "level": 1, "text": "解除后", "time_ms": "*=1760000000000"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 9, "type": "chat", "ok": true, "data": {}}}

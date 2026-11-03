@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>石器时代 · CLI 交互试验场</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="#" aria-label="石器时代交互原型首页"><span class="brand-mark">石</span><span>STONE AGE <small>石器时代</small></span></a>
+    <div class="prototype-label"><span class="live-dot"></span> CLI 交互原型 <span class="version">DESIGN / 01</span></div>
+  </header>
+  <main class="workspace">
+    <section class="playground" aria-label="游戏原型">
+      <div class="intro"><div><p class="eyebrow">BACK TO THE ADVENTURE</p><h1>冒险，从一个选择开始。</h1></div><p>方向键选择，回车确认，Esc 返回。<br>通过传送和对话探索世界，无需手动行走。</p></div>
+      <div class="terminal-shell">
+        <div class="window-bar"><span><i></i><i></i><i></i></span><span>STONEAGE.EXE</span><span id="session-label">本地模拟 · 未连接服务器</span></div>
+        <div id="game" tabindex="0" role="region" aria-label="石器时代键盘游戏界面"></div>
+      </div>
+      <nav class="virtual-keys" aria-label="模拟键盘"><span>也可以点按</span><button data-key="ArrowUp" aria-label="向上">↑</button><button data-key="ArrowDown" aria-label="向下">↓</button><button data-key="ArrowLeft" aria-label="向左">←</button><button data-key="ArrowRight" aria-label="向右">→</button><button data-key="Enter">Enter 确认</button><button data-key="Escape">Esc 返回</button><button data-key="/">/ 命令</button></nav>
+      <p class="local-note">纯前端假界面 · 操作仅改变本地模拟数据 · 不影响真实账号和角色</p>
+    </section>
+    <aside class="guide" aria-label="原型体验工具">
+      <div class="guide-heading"><span class="eyebrow">FIELD NOTES</span><span>体验手册</span></div>
+      <section class="guide-section"><span class="section-no">01 / 当前操作</span><h2 id="focus-title">登录游戏</h2><p id="focus-note">填好表单，或直接使用示例账号进入。</p><div class="key-guide"><div><kbd>↑ ↓</kbd><span>选择菜单项</span></div><div><kbd>Enter</kbd><span>进入 / 确认</span></div><div><kbd>Esc</kbd><span>返回上一层</span></div><div><kbd>/</kbd><span>打开命令栏</span></div></div></section>
+      <section class="guide-section"><span class="section-no">02 / 跳到体验场景</span><div id="scenarios" class="scenario-list"></div></section>
+      <section class="guide-section"><span class="section-no">03 / 观察交互</span><p>只有高亮项接收操作。常规动作直接完成，丢弃、放生等操作会再确认。输入框只在需要文字时出现。</p><button id="reset" class="reset-button">↺ 重置全部示例数据</button><p id="save-note" class="save-note">进度保存在本机浏览器。密码不保存。</p></section>
+    </aside>
+  </main>
+  <footer class="site-footer"><span>石器时代 2.5 / CLI EXPERIENCE LAB</span><span>菜单、动作、目标。一步一步，回到游戏。</span></footer>
+  <script src="data.js"></script><script src="engine.js"></script><script src="actions.js"></script><script src="npc.js"></script><script src="battle.js"></script><script src="commands.js"></script><script src="forms.js"></script><script src="screens.js"></script><script src="render.js"></script><script src="app.js"></script>
+</body>
+</html>
