@@ -1,4 +1,4 @@
 {"meta": {"desc": "agent 连接也要检查客户端版本：版本低于最低版本时回复 CLIENT_TOO_OLD 并断开", "stage": "STAGE-100", "server_config": {"min_client_version": "0.3.0"}}}
-{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "stoneage-cli/0.2.23", "role": "agent"}}}
-{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": false, "error": {"code": "CLIENT_TOO_OLD", "message": "*=当前版本 0.2.23 过旧，需要升级到 0.3.0 以上，运行 stoneage update", "data": {"min_client": "0.3.0"}}}}
+{"conn": "player", "dir": "c2s", "msg": {"id": 1, "type": "hello", "data": {"protocol": 1, "client": "stoneage-cli/0.2.24", "role": "agent"}}}
+{"conn": "player", "dir": "s2c", "msg": {"id": 1, "type": "hello", "ok": false, "error": {"code": "CLIENT_TOO_OLD", "message": "*=当前版本 0.2.24 过旧，需要升级到 0.3.0 以上，运行 stoneage update", "data": {"min_client": "0.3.0"}}}}
 {"conn": "player", "dir": "s2c", "closed": true}
