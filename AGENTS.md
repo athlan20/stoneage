@@ -112,21 +112,21 @@ CLI 界面风格**完全参考 `demo/ratatui-demo/`**（`src/ui.rs` 是样板）
 一个云效需求或缺陷对应一个分支、一个 worktree；`test` 只用来测试，**不往 develop 合**，测试通过的是需求分支本身合进 develop。
 
 ```text
-develop ──stage-start──▶ STAGE-29-背包穿脱整理（worktree ../stoneage-open-STAGE-29）
+develop ──stage-start──▶ STAGE-29-背包穿脱整理（worktree ../stoneage-STAGE-29）
                               │ stage-to-test                │ stage-finish（测试通过后）
                               ▼                              ▼
-                         test（worktree ../stoneage-open-test）   develop ──（发布时）──▶ main
+                         test（worktree ../stoneage-test）   develop ──（发布时）──▶ main
 ```
 
 | 步骤 | 命令 | 云效状态 |
 |---|---|---|
 | 1. 从云效领一个“待处理”的需求，从 develop 开分支和 worktree | `scripts/stage-start.sh STAGE-29 背包穿脱整理` | 开发中 / 处理中 |
-| 2. 在 worktree 里开发、自测、提交（提交信息以需求号开头） | `cd ../stoneage-open-STAGE-29` | |
-| 3. 先在需求分支里同步 develop（见下“合并前先同步 develop”），再合进 test，在 `../stoneage-open-test` 里测试 | `scripts/stage-to-test.sh STAGE-29` | 测试中（技术类需求：已完成）；缺陷：已修复 |
+| 2. 在 worktree 里开发、自测、提交（提交信息以需求号开头） | `cd ../stoneage-STAGE-29` | |
+| 3. 先在需求分支里同步 develop（见下“合并前先同步 develop”），再合进 test，在 `../stoneage-test` 里测试 | `scripts/stage-to-test.sh STAGE-29` | 测试中（技术类需求：已完成）；缺陷：已修复 |
 | 4a. 测试不通过：回需求分支修改，再执行第 3 步 | | 回到开发中 |
 | 4b. 测试通过：需求分支合进 develop，删 worktree 和分支 | `scripts/stage-finish.sh STAGE-29` | 已完成；缺陷：已关闭 |
 
-- **分支名**：`需求号-短标题`，如 `STAGE-29-背包穿脱整理`；缺陷用缺陷号。短标题只用汉字、字母、数字、`-`、`_`，不超过 20 个字，不带空格、【】和标点（脚本会检查）。worktree 目录 = 主仓库目录名 + 需求号（主仓库在 `stoneage-open`，所以是 `../stoneage-open-STAGE-29`），保持纯 ASCII 路径。
+- **分支名**：`需求号-短标题`，如 `STAGE-29-背包穿脱整理`；缺陷用缺陷号。短标题只用汉字、字母、数字、`-`、`_`，不超过 20 个字，不带空格、【】和标点（脚本会检查）。worktree 目录 = 主仓库目录名 + 需求号（主仓库在 `stoneage`，所以是 `../stoneage-STAGE-29`），保持纯 ASCII 路径。
 - **合并**：一律 `--no-ff`，合并提交写成 `STAGE-29-背包穿脱整理：合入 test/develop`，保留“这批提交属于哪个需求”。冲突时脚本停下，解决并提交后再运行一次即可。合进 develop 时如果有冲突，最好先在需求分支上合一次 develop 解决，test 上也就不会再冲突。
 - **合并前先同步 develop**（第 3 步和 `stage-finish` 之前都做）：在需求分支的 worktree 里执行 `git merge develop`，把冲突在需求分支上解决掉，再跑 `stage-to-test.sh` / `stage-finish.sh`。已知每次必冲突的两处：
   - `server/casetest/cases_test.go` 的 `enabledStages` 一整行：两边的 `"STAGE-N": true` 取并集。
@@ -134,7 +134,7 @@ develop ──stage-start──▶ STAGE-29-背包穿脱整理（worktree ../sto
   同步后跑 `go build ./...` 和改动涉及的包测试（至少 `./server/webpages ./server/casetest/`），再提交合并。
 - **test 分支**：第一次运行 `stage-to-test.sh` 时从 develop 建出来。test 上积累的未通过需求太多或太乱时，用 `scripts/stage-to-test.sh --reset STAGE-29` 把它重置成 develop 再合（其他还在测试的需求要重新合一次）。
 - **跳过测试**：`stage-finish.sh` 默认要求需求分支的最新提交已经在 test 里；纯文档、脚本这类不需要测试的改动可以加 `--force` 直接合进 develop。只合并、不清理 worktree 用 `--keep`。
-- **并行开发**：多个 worktree 共用本机 PostgreSQL 和服务端端口（7065），表结构版本也可能不同。同一时间只在一个 worktree 里跑 `scripts/server-*.sh`（测试阶段就是 `../stoneage-open-test`）；需求分支自测优先用 `scripts/smoke.sh`，它用临时 schema，互不影响。`stage-start.sh` 会把主仓库的 `.env` 复制进新 worktree。
+- **并行开发**：多个 worktree 共用本机 PostgreSQL 和服务端端口（7065），表结构版本也可能不同。同一时间只在一个 worktree 里跑 `scripts/server-*.sh`（测试阶段就是 `../stoneage-test`）；需求分支自测优先用 `scripts/smoke.sh`，它用临时 schema，互不影响。`stage-start.sh` 会把主仓库的 `.env` 复制进新 worktree。
 - **推送与发布**：脚本只做本地合并，不推送；develop 合进 main 是发布动作，由用户决定什么时候做。
 
 ## 云效协作平台
