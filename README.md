@@ -48,3 +48,7 @@ cargo run --bin stoneage        # 另开终端
 ## 许可证
 
 尚未选定。
+
+## 推广
+
+项目首发于 [Linux.do 社区](https://linux.do/)。
