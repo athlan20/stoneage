@@ -41,6 +41,10 @@ cargo run --bin stoneage        # 另开终端
 
 更多命令、测试方法和代码结构见 [AGENTS.md](AGENTS.md)、[docs/server.md](docs/server.md)、[docs/client.md](docs/client.md)。
 
+## 贡献者
+
+见 [CONTRIBUTORS.md](CONTRIBUTORS.md)。
+
 ## 许可证
 
 尚未选定。
