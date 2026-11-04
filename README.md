@@ -21,14 +21,60 @@
 | `scripts/` | 服务端启停、冒烟测试、客户端一键启动 |
 | `tools/` | 数据生成与校验脚本 |
 
-## 快速开始
+## 安装
 
-需要 Go、Rust 工具链和本机的 PostgreSQL。
+### 只安装客户端（推荐）
+
+不用编译，也不用装 Go / Rust。支持 macOS（Apple 芯片和 Intel）、Linux（x64）、Windows 10 / 11（x64）。装完重开终端，输入 `stoneage` 即可。
+
+| 方式 | 命令 |
+| --- | --- |
+| macOS / Linux | `curl --proto '=https' --tlsv1.2 -LsSf https://github.com/athlan20/stoneage/releases/latest/download/stoneage-client-installer.sh \| sh` |
+| Windows（PowerShell） | `powershell -ExecutionPolicy Bypass -c "irm https://github.com/athlan20/stoneage/releases/latest/download/stoneage-client-installer.ps1 \| iex"` |
+| Homebrew | `brew install athlan20/tap/stoneage` |
+| npm（Node.js 18+） | `npm i -g stoneage-cli`，或不安装直接 `npx stoneage-cli` |
+
+升级用 `stoneage update`。每一步的图文说明、安装位置和常见问题见 [docs/play.md](docs/play.md)。
+
+### 从源码安装（自己编译、跑服务端）
+
+依赖：
+
+- Go 1.25 以上（服务端）
+- Rust 1.88 以上（客户端；`rustup` 安装，工具链在 `~/.cargo/bin`，非交互 shell 可能不在 `PATH` 里）
+- PostgreSQL（本机装一个即可，服务端启动时自动建表）
 
 ```sh
-cp .env.example .env            # 改 STONEAGE_DATABASE_URL 指向你的库
-scripts/server-start.sh         # 编译并后台启动服务端（默认 127.0.0.1:7065）
-scripts/client.sh               # 编译并运行客户端，默认连本机服务端
+git clone https://github.com/athlan20/stoneage.git && cd stoneage
+
+# 1. 准备数据库（以 macOS Homebrew 为例，其他系统同理）
+brew install postgresql@18 && brew services start postgresql@18
+createuser --pwprompt stoneage          # 输入一个密码
+createdb --owner stoneage stoneage
+
+# 2. 配置：把 .env 里的 STONEAGE_DATABASE_URL 改成上一步的库和密码
+cp .env.example .env
+
+# 3. 编译并后台启动服务端（默认 127.0.0.1:7065）
+scripts/server-start.sh
+
+# 4. 编译并运行客户端，默认连本机服务端
+scripts/client.sh
+```
+
+只想装出 `stoneage` 命令而不用脚本：`cargo install --path client --bin stoneage`。
+
+Windows 上可以用仓库根目录的 `start-server.bat` / `start-client.bat`。服务端的停止、重启和状态查看见 [docs/server.md](docs/server.md)。
+
+## 快速开始
+
+已经按上面装好之后，常用命令：
+
+```sh
+scripts/server-restart.sh       # 重新编译并重启服务端
+scripts/server-status.sh        # 查看服务端、数据库连接、表结构版本
+scripts/server-stop.sh          # 停止服务端
+scripts/client.sh --account alice   # 启动客户端并预填账号
 ```
 
 只想看界面、不起服务端：
